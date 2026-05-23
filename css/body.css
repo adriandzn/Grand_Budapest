@@ -42,3 +42,20 @@
 .font-purple {
   color: #944a65;
 }
+
+/* FONT FAMILIES */
+
+@font-face {
+  font-family: "AfacadFlux";
+  src: url("../fonts/AfacadFlux.ttf") format("truetype");
+}
+.font-body {
+  font-family: "AfacadFlux", sans-serif;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../fonts/IBMPlexSerif.ttf") format("truetype");
+}
+.font-title {
+  font-family: "IBMPlexSerif", sans-serif;
+}
