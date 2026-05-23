@@ -1,17 +1,44 @@
+/* BACKGROUND COLORS */
+
 .bg-darkbrown {
   background-color: #2b241f;
 }
 .bg-lightbrown {
   background-color: #584235;
 }
-
 .bg-lightpink {
   background-color: #ffaaae;
 }
 .bg-darkpink {
   background-color: #de7994;
 }
-
-.bg-purple {
+.bg-darkpurple {
   background-color: #6a3e4f;
+}
+
+/* FONT COLORS */
+
+.font-white {
+  color: #ffffff;
+}
+.font-lightbrown {
+  color: #ffc093;
+}
+.font-darkbrown {
+  color: #2b241f;
+}
+.font-brown {
+  color: #3a2d25;
+}
+.font-pink {
+  color: #de7994;
+}
+.font-darkpurple {
+  color: #6a3e4f;
+}
+.font-purple {
+  color: #944a65;
+}
+.font-beige {
+  color: #e0d0c6;
 }
