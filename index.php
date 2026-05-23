@@ -8,6 +8,9 @@
 </head>
 <body>
     
+    <!-- Hero Banner -->
+    <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100">
+
     <div class="container">
 
         <div class="row">
@@ -28,7 +31,7 @@
 
     </div>
     
-    ijdwaiojdwaoijdwaiojdwoaijdwa
+ 
 
 
 
