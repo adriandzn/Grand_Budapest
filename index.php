@@ -9,9 +9,12 @@
 </head>
 <body>
     
+    <!-- NAVBAR -->
+    <?php include 'navbar.php'; ?>
+
     <!-- Hero Banner -->
     <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100 shadow">
-  
+    
 
     <!-- FIRST SECTION: Call to Action -->
     <section class="bg-lightbrown">

@@ -59,3 +59,9 @@
 .font-title {
   font-family: "IBMPlexSerif", sans-serif;
 }
+
+/* SIZES */
+
+.size-small {
+  font-size: 0.1rem !important;
+}
