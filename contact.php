@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="css/body.css">
 </head>
 <body class="bg-lightpink font-body">
+
+    <!-- NAVBAR -->
+    <?php include 'navbar.php'; ?>
+
     <section class="position-relative overflow-hidden" style="min-height: 420px;">
         <img src="images/index-hero.png" alt="Grand Budapest hero" class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover" style="filter: brightness(0.65);">
         <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
