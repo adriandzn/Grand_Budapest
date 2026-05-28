@@ -18,7 +18,7 @@
 
     <!-- FIRST SECTION: Call to Action -->
     <section class="bg-lightbrown">
-        <div class="container">
+        <div class="container px-4">
             <div class="row py-5">
 
                 <!-- Image on the left -->
@@ -48,16 +48,16 @@
             </div>
         </div>
     </section>
-    
+
 
     <!-- SECOND SECTION: Your Best Stay Awaits -->
     <section class="bg-lightpink py-5">
-    <div class="container">
-
+    <div class="container px-4">
+    
         <div class="text-center text-black mb-5">
-            <h1 class="font-title fw-bold">
+            <h2 class="font-title fw-bold">
                 Your Best Stay Awaits
-            </h1>
+            </h2>
 
             <p class="font-body">
                 Cozy yet elegant rooms, featuring a vintage charm that make every stay feel warm and refined.
@@ -144,12 +144,12 @@
 
     <!-- THIRD SECTION: World-Class Fine Dining -->
 <section class="bg-lightbrown py-5">
-    <div class="container">
+    <div class="container px-4">
 
         <div class="text-center text-white mb-5">
-            <h1 class="font-title fw-bold">
+            <h2 class="font-title fw-bold">
                 World-Class Fine Dining
-            </h1>
+            </h2>
 
             <p class="font-body">
                 Dining at the Grand Budapest Hotel is elegant yet charming, with delicious pastries, fine dishes, and attentive service.
@@ -236,12 +236,12 @@
 
     <!-- FOURTH SECTION: Relax and Unwind -->
 <section class="bg-lightpink py-5">
-    <div class="container">
+    <div class="container px-4">
 
         <div class="text-center text-black mb-5">
-            <h1 class="font-title fw-bold">
+            <h2 class="font-title fw-bold">
                 Relax and Unwind
-            </h1>
+            </h2>
 
             <p class="font-body">
                 The gym, pool, and spa offer a perfect place to relax and recharge, combining comfort with luxury.
@@ -328,29 +328,21 @@
 
     <!-- FIFTH SECTION: Come Visit Us -->
 <section class = "bg-lightbrown py-5">
-    <div class="container text-center">
+    <div class="container text-center px-4">
         <div class="row">
             <div class="col text-white">
-                <div class = "">
-                    <h1>
-                        Come Visit Us
-                    </h1>
+                <div>
+                    <h2>Come Visit Us</h2>
                 </div>
-                <div class = "">
-                    <p>
-                        location: 1 Alpine Summit Drive Lutz, Zubrowka 1099 Republic of Zubrowka
-                    </p>
-                    <p>
-                        Contact: +63 975 714 1559
-                    </p>
-                    <p>
-                        Email: reservations@grandbudapest.zb
-                    </p>
+                <div>
+                    <p>location: 1 Alpine Summit Drive Lutz, Zubrowka 1099 Republic of Zubrowka</p>
+                    <p>Contact: +63 975 714 1559</p>
+                    <p>Email: reservations@grandbudapest.zb</p>
                 </div>
-                <div class="row">
-                    <div class="col"><img src="images/logo-fb-white.png" alt="" class = "w-25 h-100"></div>
-                    <div class="col"><img src="images/logo-ig-white.png" alt="" class = "w-25 h-100"></div>
-                    <div class="col"><img src="images/logo-tiktok-white.png" alt="" class = "w-25 h-100"></div>
+                <div class="d-flex justify-content-center align-items-center gap-5 py-3">
+                    <img src="images/logo-fb-white.png" alt="" style ="width:50px;">
+                    <img src="images/logo-ig-white.png" alt="" style="width: 50px;">
+                    <img src="images/logo-tiktok-white.png" alt="" style="width: 50px;">
                 </div>
                 
                 <div class="p-5">
@@ -362,7 +354,7 @@
                         </div>
                     </div>
             </div>
-            <div class="col">.
+            <div class="col">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18..."
                     width="100%" 
@@ -376,6 +368,9 @@
         </div>
     </div>
 </section>
+
+    <!-- FOOTER -->
+    <?php include 'footer.php'; ?>
 
     <script src="js/bootstrap.bundle.min.js"></script>
 
