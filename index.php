@@ -340,16 +340,15 @@
                     <p>Email: reservations@grandbudapest.zb</p>
                 </div>
                 <div class="d-flex justify-content-center align-items-center gap-5 py-3">
-                    <img src="images/logo-fb-white.png" alt="" style ="width:50px;">
-                    <img src="images/logo-ig-white.png" alt="" style="width: 50px;">
-                    <img src="images/logo-tiktok-white.png" alt="" style="width: 50px;">
+                    <a href="#"><img src="images/logo-fb-white.png" alt="" style ="width:50px;"></a>
+                    <a href="#"><img src="images/logo-ig-white.png" alt="" style="width: 50px;"></a>
+                    <a href="#"><img src="images/logo-tiktok-white.png" alt="" style="width: 50px;"></a>
                 </div>
                 
-                <div class="p-5">
+                <div class="py-4">
                         <div class="col d-flex justify-content-center">
-                            <a href="#" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-3 shadow">
-                                BOOK NOW
-                                <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
+                            <a href="contact.php" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-3 shadow">
+                                CONTACT US
                             </a>
                         </div>
                     </div>
