@@ -47,7 +47,7 @@ $booking = [
                         Greetings, <span class="display-5 font-title font-pink"><?php echo $user['fullName'];?></span>!
                     </h1>
                     <a href="#" class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 text-darkbrown">
-                                <img src="images/logo-logout-white.png" alt="Log out" style="height:20px; width:auto; filter: invert(1);">
+                                <img src="images/logo-logout-brown.png" alt="Log out" style="height:20px; width:auto;">
                                 Log Out
                             </a>
                 </div>
@@ -63,14 +63,14 @@ $booking = [
             <div class="row justify-content-center text-center gap-5">
 
                 <div class="col-auto mx-5">
-                    <a href="#"
+                    <a href="amenities_dining.php"
                         class="font-pink font-title text-decoration-none pb-1 fw-semibold px-3">
                         Overview
                     </a>
                 </div>
 
                 <div class="col-auto mx-5">
-                    <a href="#"
+                    <a href="amenities_activities.php"
                         class="font-white font-title text-decoration-none pb-1 fw-semibold px-3">
                         All Bookings
                     </a>
