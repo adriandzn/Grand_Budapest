@@ -40,7 +40,7 @@
                         </div>
                     </a>
                 </div>
-
+            
                 <!-- Right Section -->
                 <div class="col-5 px-3 font-lightbrown font-title fw-bold d-flex flex-column justify-content-center">
                     <div class="row">
