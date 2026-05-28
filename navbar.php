@@ -1,4 +1,3 @@
-<head>
     <style>
         .link {
             font-size: 0.9rem;
@@ -102,8 +101,8 @@
 
     </style>
 
-</head>
-<body>
+
+
     
     <nav class="navbar bg-darkbrown shadow font-title">
         <div class="container-fluid d-flex justify-content-evenly align-items-center py-2 px-5">
@@ -173,6 +172,3 @@
 
         window.addEventListener("resize", handleResize);
     </script>
-
-    <script src="js/bootstrap.bundle.min.js"></script>
-</body>

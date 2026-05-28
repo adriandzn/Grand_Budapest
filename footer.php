@@ -1,4 +1,3 @@
-<head>
     <style>
         .footer-logo {
             max-height: 80px;
@@ -32,11 +31,14 @@
         .footer-link:hover {
             color: #8a8079;
         }
+
+        .bg-brown {
+            background-color: #3a2d25;
+        }
     </style>
-</head>
-<body>
+
     
-    <footer class="bg-darkbrown pt-5 font-body px-3">
+    <footer class="bg-brown pt-5 font-body px-3">
         <div class="container">
             <div class="row gy-5">
 
@@ -130,7 +132,3 @@
             </p>
         </div>
     </footer>
-
-
-
-</body>
