@@ -1,5 +1,5 @@
 <?php
-// hehe
+
 $activityNames = [
     'Gym',
     'Spa',
