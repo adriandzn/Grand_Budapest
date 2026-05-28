@@ -71,12 +71,14 @@
 
             /* Animation */
             opacity: 0;
+            visibility: hidden;
             transform: translateY(-10px);
             transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
         .hamburger-menu.show {
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
         }
 
