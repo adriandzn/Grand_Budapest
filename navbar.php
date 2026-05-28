@@ -130,7 +130,7 @@
             <!-- Logo -->
             <ul class="navbar-nav px-4">
                 <li class="nav-item">
-                    <a class="nav-link link d-flex flex-column align-items-center" href="#"> 
+                    <a class="nav-link link d-flex flex-column align-items-center" href="index.php"> 
                         <img src="images/logo.png" alt="logo" class="logo">
                         <div class="logo-text">GRAND BUDAPEST</div>
                         <div class="logo-subtext">HOTEL</div>
