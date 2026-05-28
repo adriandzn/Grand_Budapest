@@ -50,7 +50,7 @@ $activityImages = [
 
     <!-- Hero Section -->
 
-    <section class="text-white py-5 border-top border-secondary"
+    <section class="text-white py-5"
         style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
         background-position: center; 
@@ -74,7 +74,7 @@ $activityImages = [
 
     <!-- Navigation -->
 
-    <nav class="bg-darkbrown border-top border-secondary py-3">
+    <nav class="bg-darkbrown py-3">
         <div class="container">
 
             <div class="row justify-content-center text-center gap-5">
