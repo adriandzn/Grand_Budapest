@@ -6,54 +6,87 @@
     <title>Navigation Bar</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+
+    <style>
+        .link {
+            font-size: 0.9rem;
+            color: #ffc093;
+            font-weight: bold;
+        }
+        .link:hover {
+            color: #a07658;
+        }
+
+        .logo {
+            max-height: 70px;
+            margin-bottom: 5px;
+        }
+        .logo-text {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+        .logo-subtext {
+            font-size: 0.5rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+        }
+
+        .book-now {
+            font-size: 0.9rem;
+            border: 3px solid #6a3e4f;
+            background-color: #de7994;
+            color: #2b241f;
+            font-weight: bold;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+        .book-now:hover {
+            background-color: #b46378;
+            border: 3px solid #6a3e4f;
+            color: #2b241f;
+        }
+    </style>
+
 </head>
 <body>
     
-    <section class="bg-darkbrown shadow">
-        <div class="container">
+    <nav class="navbar bg-darkbrown shadow font-title">
+        <div class="container-fluid py-2 px-5 mx-5">
 
-            <div class="row p-4 text-center">
+            <!-- Left Section -->
+            <ul class="navbar-nav d-flex flex-row gap-5 align-items-center">
+                <li class="nav-item"><a class="nav-link link" href="#">HOME</a></li>
+                <li class="nav-item"><a class="nav-link link" href="#">ROOMS</a></li>
+                <li class="nav-item"><a class="nav-link link" href="#">AMENITIES</a></li>
+                <li class="nav-item"><a class="nav-link link" href="#">ABOUT</a></li>
+            </ul>
 
-                <!-- Left Section -->
-                <div class="col-5 px-3 font-lightbrown font-title fw-bold d-flex flex-column justify-content-center">
-                    <div class="row">
-                        <div class="col"><a href="index.php" class="nav-link">HOME</a></div>
-                        <div class="col"><a href="rooms.php" class="nav-link">ROOMS</a></div>
-                        <div class="col"><a href="amenities_dining.php" class="nav-link">AMENITIES</a></div>
-                        <div class="col"><a href="about.php" class="nav-link">ABOUT</a></div>
-                    </div>
-                </div>
-
-                <!-- Logo -->
-                <div class="col-2 px-3 font-lightbrown font-title fw-bold d-flex flex-column justify-content-center">
-                    <a href="index.php" class="nav-link">
-                        <div class="row">
-                            <div class="col">
-                                <img src="images/logo.png" alt="logo" class="img-fluid w-50">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">GRAND BUDAPEST</div>
-                        </div>
-                        <div class="row">
-                            <div class="col">HOTEL</div>
-                        </div>
+            <!-- Logo -->
+            <ul class="navbar-nav px-4">
+                <li class="nav-item">
+                    <a class="nav-link link d-flex flex-column align-items-center" href="#"> 
+                        <img src="images/logo.png" alt="logo" class="logo">
+                        <div class="logo-text">GRAND BUDAPEST</div>
+                        <div class="logo-subtext">HOTEL</div>
                     </a>
-                </div>
-            
-                <!-- Right Section -->
-                <div class="col-5 px-3 font-lightbrown font-title fw-bold d-flex flex-column justify-content-center">
-                    <div class="row">
-                        <div class="col"><a href="contact.php" class="nav-link">CONTACT</a></div>
-                        <div class="col"><a href="profile_overview.php" class="nav-link">PROFILE</a></div>
-                        <div class="col"><a href="book.php" class="nav-link"></a>BOOK NOW</div>
-                    </div>
-                </div>
+                </li>
+            </ul>
 
-            </div>
+            <!-- Right Section -->
+            <ul class="navbar-nav d-flex flex-row gap-5 align-items-center">
+                <li class="nav-item"><a class="nav-link link" href="#">CONTACT</a></li>
+                <li class="nav-item"><a class="nav-link link" href="#">PROFILE</a></li>
+                <li class="nav-item">
+                    <a href="#" class="btn book-now d-flex flex-column align-items-center px-4">
+                        BOOK NOW
+                        <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
+                    </a>
+                </li>
+            </ul>
 
         </div>
-    </section> 
+    </nav>
 
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>

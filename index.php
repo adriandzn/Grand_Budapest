@@ -36,13 +36,9 @@
                     <!-- Book Now Button -->
                     <div class="row pt-5">
                         <div class="col d-flex justify-content-center">
-                            <a href="#" class="border border-3 book-now p-5 bg-darkpink shadow rounded-5 text-decoration-none font-title h5 fw-bold d-flex flex-column justify-content-center text-center w-50 h-50">
-                                <div class="row text-black">
-                                    <div class="col">BOOK NOW</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><img src="images/logo-key-brown.png" alt="key icon" class="w-25"></div>
-                                </div>
+                            <a href="#" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-3 shadow">
+                                BOOK NOW
+                                <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
                             </a>
                         </div>
                     </div>
@@ -358,14 +354,10 @@
                 </div>
                 
                 <div class="p-5">
-                        <div class="col ">
-                            <a href="#" class="p-5 border bg-darkpink border-3 rounded-5 text-decoration-none font-title h5 fw-bold font-white d-flex flex-column justify-content-center text-center w-50 h-50">
-                                <div class="row text-black">
-                                    <div class="col">BOOK NOW</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><img src="images/logo-key-brown.png" alt="key icon" class="w-25"></div>
-                                </div>
+                        <div class="col d-flex justify-content-center">
+                            <a href="#" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-3 shadow">
+                                BOOK NOW
+                                <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
                             </a>
                         </div>
                     </div>
