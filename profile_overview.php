@@ -25,36 +25,66 @@ $booking = [
     <link rel="stylesheet" href="css/body.css">
 </head>
 <body class="bg-lightpink font-body">
-    <section class="position-relative overflow-hidden" style="min-height:520px;">
-        <img src="images/index-hero.png" alt="Grand Budapest hero" class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover" style="filter: brightness(0.55);">
-        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-60"></div>
-        <div class="position-absolute top-0 start-0 w-100 px-4 py-4">
-            <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3">
-                <a href="index.php" class="text-white text-decoration-none d-inline-flex align-items-center gap-2">
-                    <img src="images/logo.png" alt="Grand Budapest logo" style="height: 40px; width: auto;">
-                    <span class="fw-semibold">GRAND BUDAPEST HOTEL</span>
-                </a>
-                <div class="d-flex flex-wrap gap-3 justify-content-center">
-                    <a href="index.php" class="text-white text-decoration-none">HOME</a>
-                    <a href="index.php#rooms" class="text-white text-decoration-none">ROOMS</a>
-                    <a href="amenities_activities.php" class="text-white text-decoration-none">AMENITIES</a>
-                    <a href="contact.php" class="text-white text-decoration-none">ABOUT</a>
-                    <a href="contact.php" class="text-white text-decoration-none">CONTACT</a>
-                    <a href="profile_overview.php" class="text-white text-decoration-none">PROFILE</a>
-                </div>
-                <a href="#" class="btn rounded-pill px-4 py-2 bg-darkpink text-white fw-semibold">BOOK NOW</a>
-            </div>
-        </div>
+    <!-- NAVBAR -->
+    <?php include 'navbar.php'; ?>
 
-        <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-4" style="max-width:940px;">
-            <p class="text-uppercase text-secondary small mb-2">Profile</p>
-            <h1 class="display-4 fw-bold font-title mb-3">Greetings, <span class="text-pink">Adrian Dizon</span>!</h1>
-            <a href="#profile" class="btn rounded-pill px-5 py-3 bg-lightpink font-darkbrown fw-semibold">View Profile</a>
+    <!-- HERO SECTION -->
+
+    <section class="text-white py-5 border-top border-secondary"
+        style="background-image: url('images/index-hero.png'); 
+        background-size: cover; 
+        background-position: center; 
+        background-color: rgba(0,0,0,0.6); 
+        background-blend-mode: multiply;">
+
+        <div class="container py-4 ps-5">
+            <div class="row">
+                <div class="col">
+                    <h1 class="display-3 font-title font-white fw-bold mb-2">
+                        Profile
+                    </h1>
+                    <h1 class="display-5 font-title font-white mb-5">
+                        Greetings, <span class="display-5 font-title font-pink"><?php echo $user['fullName'];?></span>!
+                    </h1>
+                    <a href="#" class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 text-darkbrown">
+                                <img src="images/logo-logout-white.png" alt="Log out" style="height:20px; width:auto; filter: invert(1);">
+                                Log Out
+                            </a>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Navigation -->
+
+    <nav class="bg-darkbrown border-top border-secondary py-3">
+        <div class="container">
+
+            <div class="row justify-content-center text-center gap-5">
+
+                <div class="col-auto mx-5">
+                    <a href="#"
+                        class="font-pink font-title text-decoration-none pb-1 fw-semibold px-3">
+                        Overview
+                    </a>
+                </div>
+
+                <div class="col-auto mx-5">
+                    <a href="#"
+                        class="font-white font-title text-decoration-none pb-1 fw-semibold px-3">
+                        All Bookings
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+
     <main class="container my-5" id="profile">
-        <div class="row justify-content-center mb-4">
+        <!-- <div class="row justify-content-center mb-4">
             <div class="col-lg-8">
                 <div class="rounded-4 overflow-hidden shadow-sm bg-darkbrown text-white">
                     <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 p-4">
@@ -75,7 +105,7 @@ $booking = [
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="row g-4">
             <div class="col-lg-6">
@@ -87,36 +117,53 @@ $booking = [
                             </div>
                             <div>
                                 <h3 class="h5 fw-bold mb-1">Account Information</h3>
-                                <p class="text-secondary small mb-0">Your personal details are safe and secure.</p>
                             </div>
                         </div>
 
-                        <div class="mb-3 d-flex align-items-center gap-3">
-                            <img src="images/logo-profile-pink.png" alt="Full name" style="height:24px; width:auto;">
-                            <div>
-                                <p class="text-secondary small mb-1">Full Name</p>
-                                <p class="mb-0 fw-semibold"><?php echo $user['fullName']; ?></p>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="d-flex align-items-center mb-3">
+                                        <img src="images/logo-edit-pink.png" alt="Full name" style="height:18px; width:auto;" class="me-3">
+                                        <div>
+                                            <p class="text-secondary small mb-0">Full Name</p>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex align-items-center mb-3">
+                                        <img src="images/logo-edit-pink.png" alt="Username" style="height:18px; width:auto;" class="me-3">
+                                        <div>
+                                            <p class="text-secondary small mb-0">Username</p>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex align-items-center mb-3">
+                                        <img src="images/logo-edit-pink.png" alt="Email" style="height:18px; width:auto;" class="me-3">
+                                        <div>
+                                            <p class="text-secondary small mb-0">Email</p>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <img src="images/logo-edit-pink.png" alt="Password" style="height:18px; width:auto;" class="me-3">
+                                        <div>
+                                            <p class="text-secondary small mb-0">Password</p>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="mb-3 d-flex align-items-center gap-3">
-                            <img src="images/logo-calendar-pink.png" alt="Username" style="height:24px; width:auto;">
-                            <div>
-                                <p class="text-secondary small mb-1">Username</p>
-                                <p class="mb-0 fw-semibold"><?php echo $user['username']; ?></p>
-                            </div>
-                        </div>
-                        <div class="mb-3 d-flex align-items-center gap-3">
-                            <img src="images/logo-mail-pink.png" alt="Email" style="height:24px; width:auto;">
-                            <div>
-                                <p class="text-secondary small mb-1">Email</p>
-                                <p class="mb-0 fw-semibold"><?php echo $user['email']; ?></p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <img src="images/logo-lock-brown.png" alt="Password" style="height:24px; width:auto; filter: brightness(0) invert(1);">
-                            <div>
-                                <p class="text-secondary small mb-1">Password</p>
-                                <p class="mb-0 fw-semibold"><?php echo $user['password']; ?></p>
+                            <div class="col-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-3">
+                                        <p class="mb-0 fw-semibold"><?php echo $user['fullName']; ?></p>
+                                    </li>
+                                    <li class="mb-3">
+                                        <p class="mb-0 fw-semibold"><?php echo $user['username']; ?></p>
+                                    </li>
+                                    <li class="mb-3">
+                                        <p class="mb-0 fw-semibold"><?php echo $user['email']; ?></p>
+                                    </li>
+                                    <li>
+                                        <p class="mb-0 fw-semibold"><?php echo $user['password']; ?></p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -129,7 +176,6 @@ $booking = [
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div>
                                 <h3 class="h5 fw-bold mb-1">Upcoming Stay</h3>
-                                <p class="text-secondary small mb-0">Get ready for your next visit.</p>
                             </div>
                             <span class="badge rounded-pill bg-success text-white"><?php echo $booking['status']; ?></span>
                         </div>
@@ -155,27 +201,7 @@ $booking = [
         </div>
     </main>
 
-    <footer class="bg-darkbrown text-white py-4">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-md-4">
-                    <h5 class="font-title text-white mb-3">GRAND BUDAPEST HOTEL</h5>
-                    <p class="small text-secondary mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur efficitur, metus et varius dignissim.</p>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="text-white mb-3">Hotel Location</h6>
-                    <p class="small text-secondary mb-1">1 Alpine Summit Drive</p>
-                    <p class="small text-secondary mb-1">Lutz, Zubrowka 1099</p>
-                    <p class="small text-secondary mb-0">Republic of Zubrowka</p>
-                </div>
-                <div class="col-md-4">
-                    <h6 class="text-white mb-3">Contact Us</h6>
-                    <p class="small text-secondary mb-1">+63 975 714 1559</p>
-                    <p class="small text-secondary mb-0">reservations@grandbudapest.lb</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
 
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
