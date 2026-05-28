@@ -121,8 +121,8 @@
 
             <!-- Left Section -->
             <ul class="navbar-nav d-flex flex-row gap-5 align-items-center left-section">
-                <li class="nav-item"><a class="nav-link link" href="#">HOME</a></li>
-                <li class="nav-item"><a class="nav-link link" href="#">ROOMS</a></li>
+                <li class="nav-item"><a class="nav-link link" href="index.php">HOME</a></li>
+                <li class="nav-item"><a class="nav-link link" href="rooms.php">ROOMS</a></li>
                 <li class="nav-item"><a class="nav-link link" href="amenities_dining.php">AMENITIES</a></li>
                 <li class="nav-item"><a class="nav-link link" href="#">ABOUT</a></li>
             </ul>
@@ -152,12 +152,12 @@
 
             <!-- Dropdown Menu -->
             <div class="hamburger-menu" id="hamburgerMenu">
-                <a href="#">HOME</a>
-                <a href="#">ROOMS</a>
-                <a href="#">AMENITIES</a>
+                <a href="index.php">HOME</a>
+                <a href="rooms.php">ROOMS</a>
+                <a href="amenities_dining.php">AMENITIES</a>
                 <a href="#">ABOUT</a>
-                <a href="#">CONTACT</a>
-                <a href="#">PROFILE</a>
+                <a href="contact.php">CONTACT</a>
+                <a href="profile_overview.php">PROFILE</a>
                 <a href="#">BOOK NOW</a>
             </div>
 
