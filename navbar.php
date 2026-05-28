@@ -18,7 +18,7 @@
         }
 
         .logo {
-            max-height: 70px;
+            max-height: 60px;
             margin-bottom: 5px;
         }
         .logo-text {
@@ -42,7 +42,7 @@
             transition: all 0.3s ease;
         }
         .book-now:hover {
-            background-color: #b46378;
+            background-color: #a55b6f;
             border: 3px solid #6a3e4f;
             color: #2b241f;
         }
@@ -52,7 +52,7 @@
 <body>
     
     <nav class="navbar bg-darkbrown shadow font-title">
-        <div class="container-fluid py-2 px-5 mx-5">
+        <div class="container-fluid d-flex justify-content-evenly align-items-center py-2 px-5">
 
             <!-- Left Section -->
             <ul class="navbar-nav d-flex flex-row gap-5 align-items-center">
@@ -80,7 +80,7 @@
                 <li class="nav-item">
                     <a href="#" class="btn book-now d-flex flex-column align-items-center px-4">
                         BOOK NOW
-                        <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
+                        <img src="images/logo-key-brown.png" alt="key" style="height:16px;">
                     </a>
                 </li>
             </ul>
