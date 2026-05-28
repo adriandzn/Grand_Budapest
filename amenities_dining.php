@@ -65,6 +65,9 @@ $venueReverse = [
 
 <body class="bg-lightpink bg-opacity-25">
 
+    <!-- NAVBAR -->
+    <?php include 'navbar.php'; ?>
+
     <!-- Hero Section -->
 
     <section class="text-white py-5 border-top border-secondary"

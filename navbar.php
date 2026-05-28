@@ -58,7 +58,7 @@
             <ul class="navbar-nav d-flex flex-row gap-5 align-items-center">
                 <li class="nav-item"><a class="nav-link link" href="#">HOME</a></li>
                 <li class="nav-item"><a class="nav-link link" href="#">ROOMS</a></li>
-                <li class="nav-item"><a class="nav-link link" href="#">AMENITIES</a></li>
+                <li class="nav-item"><a class="nav-link link" href="amenities_dining.php">AMENITIES</a></li>
                 <li class="nav-item"><a class="nav-link link" href="#">ABOUT</a></li>
             </ul>
 
@@ -75,7 +75,7 @@
 
             <!-- Right Section -->
             <ul class="navbar-nav d-flex flex-row gap-5 align-items-center">
-                <li class="nav-item"><a class="nav-link link" href="#">CONTACT</a></li>
+                <li class="nav-item"><a class="nav-link link" href="contact.php">CONTACT</a></li>
                 <li class="nav-item"><a class="nav-link link" href="#">PROFILE</a></li>
                 <li class="nav-item">
                     <a href="#" class="btn book-now d-flex flex-column align-items-center px-4">

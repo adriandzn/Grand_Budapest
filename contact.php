@@ -1,156 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Contact Us - Grand Budapest Hotel</title>
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+
 </head>
+
 <body class="bg-lightpink font-body">
 
     <!-- NAVBAR -->
+
     <?php include 'navbar.php'; ?>
 
-    <section class="position-relative overflow-hidden" style="min-height: 420px;">
-        <img src="images/index-hero.png" alt="Grand Budapest hero" class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover" style="filter: brightness(0.65);">
-        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-        <div class="position-absolute top-50 start-50 translate-middle w-100 text-center px-4">
-            <p class="text-uppercase text-secondary small mb-2">Contact</p>
-            <h1 class="display-4 fw-bold text-white font-title mb-3">Contact Us</h1>
-            <p class="lead text-light mb-0">Got any inquiries, comments, or recommendations? Send us a message and we will get back to you within 24 hours.</p>
+    <!-- HERO SECTION -->
+
+    <section class="text-white py-5 border-top border-secondary"
+        style="background-image: url('images/index-hero.png'); 
+        background-size: cover; 
+        background-position: center; 
+        background-color: rgba(0,0,0,0.6); 
+        background-blend-mode: multiply;">
+
+        <div class="container py-4 ps-5">
+            <div class="row">
+                <div class="col">
+                    <h1 class="display-3 font-title font-white">
+                        Contact Us
+                    </h1>
+                </div>
+            </div>
         </div>
     </section>
 
-    <main class="container my-5">
-        <div class="row g-4">
+    <!-- MAIN CONTENT -->
+
+    <main class="container-fluid px-4 px-lg-5 py-5">
+
+        <div class="row g-5 align-items-start">
+
+            <!-- LEFT FORM -->
+
             <div class="col-lg-7">
-                <div class="card rounded-4 shadow-sm border-0">
-                    <div class="card-body p-5">
-                        <div class="text-center mb-4">
-                            <div class="mx-auto d-inline-flex align-items-center justify-content-center rounded-circle bg-lightpink" style="width: 100px; height: 100px;">
-                                <img src="images/logo-phone-circle.png" alt="Contact icon" class="img-fluid" style="max-height: 48px;">
-                            </div>
-                            <h2 class="h4 fw-bold mt-4 mb-2 font-darkbrown">GRAND BUDAPEST LOBBY</h2>
-                            <p class="text-secondary small mb-0">Feel free to reach out and message us, we would love to hear from you!</p>
+
+                <div class="bg-white rounded-4 shadow p-4 p-lg-5 h-100">
+
+                    <!-- TOP ICON -->
+
+                    <div class="text-center mb-4">
+
+                        <img src="images/logo-phone-circle.png"
+                            alt="Phone Icon"
+                            class="img-fluid mb-3"
+                            style="height: 80px;">
+
+                        <h2 class="fw-bold font-title font-darkbrown mb-4">
+                            GRAND BUDAPEST LOBBY
+                        </h2>
+
+                        <p class="small text-muted lh-base fs-5">
+                            Got any inquiries, comments, or recommendations?<br>
+                            Feel free to reach out and message us, we would love<br>
+                            to hear from you!
+                        </p>
+
+                    </div>
+
+                    <!-- FORM -->
+
+                    <form>
+
+                        <div class="mb-4">
+
+                            <label class="fw-semibold fs-5 mb-3">
+                                Full Name <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="text"
+                                class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
+                                placeholder="Type here">
+
                         </div>
 
-                        <form>
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-pill border border-darkpink" placeholder="Type here">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control rounded-pill border border-darkpink" placeholder="Type here">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Contact Number <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control rounded-pill border border-darkpink" placeholder="Type here">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">Message <span class="text-danger">*</span></label>
-                                <textarea class="form-control rounded-4 border border-darkpink" rows="6" placeholder="How can we help you?"></textarea>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn rounded-pill px-5 py-3 bg-darkpink text-white fw-semibold">SEND</button>
-                            </div>
-                        </form>
+                        <div class="mb-4">
 
-                        <p class="text-center text-secondary small mt-4 mb-0">We typically respond within 24 hours.</p>
-                    </div>
+                            <label class="fw-semibold fs-5 mb-3">
+                                Email <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="email"
+                                class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
+                                placeholder="Type here">
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="fw-semibold fs-5 mb-3">
+                                Contact Number <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="text"
+                                class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
+                                placeholder="Type here">
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="fw-semibold fs-5 mb-3">
+                                Message <span class="text-danger">*</span>
+                            </label>
+
+                            <textarea class="form-control rounded-4 border-darkpink p-4 fs-5"
+                                rows="6"
+                                placeholder="How can we help you?"></textarea>
+
+                        </div>
+
+                        <!-- BUTTON -->
+
+                        <div class="text-center mt-5">
+
+                            <button type="submit"
+                                class="btn bg-darkpink text-dark fw-bold rounded-pill px-5 py-3 shadow-sm fs-5">
+
+                                SEND
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <p class="small text-muted text-center mt-4 mb-0">
+                        We typically respond within 24 hours.
+                    </p>
+
                 </div>
+
             </div>
+
+            <!-- RIGHT SIDE -->
 
             <div class="col-lg-5">
-                <div class="card rounded-4 shadow-sm border-0 bg-darkbrown text-white mb-4">
-                    <div class="card-body p-5">
-                        <h3 class="h5 fw-bold text-white mb-4">Contact Information</h3>
 
-                        <div class="d-flex align-items-start gap-3 mb-4">
-                            <img src="images/logo-clock-pink.png" alt="Lobby hours" style="height: 28px; width: auto; margin-top: 4px;">
-                            <div>
-                                <p class="text-secondary small text-uppercase mb-1">Lobby Hours</p>
-                                <p class="mb-0">Monday to Sunday<br>7:00AM - 11:00PM</p>
-                            </div>
+                <!-- CONTACT INFO -->
+
+                <div class="bg-lightbrown rounded-4 shadow p-5 text-white mb-5">
+
+                    <h2 class="fw-bold font-title text-center mb-5">
+                        Contact Information
+                    </h2>
+
+                    <!-- HOURS -->
+
+                    <div class="d-flex align-items-start mb-5">
+
+                        <img src="images/logo-clock-pink.png"
+                            alt="Clock"
+                            style="width: 50px;"
+                            class="me-4">
+
+                        <div>
+
+                            <h5 class="text-pink fw-bold mb-3">
+                                Lobby Hours
+                            </h5>
+
+                            <p class="mb-1 fw-semibold">
+                                Monday to Sunday
+                            </p>
+
+                            <p class="mb-0 fw-semibold">
+                                7:00AM - 11:00PM
+                            </p>
+
                         </div>
 
-                        <div class="d-flex align-items-start gap-3 mb-4">
-                            <img src="images/logo-phone-pink.png" alt="Mobile number" style="height: 28px; width: auto; margin-top: 4px;">
-                            <div>
-                                <p class="text-secondary small text-uppercase mb-1">Mobile Number</p>
-                                <p class="mb-0">+63 975 714 1559</p>
-                            </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-3">
-                            <img src="images/logo-mail-pink.png" alt="Email" style="height: 28px; width: auto; margin-top: 4px;">
-                            <div>
-                                <p class="text-secondary small text-uppercase mb-1">Email</p>
-                                <p class="mb-0">reservations@grandbudapest.lb</p>
-                            </div>
-                        </div>
                     </div>
+
+                    <!-- PHONE -->
+
+                    <div class="d-flex align-items-start mb-5">
+
+                        <img src="images/logo-phone-pink.png"
+                            alt="Phone"
+                            style="width: 50px;"
+                            class="me-4">
+
+                        <div>
+
+                            <h5 class="text-pink fw-bold mb-3">
+                                Mobile Number
+                            </h5>
+
+                            <p class="mb-0 fw-semibold">
+                                +63 975 714 1559
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- EMAIL -->
+
+                    <div class="d-flex align-items-start">
+
+                        <img src="images/logo-mail-pink.png"
+                            alt="Email"
+                            style="width: 50px;"
+                            class="me-4">
+
+                        <div>
+
+                            <h5 class="text-pink fw-bold mb-3">
+                                Email
+                            </h5>
+
+                            <p class="mb-0 fw-semibold">
+                                reservations@grandbudapest.zb
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="card rounded-4 shadow-sm border-0 bg-darkbrown text-white">
-                    <div class="card-body p-5 text-center">
-                        <h3 class="h5 fw-bold text-white mb-3">Socials</h3>
-                        <p class="text-secondary small mb-4">Follow us to get more news and updates!</p>
-                        <div class="d-flex justify-content-center gap-3">
-                            <a href="#" class="d-inline-flex align-items-center justify-content-center rounded-circle bg-white bg-opacity-10 p-3">
-                                <img src="images/logo-fb-pink.png" alt="Facebook" style="height: 22px; width: auto;">
-                            </a>
-                            <a href="#" class="d-inline-flex align-items-center justify-content-center rounded-circle bg-white bg-opacity-10 p-3">
-                                <img src="images/logo-ig-pink.png" alt="Instagram" style="height: 22px; width: auto;">
-                            </a>
-                            <a href="#" class="d-inline-flex align-items-center justify-content-center rounded-circle bg-white bg-opacity-10 p-3">
-                                <img src="images/logo-tiktok-pink.png" alt="TikTok" style="height: 22px; width: auto;">
-                            </a>
-                        </div>
+                <!-- SOCIALS -->
+
+                <div class="bg-lightbrown rounded-4 shadow p-5 text-center text-white">
+
+                    <h2 class="fw-bold font-title mb-3">
+                        Socials
+                    </h2>
+
+                    <p class="fw-semibold mb-5">
+                        Follow us to get more news and updates!
+                    </p>
+
+                    <div class="d-flex justify-content-center gap-5">
+
+                        <img src="images/logo-fb-pink.png"
+                            alt="Facebook"
+                            style="height: 55px;">
+
+                        <img src="images/logo-ig-pink.png"
+                            alt="Instagram"
+                            style="height: 55px;">
+
+                        <img src="images/logo-tiktok-pink.png"
+                            alt="TikTok"
+                            style="height: 55px;">
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
 
-        <section class="row g-4 mt-5 align-items-center">
-            <div class="col-lg-4">
-                <div class="rounded-4 p-5 bg-darkbrown text-white h-100">
-                    <div class="d-flex align-items-start gap-3 mb-4">
-                        <img src="images/logo-pin-pink.png" alt="Location" style="height: 32px; width: auto; margin-top: 6px;">
-                        <div>
-                            <p class="text-uppercase text-secondary small mb-2">Location</p>
-                            <h3 class="h5 fw-bold mb-3 text-white">Where to Find Us?</h3>
-                            <p class="small mb-1">1 Alpine Summit Drive</p>
-                            <p class="small mb-1">Lutz, Zubrowka 1099</p>
-                            <p class="small mb-0">Republic of Zubrowka</p>
+        <!-- LOCATION SECTION -->
+
+        <section class="mt-5">
+
+            <div class="bg-lightbrown rounded-4 p-5 text-white">
+
+                <div class="row align-items-center g-5">
+
+                    <!-- LEFT -->
+
+                    <div class="col-lg-4">
+
+                        <h2 class="display-5 fw-bold font-title mb-5">
+                            Where to Find Us?
+                        </h2>
+
+                        <div class="d-flex align-items-start">
+
+                            <img src="images/logo-pin-pink.png"
+                                alt="Location"
+                                style="width: 70px;"
+                                class="me-4">
+
+                            <div>
+
+                                <h5 class="text-pink fw-bold mb-4">
+                                    Location:
+                                </h5>
+
+                                <p class="fw-semibold fs-5 mb-2">
+                                    1 Alpine Summit Drive
+                                </p>
+
+                                <p class="fw-semibold fs-5 mb-2">
+                                    Lutz, Zubrowka 1099
+                                </p>
+
+                                <p class="fw-semibold fs-5 mb-0">
+                                    Republic of Zubrowka
+                                </p>
+
+                            </div>
+
                         </div>
+
                     </div>
+
+                    <!-- RIGHT -->
+
+                    <div class="col-lg-8">
+
+                        <div class="rounded-4 overflow-hidden shadow">
+
+                            <iframe
+                                src="https://maps.google.com/maps?q=1%20Alpine%20Summit%20Drive%20Lutz%20Zubrowka%201099&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                width="100%"
+                                height="420"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy">
+                            </iframe>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
-            <div class="col-lg-8">
-                <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
-                    <iframe src="https://maps.google.com/maps?q=1%20Alpine%20Summit%20Drive%20Lutz%20Zubrowka%201099&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
+
         </section>
+
     </main>
 
-    <footer class="bg-darkbrown text-white py-4">
-        <div class="container">
-            <div class="row gy-3 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-1 fw-semibold">GRAND BUDAPEST HOTEL</p>
-                    <p class="small text-secondary mb-0">A sanctuary of elegance, hospitality, and timeless style in the heart of Zubrowka.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="small mb-1">Call us: +63 975 714 1559</p>
-                    <p class="small mb-0">reservations@grandbudapest.lb</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script src="js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
