@@ -60,8 +60,8 @@
   font-family: "IBMPlexSerif", sans-serif;
 }
 
-/* SIZES */
+/* BUTTONS */
 
-.size-small {
-  font-size: 0.1rem !important;
+.book-now {
+  border: 3px solid #6a3e4f !important;
 }

@@ -35,8 +35,8 @@
 
                     <!-- Book Now Button -->
                     <div class="row pt-5">
-                        <div class="col">
-                            <a href="#" class="p-5 border bg-darkpink border-3 border-dark rounded-5 text-decoration-none font-title h5 fw-bold font-white d-flex flex-column justify-content-center text-center w-50 h-50">
+                        <div class="col d-flex justify-content-center">
+                            <a href="#" class="book-now border border-3 p-5 bg-darkpink shadow rounded-5 text-decoration-none font-title h5 fw-bold d-flex flex-column justify-content-center text-center w-50 h-50">
                                 <div class="row text-black">
                                     <div class="col">BOOK NOW</div>
                                 </div>
@@ -359,7 +359,7 @@
                 
                 <div class="p-5">
                         <div class="col ">
-                            <a href="#" class="p-5 border bg-darkpink border-3 border-dark rounded-5 text-decoration-none font-title h5 fw-bold font-white d-flex flex-column justify-content-center text-center w-50 h-50">
+                            <a href="#" class="p-5 border bg-darkpink border-3 rounded-5 text-decoration-none font-title h5 fw-bold font-white d-flex flex-column justify-content-center text-center w-50 h-50">
                                 <div class="row text-black">
                                     <div class="col">BOOK NOW</div>
                                 </div>
