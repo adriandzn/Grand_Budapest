@@ -27,21 +27,21 @@ $venueDescriptions = [
 ];
 
 $venueMainImages = [
-    "images/index-hero.png",
-    "images/index-hero.png",
-    "images/index-hero.png"
+    "images/hotel_pictures/buffet3.jpg",
+    "images/hotel_pictures/restaurant2.jpg",
+    "images/hotel_pictures/bar1.jpg"
 ];
 
 $venueSubImage1 = [
-    "images/index-hero.png",
-    "images/index-hero.png",
-    "images/index-hero.png"
+    "images/hotel_pictures/buffet2.jpg",
+    "images/hotel_pictures/restaurant1.jpg",
+    "images/hotel_pictures/bar2.jpg"
 ];
 
 $venueSubImage2 = [
-    "images/index-hero.png",
-    "images/index-hero.png",
-    "images/index-hero.png"
+    "images/hotel_pictures/buffet1.jpg",
+    "images/hotel_pictures/restaurant3.jpg",
+    "images/hotel_pictures/bar3.jpg"
 ];
 
 $venueReverse = [
@@ -132,8 +132,7 @@ $venueReverse = [
 
                     <!-- Images -->
 
-                    <div class="col-lg-7 p-4 p-md-5 d-flex align-items-center bg-lightbrown"
-                        >
+                    <div class="col-lg-7 p-4 p-md-5 d-flex align-items-center bg-lightbrown">
 
                         <div class="row g-3 w-100 m-0">
 
