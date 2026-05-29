@@ -80,7 +80,7 @@ $venueReverse = [
         <div class="container py-4 ps-5">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-3 font-title font-white">
+                    <h1 class="display-3 font-title font-white fw-bold">
                         Dining
                     </h1>
 

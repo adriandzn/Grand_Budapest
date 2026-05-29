@@ -51,7 +51,7 @@ $activityImages = [
     <!-- Hero Section -->
 
     <section class="text-white py-5"
-        style="background-image: url('images/hotel_pictures/index-hero.png'); 
+        style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
         background-position: center; 
         background-color: rgba(0,0,0,0.6); 
@@ -60,7 +60,7 @@ $activityImages = [
         <div class="container py-4 ps-5">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-3 font-title font-white">
+                    <h1 class="display-3 font-title font-white fw-bold">
                         Activities
                     </h1>
 

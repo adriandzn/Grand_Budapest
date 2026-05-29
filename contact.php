@@ -31,7 +31,7 @@
         <div class="container py-4 ps-5">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-3 font-title font-white">
+                    <h1 class="display-3 font-title font-white fw-bold">
                         Contact Us
                     </h1>
                 </div>
@@ -41,7 +41,7 @@
 
     <!-- MAIN CONTENT -->
 
-    <main class="container-fluid px-4 px-lg-5 py-5">
+    <main class="container px-4 px-lg-5 py-5">
 
         <div class="row g-5 align-items-start">
 

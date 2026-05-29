@@ -54,9 +54,9 @@ $bookingInfo = [
                         Profile
                     </h1>
 
-                    <h1 class="display-5 font-title font-white mb-5">
+                    <h1 class="display-5 font-title font-white mb-5 fw-bold">
                         Greetings,
-                        <span class="display-5 font-title font-pink">
+                        <span class="display-5 font-title font-pink fw-bold">
                             <?php echo $userInfo[0]; ?>
                         </span>!
                     </h1>
