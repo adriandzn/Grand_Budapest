@@ -32,7 +32,7 @@
 
 
     <div class="container">
-        
+
         <!-- Progress Bar -->
         <div class="container-fluid">
             <?php
