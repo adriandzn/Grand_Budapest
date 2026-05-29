@@ -46,7 +46,7 @@
             <div class="bg-lightbrown rounded-5 my-5 p-5 shadow">
 
                 <div class="row">
-                    <div class="col font-title text-white h4">Choose Your Dates</div>
+                    <div class="col font-title text-white h4 fw-bold">Choose Your Dates</div>
                 </div>
 
                 <!-- Check in and Check out Dates -->
