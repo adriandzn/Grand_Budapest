@@ -71,10 +71,10 @@
                     </p>
 
                     <div class="d-flex justify-content-center gap-4 flex-wrap">
-                        <a href="profile_overview.php" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-2 shadow">
+                        <a href="profile_overview.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-2 shadow">
                             Go to Profile
                         </a>
-                        <a href="index.php" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-2 shadow">
+                        <a href="index.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-2 shadow">
                             Back to Home
                         </a>
                     </div>
