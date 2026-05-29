@@ -6,6 +6,7 @@
     <title>Book Now</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/progress.css">
 </head>
 <body class="bg-lightpink">
 
@@ -17,7 +18,7 @@
         style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
         background-position: center; 
-        background-color: rgba(0,0,0,0.6); 
+        background-color: rgba(0, 0, 0, 0.6); 
         background-blend-mode: multiply;">
 
         <div class="container py-4 ps-5">
@@ -30,13 +31,12 @@
     </section>
 
 
-
-
-
     <div class="container">
-
         <!-- Progress Bar -->
-        <!-- <?php include 'progress.php'; ?> -->
+        <?php
+            $current_step = 1;
+            include 'progress.php'; 
+        ?>
 
         <form action="book_2.php" method="post">
 
@@ -87,14 +87,9 @@
                         <input type="submit" name="next" class="btn book-now font-title d-flex align-items-center px-5 py-2 shadow" value="Next" style=" min-width: 200px;">
                     </div>
                 </div>
-
             </div>
-
         </form>
-
     </div>
-
-
 
 
     <!-- FOOTER -->
