@@ -100,7 +100,7 @@
                     <p class="font-pink font-body">Filmmaker</p>
                     
                     <p class="text-white font-body">
-                        Wes Anderson is the filmmaker behind The Grand Budapest Hotel, known for his distinctive visual style, precise symmetry, and carefully crafted storytelling. In The Grand Budapest Hotel, he brings a whimsical yet emotional world to life through detailed sets, rich color palettes, and a unique sense of charm that defines the film’s identity.
+                        Wes Anderson is the filmmaker behind The Grand Budapest Hotel, known for his distinctive visual style, precise symmetry, and carefully crafted storytelling. In The Grand Budapest Hotel, he brings a whimsical yet emotional world to life through detailed sets, rich color palettes, and a unique sense of charm that defines the film's identity.
                     </p>
                 </div>
             </div>
