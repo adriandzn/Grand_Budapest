@@ -183,11 +183,9 @@ $activityImages = [
 
                 <div class="col-lg-3 text-center text-lg-end">
 
-                    <a href="#"
-                        class="btn rounded-pill px-5 py-3 bg-lightpink font-darkbrown fw-semibold border border-darkpink">
-
-                        Book Now
-
+                    <a href="#" class="btn book-now font-title d-flex flex-column align-items-center px-2 py-3 shadow">
+                        BOOK NOW
+                        <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
                     </a>
 
                 </div>
