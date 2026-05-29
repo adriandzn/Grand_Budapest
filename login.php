@@ -55,7 +55,7 @@
                         <!-- USERNAME -->
                         <div class="form-outline mb-4">
                             <label
-                                class="form-label font-body fs-5 font-pink">
+                                class="form-label font-body fs-6 font-pink fw-semibold">
                                 Username
                             </label>
 
@@ -64,13 +64,13 @@
                                 name="username"
                                 class="form-control rounded-5 px-4 py-2 border-0 shadow-sm"
                                 placeholder="Type here"
-                                style="font-size: 15px;"/>
+                                style="font-size: 14px;"/>
                         </div>
 
                         <!-- PASSWORD -->
                         <div class="form-outline mb-4">
                             <label
-                                class="form-label font-body fs-5 font-pink">
+                                class="form-label font-body fs-6 font-pink fw-semibold">
                                 Password
                             </label>
 
@@ -79,7 +79,7 @@
                                 name="pass"
                                 class="form-control rounded-5 px-4 py-2 border-0 shadow-sm"
                                 placeholder="Type here"
-                                style="font-size: 15px;"/>
+                                style="font-size: 14px;"/>
                                 
                         </div>
 

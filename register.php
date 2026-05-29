@@ -40,7 +40,7 @@
                                     alt="Title"
                                     class="img-fluid"
                                     style="max-width:250px;">
-                                <p class="text-white mt-2 fs-5">
+                                <p class="text-white mt-2 fs-6">
                                     HOTEL
                                 </p>
                             </h1>
@@ -67,7 +67,7 @@
                             <div class="col">
 
                                 <label for="fullName"
-                                    class="form-label font-body font-pink fw-semibold">
+                                    class="form-label font-body font-pink fw-semibold fs-6">
 
                                     Fullname
 
@@ -93,7 +93,7 @@
                             <div class="col">
 
                                 <label for="username"
-                                    class="form-label font-body font-pink fw-semibold">
+                                    class="form-label font-body font-pink fw-semibold fs-6">
 
                                     Username
 
@@ -119,7 +119,7 @@
                             <div class="col">
 
                                 <label for="email"
-                                    class="form-label font-body font-pink fw-semibold">
+                                    class="form-label font-body font-pink fw-semibold fs-6">
 
                                     Email Address
 
@@ -145,7 +145,7 @@
                             <div class="col">
 
                                 <label for="password"
-                                    class="form-label font-body font-pink fw-semibold">
+                                    class="form-label font-body font-pink fw-semibold fs-6">
 
                                     Create Your Password
 
@@ -171,7 +171,7 @@
                             <div class="col">
 
                                 <label for="passwordconf"
-                                    class="form-label font-body font-pink fw-semibold">
+                                    class="form-label font-body font-pink fw-semibold fs-6">
 
                                     Confirm Your Password
 
