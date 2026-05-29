@@ -51,7 +51,7 @@ $activityImages = [
     <!-- Hero Section -->
 
     <section class="text-white py-5"
-        style="background-image: url('images/index-hero.png'); 
+        style="background-image: url('images/hotel_pictures/index-hero.png'); 
         background-size: cover; 
         background-position: center; 
         background-color: rgba(0,0,0,0.6); 
