@@ -65,7 +65,7 @@
 
                 <!-- Image -->
                 <div class="col-lg-4 col-md-12 col-12 px-4 py-4">
-                    <img src="images/placeholder1.png" alt="Standard Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="images/hotel_pictures/standard1.png" alt="Standard Room" class="img-fluid rounded-5" style="width: 400px; height: 250px; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
@@ -103,7 +103,7 @@
 
                 <!-- Image -->
                 <div class="col-lg-4 col-md-12 col-12 px-4 py-4">
-                    <img src="images/placeholder1.png" alt="Deluxe Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="images/hotel_pictures/deluxe1.jpg" alt="Standard Room" class="img-fluid rounded-5" style="width: 400px; height: 250px; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
@@ -141,7 +141,7 @@
 
                 <!-- Image -->
                 <div class="col-lg-4 col-md-12 col-12 px-4 py-4">
-                    <img src="images/placeholder1.png" alt="Suite Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="images/hotel_pictures/suite1.jpg" alt="Standard Room" class="img-fluid rounded-5" style="width: 400px; height: 250px; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
@@ -197,7 +197,7 @@
 
                 <!-- Image -->
                 <div class="col-md-6 col-12 px-4 py-4">
-                    <img src="images/placeholder1.png" alt="Standard Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="images/hotel_pictures/standard1.png" alt="Standard Room" class="img-fluid rounded-5" style="width: 600px; height: 250px; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
@@ -292,7 +292,7 @@
 
                 <!-- Image -->
                 <div class="col-md-6 col-12 px-4 py-4">
-                    <img src="images/placeholder1.png" alt="Deluxe Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="images/hotel_pictures/deluxe1.jpg" alt="Standard Room" class="img-fluid rounded-5" style="width: 600px; height: 250px; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
@@ -397,7 +397,7 @@
 
                 <!-- Image -->
                 <div class="col-md-6 col-12 px-4 py-4">
-                    <img src="images/placeholder1.png" alt="Suite Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="images/hotel_pictures/suite1.jpg" alt="Standard Room" class="img-fluid rounded-5" style="width: 600px; height: 250px; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
