@@ -70,7 +70,7 @@ $bookingStatusClass = [
 
     <!-- HERO SECTION -->
 
-    <section class="text-white py-5 border-top border-secondary"
+    <section class="text-white py-5"
         style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
         background-position: center; 
@@ -115,7 +115,7 @@ $bookingStatusClass = [
 
     <!-- Navigation -->
 
-    <nav class="bg-darkbrown border-top border-secondary py-3">
+    <nav class="bg-darkbrown py-3">
 
         <div class="container">
 
