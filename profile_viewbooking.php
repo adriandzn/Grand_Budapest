@@ -287,7 +287,7 @@ $policyDescriptions = [
 
             <div class="col-xl-10">
 
-                <div class="bg-darkbrown rounded-5 shadow-sm p-4 p-lg-5">
+                <div class="bg-lightbrown rounded-5 shadow-sm p-4 p-lg-5">
 
                     <h2 class="font-title text-white fw-bold mb-4">
                         Personal Information
@@ -338,7 +338,7 @@ $policyDescriptions = [
 
             <div class="col-xl-10">
 
-                <div class="bg-darkbrown rounded-5 shadow-sm p-4 p-lg-5">
+                <div class="bg-lightbrown rounded-5 shadow-sm p-4 p-lg-5">
 
                     <h2 class="font-title text-white fw-bold mb-4">
                         Room Reservation Details

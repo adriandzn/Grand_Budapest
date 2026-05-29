@@ -1,3 +1,53 @@
+<?php
+    $personalLabels = [
+        'Name',
+        'Gender',
+        'Nationality',
+        'Birth Date',
+        'Email',
+        'Contact Number',
+        'Address'
+    ];
+
+    $personalValues = [
+        'Adrian D. Dizon',
+        'Male',
+        'Filipino',
+        'February 28, 2005',
+        'adrian.dizon.cics@ust.edu.ph',
+        '09123456789',
+        'Brookshire, Capital City'
+    ];
+
+    $reservationLabels = [
+        'Check-in Date',
+        'Check-out Date',
+        'No. of Days',
+        'Room Type',
+        'Room Price',
+        'Guests',
+        'Total Room Price',
+        'Additional Guest Fee',
+        'Total Amount',
+        'Payment Method'
+    ];
+
+    $reservationValues = [
+        'May 25, 2026',
+        'May 31, 2026',
+        '6 days',
+        'Suite Room',
+        '₱14,999.00 per night',
+        'Adult: 4<br>Children: 4<br>Additional Guest: 0<br>TOTAL: 8',
+        '₱89,994.00',
+        'N/A',
+        '<span class="text-success fw-bold">₱89,994.00</span>',
+        'Credit Card'
+    ];
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,10 +92,75 @@
             ?>
         </div>
 
-        <form action="acknowledgement.php" method="post">
 
-            
-        </form>
+        <!-- PERSONAL INFORMATION -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-xl-10">
+                <div class="bg-lightbrown rounded-5 shadow-sm p-4 p-lg-5">
+
+                    <h2 class="font-title text-white fw-bold mb-4">Personal Information</h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table bg-white rounded-4 overflow-hidden align-middle mb-0">
+
+                            <tbody>
+
+                                <?php for($i = 0; $i < count($personalLabels); $i++): ?>
+                                <tr>
+                                    <th class="px-4 py-3 text-darkbrown bg-white"
+                                        style="width:40%;">
+                                        <?php echo $personalLabels[$i]; ?>
+                                    </th>
+
+                                    <td class="px-4 py-3 bg-white">
+                                        <?php echo $personalValues[$i]; ?>
+                                    </td>
+                                </tr>
+
+                                <?php endfor; ?>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESERVATION DETAILS -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-xl-10">
+                <div class="bg-lightbrown rounded-5 shadow-sm p-4 p-lg-5">
+
+                    <h2 class="font-title text-white fw-bold mb-4">Room Reservation Details</h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table bg-white rounded-4 overflow-hidden align-middle mb-0">
+
+                            <tbody>
+
+                                <?php for($i = 0; $i < count($reservationLabels); $i++): ?>
+
+                                <tr>
+                                    <th class="px-4 py-3 text-darkbrown bg-white"
+                                        style="width:40%;">
+                                        <?php echo $reservationLabels[$i]; ?>
+                                    </th>
+
+                                    <td class="px-4 py-3 bg-white">
+                                        <?php echo $reservationValues[$i]; ?>
+                                    </td>
+                                </tr>
+
+                                <?php endfor; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 

@@ -269,7 +269,7 @@ $bookingInfo = [
 
             <div class="col-lg-6">
 
-                <div class="card rounded-4 shadow-sm border-0 bg-darkbrown text-white">
+                <div class="card rounded-4 shadow-sm border-0 bg-lightbrown text-white">
 
                     <div class="card-body p-5">
 
