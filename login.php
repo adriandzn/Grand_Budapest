@@ -14,10 +14,11 @@
              background-blend-mode: multiply; 
              min-height: 100vh; 
              background-attachment: fixed;
-             border-bottom: 0px solid #6a3e4f;">
+             border-bottom: 0px solid #6a3e4f;
+            backdrop-filter: blur(5px);">
 
     <div class="d-flex justify-content-center align-items-center min-vh-100 p-3" style="background: rgba(0,0,0,0.55);">
-        <div class="card border-0 shadow-lg text-white p-4 p-md-5 rounded-4" style="width:100%; max-width:460px; background: rgba(34, 24, 19, 0.92); backdrop-filter: blur(14px);">
+        <div class="card border-0 shadow-lg text-white p-4 p-md-5 rounded-4 bg-darkbrown" style="width:100%; max-width:460px; ">
 
             <div class="text-center mb-4">
                 <img src="images/logo.png" alt="Logo" class="img-fluid mb-3" style="width:90px;">
@@ -34,12 +35,12 @@
             <form action="login.php" method="post">
                 <div class="mb-4">
                     <label class="form-label fw-semibold text-white font-body">Username</label>
-                    <input type="text" name="username" id="form2Example1" class="form-control border-0 text-white px-4" placeholder="Type here" style="height:55px; border-radius:50px; background: rgba(230, 217, 217, 0.91);">
+                    <input type="text" name="username" id="username" class="form-control border-0 text-white px-4" placeholder="Type here" style="height:55px; border-radius:50px; background: rgba(230, 217, 217, 0.91);">
                 </div>
 
                 <div class="mb-4">
                     <label class="form-label fw-semibold text-white font-body">Password</label>
-                    <input type="password" name="pass" id="form2Example1" class="form-control border-0 text-white px-4" placeholder="Type here" style="height:55px; border-radius:50px; background: rgba(230, 217, 217, 0.91);">
+                    <input type="password" name="pass" id="password" class="form-control border-0 text-white px-4" placeholder="Type here" style="height:55px; border-radius:50px; background: rgba(230, 217, 217, 0.91);">
                 </div>
 
                 <div class="d-grid mb-4">
@@ -55,7 +56,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
