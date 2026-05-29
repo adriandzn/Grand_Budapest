@@ -260,7 +260,7 @@
 
                         <!-- Next Button -->
                         <div class="col-4 d-flex align-items-center justify-content-center">
-                            <input type="button" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
+                            <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
                     </div>
@@ -365,7 +365,7 @@
 
                         <!-- Next Button -->
                         <div class="col-4 d-flex align-items-center justify-content-center">
-                            <input type="button" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
+                            <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
                     </div>
@@ -474,7 +474,7 @@
 
                         <!-- Next Button -->
                         <div class="col-4 d-flex align-items-center justify-content-center">
-                            <input type="button" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
+                            <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
                     </div>
