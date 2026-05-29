@@ -36,7 +36,7 @@
                     <!-- Book Now Button -->
                     <div class="row pt-5">
                         <div class="col d-flex justify-content-center">
-                            <a href="#" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-3 shadow">
+                            <a href="book_1.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-3 shadow">
                                 BOOK NOW
                                 <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
                             </a>
