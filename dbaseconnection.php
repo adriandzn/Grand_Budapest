@@ -3,7 +3,7 @@
     $servername="localhost";
     $username="root";
     $password="";
-    $database="db_useraccount_fa";
+    $database="db_grandbudapest";
 
     $conn = new mysqli($servername, $username, $password, $database,3308);
 

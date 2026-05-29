@@ -1,62 +1,67 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Budapest Hotel</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/body.css">
 </head>
-<body style="background-image: url('images/index-hero.png'); 
+<body  style="background-image: url('images/index-hero.png'); 
              background-size: cover; 
              background-position: center; 
              background-color: rgba(100, 100, 100, 0.6); 
              background-blend-mode: multiply; 
              min-height: 100vh; 
              background-attachment: fixed;
-             border-bottom: 0px solid #6a3e4f;
-            backdrop-filter: blur(5px);">
-
-    <div class="d-flex justify-content-center align-items-center min-vh-100 p-3" style="background: rgba(0,0,0,0.55);">
-        <div class="card border-0 shadow-lg text-white p-4 p-md-5 rounded-4 bg-darkbrown" style="width:100%; max-width:460px; ">
-
-            <div class="text-center mb-4">
-                <img src="images/logo.png" alt="Logo" class="img-fluid mb-3" style="width:90px;">
-                <div class="d-block mb-2">
+             border-bottom: 0px solid #6a3e4f;">
+    <div class="container mt-5 w-25  rounded p-5 bg-brown">
+        <div class="row">
+            <div class="col text-center">
+                <h1>
+                    <img src="images/logo.png" alt="Logo" class="w-50 h-auto mb-2">
                     <img src="images/title-grandbudapest.png" alt="Title" style="max-width: 100%; height: auto;">
-                </div>
-                <div class="text-white-50 fw-semibold" style="letter-spacing:4px; font-size:0.85rem;">HOTEL</div>
+                    HOTEL
+                </h1>
+               
             </div>
-
-            <div class="text-center mb-4">
-                <h1 class="fw-bold text-white mb-2 font-title">Login</h1>
-            </div>
-
-            <form action="login.php" method="post">
-                <div class="mb-4">
-                    <label class="form-label fw-semibold text-white font-body">Username</label>
-                    <input type="text" name="username" id="username" class="form-control border-0 text-white px-4" placeholder="Type here" style="height:55px; border-radius:50px; background: rgba(230, 217, 217, 0.91);">
-                </div>
-
-                <div class="mb-4">
-                    <label class="form-label fw-semibold text-white font-body">Password</label>
-                    <input type="password" name="pass" id="password" class="form-control border-0 text-white px-4" placeholder="Type here" style="height:55px; border-radius:50px; background: rgba(230, 217, 217, 0.91);">
-                </div>
-
-                <div class="d-grid mb-4">
-                    <input type="submit" name="sub" value="Login" class="btn bg-darkpink text-dark font-body fw-semibold border-0 pink-button" style="height:55px; border-radius:50px;">
-                </div>
-
-                <div class="text-center">
-                    <p class="mb-1 text-white">Don't have an account?</p>
-                    <a href="register.php" class="text-decoration-none fw-semibold font-body text-white fs-6">Register Here</a>
-                </div>
-            </form>
-
         </div>
-    </div>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
+        <div class="row mb-4">
+            <div class="col text-center fw-bold font-title">
+                <h1 class="display-6 text-white">Login</h1>
+            </div>
+        </div>
+        <form action="login.php" method=post>
+        <!-- Email input -->
+        <div class="form-outline mb-4 font-pink">
+            <label class="form-label" for="form2Example1">Username</label>
+            <input type="text" name="username" id="form2Example1" class="form-control rounded-5" placeholder="Type here" />
+        </div>
+
+
+         <!-- Password input -->
+        <div class="form-outline mb-4 font-pink">
+            <label class="form-label" for="form2Example2">Password</label>
+            <input type="password" name="pass" id="form2Example2" class="form-control rounded-5" placeholder="Type here"/>
+        </div>
+        <!-- Submit button -->
+         <div class="row justify-content-center">
+        <input type="submit" name=sub value="Login" class="btn fw-bold bg-darkpink text font-body btn-block rounded-5 mb-4 w-50">
+        </div>
+
+        <div class="row text-center text-white font-body ">
+            <div class = "col fs-4">
+                Don't have an account? 
+                <br>
+                <a href="#" class="btn btn-link text-white fs-5 text-decoration-none">
+                Register Here
+                </a>
+            </div>
+            
+        </div>
+        </form>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </div>    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
@@ -144,18 +149,3 @@ $JAid = $fieldnames['user_id'];
     }
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
