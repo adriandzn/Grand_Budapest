@@ -11,7 +11,7 @@
     
     <!-- NAVBAR -->
     <?php include 'navbar.php'; ?>
-
+    
     <!-- Hero Banner -->
     <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100 shadow">
     
@@ -67,7 +67,7 @@
         <div class="row text-center g-4">
 
             <div class="col-md-4">
-                <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightbrown text-white h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -91,7 +91,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightbrown text-white h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -115,7 +115,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightbrown text-white h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -159,7 +159,7 @@
         <div class="row text-center g-4">
 
             <div class="col-md-4">
-                <div class="bg-lightpink text-black h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightpink text-black h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -183,7 +183,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="bg-lightpink text-black h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightpink text-black h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -207,7 +207,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="bg-lightpink text-black h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightpink text-black h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -251,7 +251,7 @@
         <div class="row text-center g-4">
 
             <div class="col-md-4">
-                <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightbrown text-white h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -275,7 +275,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightbrown text-white h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
@@ -299,7 +299,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
+                <div class="bg-lightbrown text-white h-100 shadow">
 
                     <img src="images/placeholder1.png"
                          class="img-fluid w-100"
