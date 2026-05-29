@@ -6,6 +6,7 @@
     <title>Book Now</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/book.css">
 </head>
 <body class="bg-lightpink">
 
@@ -43,7 +44,7 @@
         <form action="book_3.php" method="post">
 
             <!-- Select Your Room Area -->
-            <div class="bg-lightbrown rounded-5 my-5 p-5 shadow">
+            <div class="select-room bg-lightbrown rounded-5 my-5 p-5 shadow">
 
                 <!-- Go Back Button -->
                 <div class="row">
@@ -61,21 +62,103 @@
 
                 <!-- Standard Room -->
                 <div class="row bg-white rounded-5 shadow mt-5">
-                    <div class="col px-3 py-3">
-                        <img src="images/placeholder1.png" alt="Standard Room" class="img-fluid rounded-5 m-4" style="width: 300px; height: 200px; object-fit: cover;">
+
+                    <!-- Image -->
+                    <div class="col-lg-4 col-md-12 col-12 px-4 py-4">
+                        <img src="images/placeholder1.png" alt="Standard Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                    <div class="col px-3"></div>
-                    <div class="col px-3"></div>
+
+                    <!-- Details -->
+                    <div class="col-lg-4 col-md-6 col-12 px-4 py-4 d-flex flex-column justify-content-center">
+                        <div class="row">
+                            <div class="col font-title h4 fw-bold">Standard Room</div>
+                        </div>
+                        <div class="row">
+                            <div class="col font-body">Enjoy comfort and simplicity in our thoughtfully designed Standard Room. Perfect for solo travelers or couples, this space offers a relaxing atmosphere with essential amenities for a pleasant stay.</div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col font-body d-flex align-items-center gap-3 fw-bold">
+                                <img src="images/logo-profile-brown.png" alt="person" style="height:20px;">
+                                2 Adults
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-lg-4 col-md-6 col-12 px-4 py-4 d-flex flex-column align-items-center justify-content-center">
+                        <div class="font-body h4 fw-bold">₱ 4,500.00</div>
+                        <div class="font-body h5 fw-bold font-gray">per night</div>
+                        <div class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow">Select Room</div>
+                    </div>
+                    
                 </div>
 
+
                 <!-- Deluxe Room -->
-                <div class="row">
-                    <div class="col"></div>
+                <div class="row bg-white rounded-5 shadow mt-4">
+
+                    <!-- Image -->
+                    <div class="col-lg-4 col-md-12 col-12 px-4 py-4">
+                        <img src="images/placeholder1.png" alt="Deluxe Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+
+                    <!-- Details -->
+                    <div class="col-lg-4 col-md-6 col-12 px-4 py-4 d-flex flex-column justify-content-center">
+                        <div class="row">
+                            <div class="col font-title h4 fw-bold">Deluxe Room</div>
+                        </div>
+                        <div class="row">
+                            <div class="col font-body">Upgrade your stay with our Deluxe Room, featuring a more spacious layout and enhanced amenities. Ideal for guests who want both comfort and a touch of luxury.</div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col font-body d-flex align-items-center gap-3 fw-bold">
+                                <img src="images/logo-profile-brown.png" alt="person" style="height:20px;">
+                                2 Adults • 2 Children
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-lg-4 col-md-6 col-12 px-4 py-4 d-flex flex-column align-items-center justify-content-center">
+                        <div class="font-body h4 fw-bold">₱ 8,599.00</div>
+                        <div class="font-body h5 fw-bold font-gray">per night</div>
+                        <div class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow">Select Room</div>
+                    </div>
+                    
                 </div>
                 
+
                 <!-- Suite Room -->
-                <div class="row">
-                    <div class="col"></div>
+                <div class="row bg-white rounded-5 shadow mt-4">
+
+                    <!-- Image -->
+                    <div class="col-lg-4 col-md-12 col-12 px-4 py-4">
+                        <img src="images/placeholder1.png" alt="Suite Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+
+                    <!-- Details -->
+                    <div class="col-lg-4 col-md-6 col-12 px-4 py-4 d-flex flex-column justify-content-center">
+                        <div class="row">
+                            <div class="col font-title h4 fw-bold">Suite Room</div>
+                        </div>
+                        <div class="row">
+                            <div class="col font-body">Experience premium luxury in our Suite Room, designed for families or guests seeking the ultimate comfort. With elegant interiors and generous space, this room ensures a truly memorable stay.</div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col font-body d-flex align-items-center gap-3 fw-bold">
+                                <img src="images/logo-profile-brown.png" alt="person" style="height:20px;">
+                                4 Adults • 4 Children
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-lg-4 col-md-6 col-12 px-4 py-4 d-flex flex-column align-items-center justify-content-center">
+                        <div class="font-body h4 fw-bold">₱ 14,999.00</div>
+                        <div class="font-body h5 fw-bold font-gray">per night</div>
+                        <div class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow">Select Room</div>
+                    </div>
+                    
                 </div>
                 
             </div>
