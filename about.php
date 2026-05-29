@@ -93,7 +93,7 @@
             <div class="col">
                 <div class="bg-lightbrown p-5 rounded-5 text-center h-100 shadow">
                     <img src="images/hotel_pictures/creator-wes.jpg" alt="wes anderson" 
-                         class="bg-white rounded-circle mx-auto d-block mb-4 object-fit-cover" 
+                         class="rounded-circle mx-auto d-block mb-4 object-fit-cover" 
                          style="width: 160px; height: 160px;">
                     
                     <h2 class="font-pink font-title">Wes Anderson</h2>
@@ -108,7 +108,7 @@
             <div class="col">
                 <div class="bg-lightbrown p-5 rounded-5 text-center h-100 shadow">
                     <img src="images/hotel_pictures/creator-gustave.jpg" alt="gustave" 
-                         class="bg-white rounded-circle mx-auto d-block mb-4 object-fit-cover" 
+                         class="rounded-circle mx-auto d-block mb-4 object-fit-cover" 
                          style="width: 160px; height: 160px;">
                     
                     <h2 class="font-pink font-title">M. Gustave</h2>
