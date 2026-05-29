@@ -42,7 +42,6 @@
 
         <form action="book_2.php" method="post">
 
-            <!-- Choose Your Dates -->
             <div class="bg-lightbrown rounded-5 my-5 p-5 shadow">
 
                 <div class="row">
