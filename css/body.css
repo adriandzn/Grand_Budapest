@@ -62,3 +62,20 @@
 .font-title {
   font-family: "IBMPlexSerif", sans-serif;
 }
+
+/* Buttons */
+
+.book-now {
+  font-size: 0.9rem;
+  border: 3px solid #6a3e4f;
+  background-color: #de7994;
+  color: #2b241f;
+  font-weight: bold;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+.book-now:hover {
+  background-color: #a55b6f;
+  border: 3px solid #6a3e4f;
+  color: #2b241f;
+}
