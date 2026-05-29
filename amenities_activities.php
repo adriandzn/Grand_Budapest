@@ -19,9 +19,9 @@ $activityHours = [
 ];
 
 $activityImages = [
-    'images/index-hero.png',
-    'images/index-hero.png',
-    'images/index-hero.png'
+    'images/hotel_pictures/gym.jpg',
+    'images/hotel_pictures/spa.png',
+    'images/hotel_pictures/pool.jpg'
 ];
 
 ?>

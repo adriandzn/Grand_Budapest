@@ -384,23 +384,23 @@
 
                         <div class="room-gallery">
 
-                            <img src="images/index-hero.png"
+                            <img src="images/hotel_pictures/suite1.jpg"
                                 class="room-main-image shadow">
 
                             <div class="row mt-3">
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/hotel_pictures/suite2.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/hotel_pictures/suite3.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/hotel_pictures/suite4.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
