@@ -132,23 +132,23 @@
 
                         <div class="room-gallery">
 
-                            <img src="images/index-hero.png"
+                            <img src="images/hotel_pictures/standard1.png"
                                 class="room-main-image shadow">
 
                             <div class="row mt-3">
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/hotel_pictures/standard2.png"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/hotel_pictures/standard3.png"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/hotel_pictures/standard4.png"
                                         class="room-thumbnail shadow">
                                 </div>
 
@@ -255,23 +255,23 @@
 
                         <div class="room-gallery">
 
-                            <img src="images/index-hero.png"
+                            <img src="images/deluxe1.jpg"
                                 class="room-main-image shadow">
 
                             <div class="row mt-3">
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/deluxe2.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/deluxe3.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/index-hero.png"
+                                    <img src="images/deluxe4.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
