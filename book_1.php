@@ -35,60 +35,62 @@
 
     <div class="container">
 
-        <!-- PROGRESS BAR -->
+        <!-- Progress Bar -->
         <!-- <?php include 'progress.php'; ?> -->
 
-        <!-- BOOKING CARD -->
-        <div class="booking-card shadow-lg">
-            <h1 class="fw-bold mb-5 text-white">
-                Choose Your Dates
-            </h1>
-            <div class="row g-4 align-items-end">
+        <form action="book_2.php" method="post">
 
-                <!-- CHECK IN -->
-                <div class="col-lg-4">
-                    <label class="form-label text-white fw-bold">
-                        Check-in
-                    </label>
-                    <input type="date" class="form-control custom-input">
+            <!-- Choose Your Dates -->
+            <div class="bg-lightbrown rounded-5 my-5 p-5 shadow">
+
+                <div class="row">
+                    <div class="col font-title text-white h4">Choose Your Dates</div>
                 </div>
 
-                <!-- CHECK OUT -->
-                <div class="col-lg-4">
-                    <label class="form-label text-white fw-bold">
-                        Check-out
-                    </label>
-                    <input type="date" class="form-control custom-input">
+                <!-- Check in and Check out Dates -->
+                <div class="row pt-3 g-4">
+
+                    <div class="col-lg-5 col-12">
+                        <label for="checkin" class="form-label font-body text-white">Check-in</label>
+                        <input type="date" class="form-control rounded-5 border-0 py-3 px-4 shadow" id="checkin" name="checkin" required>
+                    </div>
+
+                    <div class="col-lg-5 col-12">
+                        <label for="checkout" class="form-label font-body text-white">Check-out</label>
+                        <input type="date" class="form-control rounded-5 border-0 py-3 px-4 shadow" id="checkout" name="checkout" required>
+                    </div>
+
+                    <div class="col-lg-2 col-12 d-flex align-items-end justify-content-center">
+                        <div class="rounded-5 py-3 px-4 font-body fw-bold font-darkbrown text-center bg-lightpink shadow">
+                            6 night/s
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- NIGHTS -->
-                <div class="col-lg-4">
-                    <div class="nights-box text-center">
-                        6 nights
+                <div class="row pt-5 font-body text-white">
+                    <div class="row">
+                        <div class="col">
+                            Note:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            Check-in: 02:00 PM | Check-out: 12:00 PM
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <div class="row pt-5">
+                    <div class="col d-flex justify-content-center">
+                        <input type="submit" name="next" class="btn book-now font-title d-flex align-items-center px-5 py-2 shadow" value="Next" style=" min-width: 200px;">
                     </div>
                 </div>
 
             </div>
 
-            <!-- NOTE -->
-            <div class="mt-5 text-white">
-                <p class="fw-bold mb-1">
-                    Note:
-                </p>
-                <p>
-                    Check-in: 02:00 PM |
-                    Check-out: 12:00 PM
-                </p>
-            </div>
-
-            <!-- BUTTON -->
-            <div class="text-center mt-5">
-                <button class="btn next-btn px-5 py-2">
-                    Next
-                </button>
-            </div>
-
-        </div>
+        </form>
 
     </div>
 
