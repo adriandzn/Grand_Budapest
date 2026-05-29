@@ -56,12 +56,12 @@
                                 </h5>
                             </div>
                             <div class="col-12 col-md-5 d-flex align-items-center justify-content-center gap-2">
-                                <img src="images/logo-phone-pink.png" alt="Phone" style="height: 15px;">
-                                <span class="font-darkbrown font-body">+63 975 714 1559</span>
+                                <img src="images/logo-phone-pink.png" alt="Phone" class="img-fluid" style="height: clamp(1.4rem, 3vw, 1.9rem); width: auto;">
+                                <span class="font-darkbrown font-body" style="font-size: clamp(1rem, 2vw, 1.2rem);">+63 975 714 1559</span>
                             </div>
                             <div class="col-12 col-md-7 d-flex align-items-center justify-content-center gap-2">
-                                <img src="images/logo-mail-pink.png" alt="Email" style="height: 25px;">
-                                <span class="font-darkbrown font-body">reservations@grandbudapest.zb</span>
+                                <img src="images/logo-mail-pink.png" alt="Email" class="img-fluid" style="height: clamp(1.4rem, 3vw, 1.9rem); width: auto;">
+                                <span class="font-darkbrown font-body" style="font-size: clamp(1rem, 2vw, 1.2rem);">reservations@grandbudapest.zb</span>
                             </div>
                         </div>
                     </div>
