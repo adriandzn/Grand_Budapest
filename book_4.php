@@ -42,6 +42,28 @@
         'N/A',
         '<span class="text-success fw-bold">₱89,994.00</span>'
     ];
+
+    $policyTitles = [
+        'Cancellation Policy',
+        'No-show Policy',
+        'Payment Policy',
+        'Refund Policy',
+        'Guest Policy',
+        'Smoking Policy',
+        'Pet Policy',
+        'Damage Policy'
+    ];
+
+    $policyDescriptions = [
+        'Free cancellation up to 24 hours before check-in. Late cancellations may incur a fee. Kindly contact us in case of cancellations/modifications.',
+        'Failure to arrive without notice will result in a one-night charge.',
+        'Full or partial payment may be required to confirm booking. Accepted payment methods apply.',
+        'Refunds are processed based on the cancellation terms and may take several business days.',
+        'Valid ID required upon check-in. Only registered guests are allowed to stay.',
+        'This is a non-smoking property. Violations may incur penalties.',
+        'Pets are not allowed within the hotel.',
+        'Guests are responsible for any damage to hotel property.'
+    ];
 ?>
 
 
@@ -171,6 +193,62 @@
                 </div>
             </div>
         </div>
+
+
+        <form action="acknowledgment.php" method="post">
+
+            <!-- POLICIES -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-xl-10">
+                    <div class="bg-white rounded-5 shadow-sm p-4 p-lg-5">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+
+                            <h2 class="font-title font-pink fw-bold mb-3 mb-md-0">
+                                Policies
+                            </h2>
+                            <div class="small text-darkbrown text-md-end">
+                                <strong>Check-in:</strong> 02:00 PM |
+                                <strong>Check-out:</strong> 12:00 PM
+                            </div>
+
+                        </div>
+
+                        <?php for($i = 0; $i < count($policyTitles); $i++): ?>
+                            <div class="border-top pt-3 mt-3">
+
+                                <h6 class="fw-bold font-pink mb-1">
+                                    <?php echo $policyTitles[$i]; ?>
+                                </h6>
+
+                                <p class="small text-secondary mb-0">
+                                    <?php echo $policyDescriptions[$i]; ?>
+                                </p>
+
+                            </div>
+                        <?php endfor; ?>
+
+
+                        <div class="pt-5 form-check d-flex align-items-center gap-3">
+                            <input type="checkbox" name="agree" id="agree" class="form-check-input p-3 m-0">
+
+                            <label for="agree" class="form-check-label font-body fw-bold h5 m-0">
+                                I have read and agreed to the policies of the hotel.
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- PAYMENT METHOD -->
+            
+            
+
+
+        </form>
+
 
     </div>
 
