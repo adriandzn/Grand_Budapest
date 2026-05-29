@@ -44,6 +44,15 @@
             <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
                 <!-- LOGIN CARD -->
                 <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
+                    <!-- Go Back Button -->
+            <div class="row">
+                <div class="col">
+                    <a href="login.php" class="btn font-title font-pink fw-bold d-flex align-items-center justify-content-start gap-2" style="width: fit-content;">
+                        <img src="images/logo-go-back-pink.png" alt="logo-go-back-pink" style="height:20px;">
+                        Go Back    
+                    </a>
+                </div>
+            </div>
                     <!-- LOGO -->
                     <div class="row">
                         <div class="col text-center">
