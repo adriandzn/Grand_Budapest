@@ -21,7 +21,7 @@
 
     <!-- HERO SECTION -->
 
-    <section class="text-white py-5 border-top border-secondary"
+    <section class="text-white py-5"
         style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
         background-position: center; 
