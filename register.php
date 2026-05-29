@@ -3,107 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Registration</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Account Registration - Grand Budapest</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/body.css">
 </head>
 
-<body style="background-image: url('images/index-hero.png'); 
-             background-size: cover; 
-             background-position: center; 
-             background-color: rgba(10, 10, 10, 0.75); 
-             background-blend-mode: multiply; 
-             min-height: 100vh; 
-             background-attachment: fixed;
-             border-bottom: 0px solid #6a3e4f;
-             backdrop-filter: blur(5px);">
-    <div class="container mt-5 w-25  rounded-5 p-5 bg-brown">
+<body style="
+    background-image: url('images/index-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(10, 10, 10, 0.75);
+    background-blend-mode: multiply;
+    min-height: 100vh;
+    background-attachment: fixed;
+    backdrop-filter: blur(5px);
+">
 
-        <div class="row">
-            <div class="col text-center">
-                <h1>
-                    <img src="images/logo.png" alt="Logo" class="w-50 h-auto mb-2">
-                    <img src="images/title-grandbudapest.png" alt="Title" style="max-width: 100%; height: auto;">
-                    HOTEL
-                </h1>
-               
+    <!-- MAIN CONTAINER -->
+
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
+        <div class="row justify-content-center w-100">      
+            <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+                <!-- LOGIN CARD -->
+                <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
+                    <!-- LOGO -->
+                    <div class="row">
+                        <div class="col text-center">
+                            <h1>
+                                <img src="images/logo.png"
+                                    alt="Logo"
+                                    class="img-fluid mb-3"
+                                    style="width:120px;">
+                                <br>
+                                <img src="images/title-grandbudapest.png"
+                                    alt="Title"
+                                    class="img-fluid"
+                                    style="max-width:250px;">
+                                <p class="text-white mt-2 fs-5">
+                                    HOTEL
+                                </p>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- TITLE -->
+                    <div class="row mb-4">
+                        <div class="col text-center fw-bold font-title">
+                            <h1 class="display-6 text-white">
+                                Register
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- FORM -->
+
+                    <form action="" method="POST">
+
+                        <!-- FULLNAME -->
+
+                        <div class="row mt-4">
+
+                            <div class="col">
+
+                                <label for="fullName"
+                                    class="form-label font-body font-pink fw-semibold">
+
+                                    Fullname
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="Fullname"
+                                    id="fullName"
+                                    class="form-control rounded-pill border-0 px-4 py-2"
+                                    placeholder="Type here"
+                                    style="font-size: 14px;"
+                                    >
+
+                            </div>
+
+                        </div>
+
+                        <!-- USERNAME -->
+
+                        <div class="row mt-3">
+
+                            <div class="col">
+
+                                <label for="username"
+                                    class="form-label font-body font-pink fw-semibold">
+
+                                    Username
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="Uname"
+                                    id="username"
+                                    class="form-control rounded-pill border-0 px-4 py-2"
+                                    placeholder="Type here"
+                                    style="font-size: 14px;"
+                                    >
+
+                            </div>
+
+                        </div>
+
+                        <!-- EMAIL -->
+
+                        <div class="row mt-3">
+
+                            <div class="col">
+
+                                <label for="email"
+                                    class="form-label font-body font-pink fw-semibold">
+
+                                    Email Address
+
+                                </label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    class="form-control rounded-pill border-0 px-4 py-2"
+                                    placeholder="Type here"
+                                    style="font-size: 14px;"
+                                    >
+
+                            </div>
+
+                        </div>
+
+                        <!-- PASSWORD -->
+
+                        <div class="row mt-3">
+
+                            <div class="col">
+
+                                <label for="password"
+                                    class="form-label font-body font-pink fw-semibold">
+
+                                    Create Your Password
+
+                                </label>
+
+                                <input
+                                    type="password"
+                                    name="pass"
+                                    id="password"
+                                    class="form-control rounded-pill border-0 px-4 py-2"
+                                    placeholder="Type here"
+                                    style="font-size: 14px;"
+                                    >
+
+                            </div>
+
+                        </div>
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="row mt-3">
+
+                            <div class="col">
+
+                                <label for="passwordconf"
+                                    class="form-label font-body font-pink fw-semibold">
+
+                                    Confirm Your Password
+
+                                </label>
+
+                                <input
+                                    type="password"
+                                    name="passconf"
+                                    id="passwordconf"
+                                    class="form-control rounded-pill border-0 px-4 py-2"
+                                    placeholder="Type here"
+                                    style="font-size: 14px;"
+                                    >
+
+                            </div>
+
+                        </div>
+
+                        <!-- SUBMIT -->
+
+                        <div class="row mt-5">
+
+                            <div class="col text-center">
+
+                                <input
+                                    type="submit"
+                                    name="submitButton"
+                                    value="Register"
+                                    class="btn fw-bold font-title bg-darkpink rounded-pill py-3 w-100 pink-button shadow-sm">
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
             </div>
+
         </div>
 
-        <div class="row">
-            <div class="col text-center text-white fw-bold font-title">
-                <p class="h2">Make an Account</p>
-            </div>
-        </div>
-
-            <!-- Fullname -->
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="firstName" class="form-label font-body font-pink">Fullname</label>
-                    <input type="text" name="Fullname" id="fullName" class="form-control rounded-5" placeholder="Type here">
-                </div>   
-            </div>
-
-
-            <!-- Username -->
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="username" class="form-label font-body font-pink">Username</label>
-                    <input type="text" name="Uname" id="username" class="form-control rounded-5" placeholder="Type here">
-                </div>
-            </div>
-
-            <!-- Email JAdress -->
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="email" class="form-label font-body font-pink">Email address</label>
-                    <input type="text" name="email" id="email" class="form-control rounded-5" placeholder="Type here">
-                </div>
-            </div>
-
-
-        <!-- Password -->
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="password" class="form-label font-body font-pink">Create Your Password</label>
-                    <input type="password" name="pass" id="password" class="form-control rounded-5" placeholder="Type here">
-                </div>
-            </div>
-
-        <!-- Password Confirmation -->
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="password" class="form-label font-body font-pink">Confirm Your Password</label>
-                    <input type="password" name="passconf" id="passwordconf" class="form-control rounded-5" placeholder="Type here">
-                </div>
-            </div>
-
-
-            <!-- Submit -->
-            <div class="row mt-5">
-                <div class="col text-center">
-                    <input type="submit" name="submitButton" value="Register" class="btn fw-bold font-title bg-darkpink rounded-5 w-75">
-                </div>
-            </div>
-
-        </form>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -111,22 +224,7 @@
             var displayimg = document.getElementById("preview");
             displayimg.src = URL.createObjectURL(event.target.files[0]);
         }
-
-
-
-
-
-
-
-
     </script>
-
-
-
-
-
-
-
 
 </body>
 </html>
@@ -146,7 +244,7 @@
 
 
 
-<?php
+<!-- <?php
    require_once "verifyotpemail.php";
    require_once "dbaseconnection.php";
 
@@ -226,4 +324,4 @@
             echo $conn -> error;
         }
     }
-?>
+?> -->

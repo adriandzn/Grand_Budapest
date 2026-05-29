@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login - Grand Budapest</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
 </head>
@@ -16,155 +16,102 @@
              border-bottom: 0px solid #6a3e4f;
              backdrop-filter: blur(5px);">
 
-    <!-- CENTER WRAPPER -->
-
     <div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
-
-        <!-- RETAINED ROW -->
-
-        <div class="row justify-content-center w-100">
-
-            <!-- RETAINED COL -->
-
+        <div class="row justify-content-center w-100">      
             <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
-
                 <!-- LOGIN CARD -->
-
                 <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
-
                     <!-- LOGO -->
-
                     <div class="row">
-
                         <div class="col text-center">
-
                             <h1>
-
                                 <img src="images/logo.png"
                                     alt="Logo"
                                     class="img-fluid mb-3"
                                     style="width:120px;">
-
                                 <br>
-
                                 <img src="images/title-grandbudapest.png"
                                     alt="Title"
                                     class="img-fluid"
                                     style="max-width:250px;">
-
                                 <p class="text-white mt-2 fs-5">
                                     HOTEL
                                 </p>
-
                             </h1>
-
                         </div>
-
                     </div>
 
                     <!-- TITLE -->
-
                     <div class="row mb-4">
-
                         <div class="col text-center fw-bold font-title">
-
                             <h1 class="display-6 text-white">
                                 Login
                             </h1>
-
                         </div>
-
                     </div>
 
                     <!-- FORM -->
-
                     <form action="login.php" method="post">
-
                         <!-- USERNAME -->
-
                         <div class="form-outline mb-4">
-
                             <label
                                 class="form-label font-body fs-5 font-pink">
-
                                 Username
-
                             </label>
 
                             <input
                                 type="text"
                                 name="username"
                                 class="form-control rounded-5 px-4 py-2 border-0 shadow-sm"
-                                placeholder="Type here" />
-
+                                placeholder="Type here"
+                                style="font-size: 15px;"/>
                         </div>
 
                         <!-- PASSWORD -->
-
                         <div class="form-outline mb-4">
-
                             <label
                                 class="form-label font-body fs-5 font-pink">
-
                                 Password
-
                             </label>
 
                             <input
                                 type="password"
                                 name="pass"
                                 class="form-control rounded-5 px-4 py-2 border-0 shadow-sm"
-                                placeholder="Type here"/>
-
+                                placeholder="Type here"
+                                style="font-size: 15px;"/>
+                                
                         </div>
 
                         <!-- LOGIN BUTTON -->
 
                         <div class="row justify-content-center">
-
                             <div class="col-12 col-md-8 text-center">
-
                                 <input
                                     type="submit"
                                     name="sub"
                                     value="Login"
-                                    class="btn fw-bold bg-darkpink font-body rounded-5 mb-4 pink-button w-100 py-2 pink-button fs-5">
-
+                                    class="btn fw-bold font-title bg-darkpink font-body rounded-5 mb-4 pink-button w-100 py-2 pink-button fs-5">
                             </div>
-
                         </div>
 
                         
 
                         <!-- REGISTER -->
-
                         <div class="row text-center text-white font-body">
-
                             <div class="col fs-5">
-
                                 Don't have an account?
-
                                 <br>
-
                                 <a href="register.php"
                                     class="btn btn-link text-white fs-5 text-decoration-none fw-bold">
-
                                     Register Here
-
                                 </a>
-
                             </div>
-
                         </div>
-
                     </form>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
