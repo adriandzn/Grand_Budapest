@@ -353,7 +353,7 @@
                         </div>
                     </div>
             </div>
-            <div class="col">
+            <div class="col px-4">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18..."
                     width="100%" 
