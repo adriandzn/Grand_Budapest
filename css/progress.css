@@ -1,0 +1,15 @@
+.img-progress {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .img-progress {
+    width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  .img-progress {
+    width: 50%;
+  }
+}
