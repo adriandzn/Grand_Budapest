@@ -32,7 +32,6 @@
 
 
     <div class="container">
-<<<<<<< HEAD
         
         <!-- Progress Bar -->
         <div class="container-fluid">
@@ -41,13 +40,6 @@
                 include 'progress.php'; 
             ?>
         </div>
-=======
-        <!-- Progress Bar -->
-        <?php
-            $current_step = 1;
-            include 'progress.php'; 
-        ?>
->>>>>>> 48dfd537e22d512ae936a70278f0527c6ba9be79
 
         <form action="book_2.php" method="post">
 
