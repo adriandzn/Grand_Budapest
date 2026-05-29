@@ -256,7 +256,7 @@ $venueReverse = [
 
             <div class="col-lg-3 text-center text-lg-end">
 
-                <a href="#" class="btn pink-button font-title d-flex flex-column align-items-center px-2 py-3 shadow">
+                <a href="book_1.php" class="btn pink-button font-title d-flex flex-column align-items-center px-2 py-3 shadow">
                     BOOK NOW
                     <img src="images/logo-key-brown.png" alt="key" style="height:18px;">
                 </a>
