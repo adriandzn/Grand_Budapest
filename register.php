@@ -23,6 +23,21 @@
             color: #FFC093;
             font-weight: bold;
         }
+        .go-back-button-pink {
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+        .go-back-button-pink img {
+            transition: all 0.3s ease;
+        }
+        .go-back-button-pink:hover {
+            color: #975265;
+        }
+        .go-back-button-pink:hover img {
+            opacity: 40%;
+        }
     </style>
 </head>
 
@@ -44,26 +59,6 @@
             <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
                 <!-- LOGIN CARD -->
                 <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
-                    <style>
-                    .go-back-button-pink {
-                        font-size: 0.9rem;
-                        font-weight: bold;
-                        border-radius: 100px;
-                        transition: all 0.3s ease;
-                    }
-
-                    .go-back-button-pink img {
-                        transition: all 0.3s ease;
-                    }
-
-                    .go-back-button-pink:hover {
-                        color: #975265;
-                    }
-
-                    .go-back-button-pink:hover img {
-                        opacity: 40%;
-                    }
-                    </style>
 
                     <!-- Go Back Button -->
                     <div class="row">
