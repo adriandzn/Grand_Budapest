@@ -28,8 +28,7 @@
         'Guests',
         'Total Room Price',
         'Additional Guest Fee',
-        'Total Amount',
-        'Payment Method'
+        'Total Amount'
     ];
 
     $reservationValues = [
@@ -41,8 +40,7 @@
         'Adult: 4<br>Children: 4<br>Additional Guest: 0<br>TOTAL: 8',
         '₱89,994.00',
         'N/A',
-        '<span class="text-success fw-bold">₱89,994.00</span>',
-        'Credit Card'
+        '<span class="text-success fw-bold">₱89,994.00</span>'
     ];
 ?>
 
@@ -98,7 +96,19 @@
             <div class="col-xl-10">
                 <div class="bg-lightbrown rounded-5 shadow-sm p-4 p-lg-5">
 
-                    <h2 class="font-title text-white fw-bold mb-4">Personal Information</h2>
+                    <!-- Go Back Button -->
+                    <div class="row">
+                        <div class="col">
+                            <a href="book_1.php" class="btn pink-button font-title d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" style="width: fit-content;">
+                                <img src="images/logo-go-back.png" alt="key" style="height:20px;">
+                                Go Back    
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <h2 class="font-title text-white fw-bold mb-3 mt-4">Personal Information</h2>
+                    <div class="font-body text-white mb-4">Please review your details before paying.</div>
 
                     <div class="table-responsive">
 
