@@ -44,15 +44,42 @@
             <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
                 <!-- LOGIN CARD -->
                 <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
+                    <style>
+                    .go-back-button-pink {
+                        font-size: 0.9rem;
+                        font-weight: bold;
+                        border-radius: 100px;
+                        transition: all 0.3s ease;
+                    }
+
+                    .go-back-button-pink img {
+                        transition: all 0.3s ease;
+                    }
+
+                    .go-back-button-pink:hover {
+                        color: #975265;
+                    }
+
+                    .go-back-button-pink:hover img {
+                        opacity: 40%;
+                    }
+                    </style>
+
                     <!-- Go Back Button -->
-            <div class="row">
-                <div class="col">
-                    <a href="login.php" class="btn font-title font-pink fw-bold d-flex align-items-center justify-content-start gap-2" style="width: fit-content;">
-                        <img src="images/logo-go-back-pink.png" alt="logo-go-back-pink" style="height:20px;">
-                        Go Back    
-                    </a>
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="login.php"
+                            class="btn font-title font-pink fw-bold d-flex align-items-center justify-content-start gap-2 mb-4 go-back-button-pink"
+                            style="width: fit-content;">
+
+                                <img src="images/logo-go-back-pink.png"
+                                    alt="logo-go-back-pink"
+                                    style="height:20px;">
+
+                                Go Back
+                            </a>
+                        </div>
+                    </div>
                     <!-- LOGO -->
                     <div class="row">
                         <div class="col text-center">
