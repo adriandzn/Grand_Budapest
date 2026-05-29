@@ -23,13 +23,7 @@
         <div class="container py-4 ps-5">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-3 font-title font-white">
-                        Dining
-                    </h1>
-
-                    <p class="lead font-white font-title">
-                        Amenities
-                    </p>
+                    <h1 class="display-3 font-title font-white fw-bold">Book Now</h1>
                 </div>
             </div>
         </div>

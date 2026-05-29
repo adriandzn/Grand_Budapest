@@ -13,7 +13,7 @@
             <li class="nav-item"><a class="nav-link link" href="index.php">HOME</a></li>
             <li class="nav-item"><a class="nav-link link" href="rooms.php">ROOMS</a></li>
             <li class="nav-item"><a class="nav-link link" href="amenities_dining.php">AMENITIES</a></li>
-            <li class="nav-item"><a class="nav-link link" href="about.php">ABOUT</a></li>
+            <li class="nav-item"><a class="nav-link link" href="#">ABOUT</a></li>
         </ul>
 
         <!-- Logo -->
