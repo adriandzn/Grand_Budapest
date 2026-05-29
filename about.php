@@ -36,7 +36,7 @@
     <!-- A Timeless Icon -->
     <section >
         <div class="container mt-5">
-            <div class="row g-0 border rounded-4 overflow-hidden shadow">
+            <div class="row g-0 rounded-4 overflow-hidden shadow">
             
             <div class="col-md-5">
                 <img src="images/index-hero.png" alt="Grand Budapest Hotel" class="w-100 h-100 object-fit-cover">
@@ -60,7 +60,7 @@
     <!-- Our Legacy -->
     <section >
         <div class="container mt-5">
-            <div class="row g-0 border rounded-4 overflow-hidden shadow">
+            <div class="row g-0 rounded-4 overflow-hidden shadow">
                 <div class="col p-5 bg-lightbrown">
                     <h1 class="text-start font-pink font-title mb-3">
                         Our Legacy

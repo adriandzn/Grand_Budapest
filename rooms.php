@@ -35,9 +35,9 @@
 
     <!-- Standard Room -->
     <section >
-        <div class="container border rounded mt-5">
+        <div class="container mt-5">
             <div class="row">
-                <div class="col p-5 bg-white">
+                <div class="col p-5 bg-white rounded-start">
                     <h1 class="text-start">
                         Standard Room
                     </h1>
@@ -85,7 +85,7 @@
                     </div>
 
                 </div>
-                <div class="col text-center bg-lightbrown border rounded-end p-5">
+                <div class="col text-center bg-lightbrown rounded-end p-5">
                     <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100 rounded shadow">
                     <br>
                     
@@ -101,9 +101,9 @@
 
      <!-- Deluxe Room -->
     <section >
-        <div class="container border rounded mt-5">
+        <div class="container rounded mt-5">
             <div class="row">
-                <div class="col p-5 bg-white">
+                <div class="col p-5 bg-white rounded-start">
                     <h1 class="text-start">
                         Deluxe Room
                     </h1>
@@ -162,7 +162,7 @@
 
 
                 </div>
-                <div class="col text-center bg-lightbrown border rounded-end  p-5">
+                <div class="col text-center bg-lightbrown rounded-end  p-5">
                     <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100 rounded shadow">
                     <br>
                     
@@ -178,9 +178,9 @@
       
     <!-- Suite Room -->
     <section >
-        <div class="container border rounded mt-5">
+        <div class="container rounded mt-5">
             <div class="row">
-                <div class="col p-5 bg-white">
+                <div class="col p-5 bg-white rounded-start">
                     <h1 class="text-start">
                         Suite Room
                     </h1>
@@ -241,7 +241,7 @@
                     </div>
 
                 </div>
-                <div class="col text-center bg-lightbrown border rounded-end  p-5">
+                <div class="col text-center bg-lightbrown rounded-end  p-5">
                     <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100 rounded shadow">
                     <br>
                     
