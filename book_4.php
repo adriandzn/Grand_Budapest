@@ -6,6 +6,8 @@
     <title>Book Now</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/progress.css">
+    
 </head>
 <body class="bg-lightpink">
 

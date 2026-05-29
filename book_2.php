@@ -6,6 +6,7 @@
     <title>Book Now</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/progress.css">
 </head>
 <body class="bg-lightpink">
 
@@ -43,7 +44,7 @@
         <form action="book_3.php" method="post">
 
             <!-- Select Your Room Area -->
-            <div class="bg-lightbrown rounded-5 my-5 p-5 shadow">
+            <div class="bg-lightbrown rounded-5 my-5 p-5 shadow" id="select-room">
 
                 <!-- Go Back Button -->
                 <div class="row">

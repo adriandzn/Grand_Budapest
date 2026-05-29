@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="css/progress.css">
-
 <?php
     if ($current_step == 1) {
         echo '<img src="images/progress-1.png" alt="Progress Step 1" class="img-progress d-block mx-auto">';
