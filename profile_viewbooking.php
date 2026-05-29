@@ -131,7 +131,7 @@ $policyDescriptions = [
                     </h1>
 
                     <a href="#"
-                        class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 text-darkbrown">
+                        class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center gap-4 text-darkbrown">
 
                         <img src="images/logo-logout-brown.png"
                             alt="Log out"
@@ -192,11 +192,11 @@ $policyDescriptions = [
                     <div class="mb-4">
 
                         <a href="profile_booking.php"
-                            class="btn rounded-pill px-4 py-2 bg-darkpink text-darkbrown fw-semibold border border-darkbrown">
+                            class="btn rounded-pill px-4 py-2 bg-darkpink text-darkbrown fw-semibold pink-button">
 
                             <img src="images/logo-proceed-brown.png"
                                 alt="Go Back"
-                                style="height:18px; width:auto;"
+                                style="height:18px; width:auto; transform: scaleX(-1);"
                                 class="me-2">
 
                             Go Back
@@ -564,11 +564,11 @@ $policyDescriptions = [
         <div class="text-center">
 
             <a href="profile_booking.php"
-                class="btn rounded-pill px-5 py-2 bg-darkpink text-darkbrown fw-semibold border border-darkbrown">
+                class="btn rounded-pill px-5 py-2 bg-darkpink text-darkbrown fw-semibold pink-button">
 
                 <img src="images/logo-proceed-brown.png"
                     alt=""
-                    style="height:18px;"
+                    style="height:18px; transform: scaleX(-1);"
                     class="me-2">
 
                 Go Back

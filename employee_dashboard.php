@@ -75,42 +75,42 @@
                     <nav class="d-grid gap-3">
 
                         <a href="#"
-                            class="btn book-now text-dark py-3 fw-semibold">
+                            class="btn pink-button text-dark py-3 fw-semibold">
 
                             Dashboard
 
                         </a>
 
                         <a href="#"
-                            class="btn book-now text-dark py-3 fw-semibold">
+                            class="btn pink-button text-dark py-3 fw-semibold">
 
                             Rooms
 
                         </a>
 
                         <a href="#"
-                            class="btn book-now text-dark py-3 fw-semibold">
+                            class="btn pink-button text-dark py-3 fw-semibold">
 
                             Reservations
 
                         </a>
 
                         <a href="#"
-                            class="btn book-now text-dark py-3 fw-semibold">
+                            class="btn pink-button text-dark py-3 fw-semibold">
 
                             Amenities
 
                         </a>
 
                         <a href="#"
-                            class="btn book-now text-dark py-3 fw-semibold">
+                            class="btn pink-button text-dark py-3 fw-semibold">
 
                             Reports
 
                         </a>
 
                         <a href="#"
-                            class="btn book-now text-dark py-3 fw-semibold">
+                            class="btn pink-button text-dark py-3 fw-semibold">
 
                             Settings
 
@@ -157,11 +157,11 @@
 
                     <div class="d-flex gap-2 flex-wrap">
 
-                        <button class="btn book-now text-dark px-4 py-2 fw-semibold">
+                        <button class="btn pink-button text-dark px-4 py-2 fw-semibold">
                             New Report
                         </button>
 
-                        <button class="btn book-now text-dark px-4 py-2 fw-semibold">
+                        <button class="btn pink-button text-dark px-4 py-2 fw-semibold">
                             Add Room
                         </button>
 

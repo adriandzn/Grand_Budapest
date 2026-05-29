@@ -32,7 +32,7 @@
             <li class="nav-item"><a class="nav-link link" href="contact.php">CONTACT</a></li>
             <li class="nav-item"><a class="nav-link link" href="profile_overview.php">PROFILE</a></li>
             <li class="nav-item">
-                <a href="book_1.php" class="btn book-now d-flex flex-column align-items-center px-4">
+                <a href="book_1.php" class="btn pink-button d-flex flex-column align-items-center px-4">
                     BOOK NOW
                     <img src="images/logo-key-brown.png" alt="key" style="height:16px;">
                 </a>
