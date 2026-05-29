@@ -308,13 +308,13 @@ $bookingInfo = [
 
                         </h4>
 
-                        <p class="text-secondary fs-5 mb-4">
+                        <p class=" fs-5 mb-4">
 
                             Booking <?php echo $bookingInfo[1]; ?>
 
                         </p>
 
-                        <div class="d-flex align-items-center gap-3 text-secondary mb-3">
+                        <div class="d-flex align-items-center gap-3 mb-3">
 
                             <img src="images/logo-calendar-pink.png"
                                 alt="Dates"
@@ -326,7 +326,7 @@ $bookingInfo = [
 
                         </div>
 
-                        <div class="d-flex align-items-center gap-3 text-secondary mb-5">
+                        <div class="d-flex align-items-center gap-3 mb-5">
 
                             <img src="images/logo-profile-pink.png"
                                 alt="Guests"
