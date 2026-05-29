@@ -139,7 +139,7 @@
                     <!-- Go Back Button -->
                     <div class="row">
                         <div class="col">
-                            <a href="book_1.php" class="btn pink-button font-title d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" style="width: fit-content;">
+                            <a href="book_3.php" class="btn pink-button font-title d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" style="width: fit-content;">
                                 <img src="images/logo-go-back.png" alt="key" style="height:20px;">
                                 Go Back    
                             </a>
@@ -261,7 +261,7 @@
 
 
             <!-- PAYMENT METHOD -->
-            <div class="row justify-content-center mb-4">
+            <div class="row justify-content-center mb-5">
                 <div class="col-xl-10">
                     <div class="bg-white rounded-5 shadow-sm p-4 p-lg-5">
 

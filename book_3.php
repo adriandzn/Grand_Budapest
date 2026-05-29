@@ -329,7 +329,7 @@
                                 <!-- Next Button -->
                                 <div class="row">
                                     <div class="col d-flex justify-content-center">
-                                        <input type="submit" name="next" class="btn pink-button font-title d-flex align-items-center px-5 py-2 shadow" value="Next" style=" min-width: 200px;">
+                                        <input type="submit" name="book3-next" class="btn pink-button font-title d-flex align-items-center px-5 py-2 shadow" value="Next" style=" min-width: 200px;">
                                     </div>
                                 </div>
 
