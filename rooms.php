@@ -139,17 +139,20 @@
 
                                 <div class="col-4">
                                     <img src="images/hotel_pictures/standard2.png"
-                                        class="room-thumbnail shadow">
+                                        class="room-thumbnail shadow"
+                                        style="height: 200px; object-fit: cover;">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/hotel_pictures/standard3.png"
-                                        class="room-thumbnail shadow">
+                                    <img src="images/hotel_pictures/standard3.jpg"
+                                        class="room-thumbnail shadow"
+                                        style="height: 200px; object-fit: cover;">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/hotel_pictures/standard4.png"
-                                        class="room-thumbnail shadow">
+                                    <img src="images/hotel_pictures/standard4.jpg"
+                                        class="room-thumbnail shadow"
+                                        style="height: 200px; object-fit: cover;">
                                 </div>
 
                             </div>
@@ -262,17 +265,20 @@
 
                                 <div class="col-4">
                                     <img src="images/hotel_pictures/deluxe2.jpg"
-                                        class="room-thumbnail shadow">
+                                        class="room-thumbnail shadow"
+                                        style="height: 200px; object-fit: cover;">
                                 </div>
 
                                 <div class="col-4">
                                     <img src="images/hotel_pictures/deluxe3.jpg"
-                                        class="room-thumbnail shadow">
+                                        class="room-thumbnail shadow"
+                                        style="height: 200px; object-fit: cover;">
                                 </div>
 
                                 <div class="col-4">
                                     <img src="images/hotel_pictures/deluxe4.jpg"
-                                        class="room-thumbnail shadow">
+                                        class="room-thumbnail shadow"
+                                        style="height: 200px; object-fit: cover;">
                                 </div>
 
                             </div>
