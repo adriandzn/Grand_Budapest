@@ -243,7 +243,36 @@
 
 
             <!-- PAYMENT METHOD -->
-            
+            <div class="row justify-content-center mb-4">
+                <div class="col-xl-10">
+                    <div class="bg-white rounded-5 shadow-sm p-4 p-lg-5">
+
+                        <div class="row">
+                            <div class="col font-title fw-bold h4">Payment Method</div>
+                        </div>
+                        
+                       <div class="row bg-lightgray rounded-5 p-4 mt-4 shadow">
+                            <div class="row">
+                                <div class="col">d</div>
+                            </div>
+                            <div class="row">
+                                <div class="col">d</div>
+                            </div>
+                            <div class="row">
+                                <div class="col">d</div>
+                            </div>
+                            <div class="row">
+                                <div class="col">d</div>
+                            </div>
+                       </div>
+     
+                        <div class="row">
+                            <div class="col"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             
 
 
