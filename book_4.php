@@ -77,6 +77,24 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
     <link rel="stylesheet" href="css/book.css">
+
+    <style>
+        .green-button {
+            font-size: 0.9rem;
+            border: 3px solid #6bbe63;
+            background-color: #8bf58b;
+            color: #2b241f;
+            font-weight: bold;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+        .green-button:hover {
+            background-color: #79d879;
+            border: 3px solid #6bbe63;
+            color: #2b241f;
+        }
+
+    </style>
     
 </head>
 <body class="bg-lightpink">
@@ -195,7 +213,7 @@
         </div>
 
 
-        <form action="acknowledgment.php" method="post">
+        <form action="acknowledgement.php" method="post">
 
             <!-- POLICIES -->
             <div class="row justify-content-center mb-4">
@@ -220,7 +238,7 @@
                                     <?php echo $policyTitles[$i]; ?>
                                 </h6>
 
-                                <p class="small text-secondary mb-0">
+                                <p class="small mb-0">
                                     <?php echo $policyDescriptions[$i]; ?>
                                 </p>
 
@@ -251,23 +269,46 @@
                             <div class="col font-title fw-bold h4">Payment Method</div>
                         </div>
                         
-                       <div class="row bg-lightgray rounded-5 p-4 mt-4 shadow">
-                            <div class="row">
-                                <div class="col">d</div>
-                            </div>
-                            <div class="row">
-                                <div class="col">d</div>
-                            </div>
-                            <div class="row">
-                                <div class="col">d</div>
-                            </div>
-                            <div class="row">
-                                <div class="col">d</div>
-                            </div>
-                       </div>
+
+                        <div class="border rounded-5 overflow-hidden mt-4 shadow">
+
+                            <!-- CARDS -->
+                            <label class="d-flex align-items-center gap-4 px-4 py-3 border-bottom bg-light">
+                                <input type="radio" name="payment_method" value="card" class="form-check-input m-0">
+
+                                <div class="d-flex align-items-center gap-5">
+                                    <img src="images/payment-visa.png" alt="Visa" style="height:20px;">
+                                    <img src="images/payment-mastercard.png" alt="Mastercard" style="height:35px;">
+                                </div>
+                            </label>
+
+
+                            <!-- MAYA -->
+                            <label class="d-flex align-items-center gap-4 px-4 py-3 border-bottom bg-light">
+                                <input type="radio" name="payment_method" value="maya" class="form-check-input m-0">
+                                <img src="images/payment-maya.png" alt="Maya" style="height:20px;">
+                            </label>
+
+
+                            <!-- QRPH -->
+                            <label class="d-flex align-items-center gap-4 px-4 py-3 border-bottom bg-light">
+                                <input type="radio" name="payment_method" value="qrph" class="form-check-input m-0">
+                                <img src="images/payment-qrph.png" alt="QRPH" style="height:20px;">
+                            </label>
+
+
+                            <!-- GCASH -->
+                            <label class="d-flex align-items-center gap-4 px-4 py-3 bg-light">
+                                <input type="radio" name="payment_method" value="gcash" class="form-check-input m-0">
+                                <img src="images/payment-gcash.png" alt="GCash" style="height:20px;">
+                            </label>
+
+                        </div>
      
-                        <div class="row">
-                            <div class="col"></div>
+                        <div class="row mt-5">
+                            <div class="col text-center">
+                                <input type="submit" name="book4-next" value="Proceed to Payment" class="btn green-button px-5 py-3 font-title">
+                            </div>
                         </div>
 
                     </div>

@@ -416,7 +416,7 @@ $policyDescriptions = [
 
                         </h6>
 
-                        <p class="small text-secondary mb-0">
+                        <p class="small mb-0">
 
                             <?php echo $policyDescriptions[$i]; ?>
 
