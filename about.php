@@ -39,7 +39,7 @@
             <div class="row g-0 rounded-4 overflow-hidden shadow">
             
             <div class="col-md-5">
-                <img src="images/index-hero.png" alt="Grand Budapest Hotel" class="w-100 h-100 object-fit-cover">
+                <img src="images/hotel_pictures/grand-budapest-mountainview.jpg" alt="Grand Budapest Hotel" class="w-100 h-100 object-fit-cover">
             </div>
 
                 <div class="col p-5 bg-lightbrown">
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="col-md-5">
-                <img src="images/index-hero.png" alt="Grand Budapest Hotel" class="w-100 h-100 object-fit-cover">
+                <img src="images/hotel_pictures/lobby.jpg" alt="Grand Budapest Hotel" class="w-100 h-100 object-fit-cover">
                 </div>
             </div>
         </div>
