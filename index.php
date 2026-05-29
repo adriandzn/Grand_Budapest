@@ -22,7 +22,7 @@
             <div class="row py-5">
 
                 <!-- Image on the left -->
-                <div class="col-md-6 col-12 text-center d-flex flex-column justify-content-center p-5"><img src="images/placeholder1.png" alt="" class="img-fluid w-100 rounded shadow"></div>
+                <div class="col-md-6 col-12 text-center d-flex flex-column justify-content-center p-5"><img src="images/hotel_pictures/lobby-art.png" alt="" class="img-fluid w-100 rounded shadow"></div>
 
                 <!-- Text on the right -->
                 <div class="col-md-6 col-12 d-flex flex-column justify-content-center font-white p-5">
@@ -69,9 +69,9 @@
             <div class="col-md-4">
                 <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
+                    <img src="images/hotel_pictures/standard1.png"
                          class="img-fluid w-100"
-                         alt="">
+                         alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -93,9 +93,9 @@
             <div class="col-md-4">
                 <div class="bg-lightbrown text-white h-100 shadow">
 
-                    <img src="images/placeholder1.png"
+                    <img src="images/hotel_pictures/deluxe1.jpg"
                          class="img-fluid w-100"
-                         alt="">
+                         alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -117,9 +117,9 @@
             <div class="col-md-4">
                 <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
+                    <img src="images/hotel_pictures/suite1.jpg"
                          class="img-fluid w-100"
-                         alt="">
+                         alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -161,9 +161,9 @@
             <div class="col-md-4">
                 <div class="bg-lightpink text-black h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
-                         class="img-fluid w-100"
-                         alt="">
+                    <img src="images/hotel_pictures/buffet1.jpg"
+                        class="img-fluid w-100"
+                        alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -185,9 +185,9 @@
             <div class="col-md-4">
                 <div class="bg-lightpink text-black h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
-                         class="img-fluid w-100"
-                         alt="">
+                    <img src="images/hotel_pictures/restaurant2.jpg"
+                        class="img-fluid w-100"
+                        alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -209,9 +209,9 @@
             <div class="col-md-4">
                 <div class="bg-lightpink text-black h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
-                         class="img-fluid w-100"
-                         alt="">
+                    <img src="images/hotel_pictures/bar1.jpg"
+                        class="img-fluid w-100"
+                        alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -253,9 +253,9 @@
             <div class="col-md-4">
                 <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
-                         class="img-fluid w-100"
-                         alt="">
+                    <img src="images/hotel_pictures/gym.jpg"
+                        class="img-fluid w-100"
+                        alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -277,9 +277,9 @@
             <div class="col-md-4">
                 <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
-                         class="img-fluid w-100"
-                         alt="">
+                    <img src="images/hotel_pictures/spa.png"
+                        class="img-fluid w-100"
+                        alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
@@ -301,9 +301,9 @@
             <div class="col-md-4">
                 <div class="bg-lightbrown text-white h-100 shadow rounded-3 overflow-hidden">
 
-                    <img src="images/placeholder1.png"
-                         class="img-fluid w-100"
-                         alt="">
+                    <img src="images/hotel_pictures/pool.jpg"
+                        class="img-fluid w-100"
+                        alt="" style="height: 250px; object-fit: cover;">
 
                     <div class="p-4">
                         <h1 class="font-title fw-bold fs-3">
