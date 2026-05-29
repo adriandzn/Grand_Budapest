@@ -77,7 +77,7 @@ $activityImages = [
     <nav class="bg-darkbrown py-3">
         <div class="container">
 
-            <div class="row justify-content-center text-center gap-5">
+            <div class="row justify-content-center text-center gap-5 gap-md-5">
 
                 <div class="col-auto mx-5">
                     <a href="amenities_dining.php"

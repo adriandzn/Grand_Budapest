@@ -155,18 +155,18 @@ $policyDescriptions = [
 
         <div class="container">
 
-            <div class="row justify-content-center text-center">
+            <div class="row justify-content-center gap-5 text-center gap-md-5">
 
                 <div class="col-auto mx-5">
                     <a href="profile_overview.php"
-                        class="font-white font-title text-decoration-none fw-semibold">
+                        class="font-white font-title text-decoration-none fw-semibold px-3">
                         Overview
                     </a>
                 </div>
 
                 <div class="col-auto mx-5">
                     <a href="profile_booking.php"
-                        class="font-pink font-title text-decoration-none fw-semibold">
+                        class="font-pink font-title text-decoration-none fw-semibold px-3">
                         All Bookings
                     </a>
                 </div>
