@@ -68,13 +68,11 @@
                         You can go to your Profile Page to view your reservation status, booking details, and history anytime.
                     </h6>
 
-                    <div class="d-flex justify-content-center gap-3 flex-wrap">
-                        <a href="profile_overview.php" class="btn bg-darkpink font-darkbrown fw-bold rounded-pill px-5 py-3 shadow-sm"
-                            style="border-width: 3px; border-color:#6a3e4f;">
+                    <div class="d-flex justify-content-center gap-4 flex-wrap">
+                        <a href="profile_overview.php" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-2 shadow">
                             Go to Profile
                         </a>
-                        <a href="index.php" class="btn bg-darkpink font-darkbrown fw-bold border-pink rounded-pill px-5 py-3 shadow-sm"
-                            style="border-width: 3px; border-color:#6a3e4f;">
+                        <a href="index.php" class="btn book-now font-title d-flex flex-column align-items-center px-5 py-2 shadow">
                             Back to Home
                         </a>
                     </div>

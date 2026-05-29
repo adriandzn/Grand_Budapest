@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
 </head>
-<body>
+<body class="bg-lightpink">
 
     <!-- NAVBAR -->
     <?php include 'navbar.php'; ?>
