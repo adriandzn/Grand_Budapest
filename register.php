@@ -7,6 +7,23 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/body.css">
+
+    <style>
+        .logo-text {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            color: #FFC093;
+            font-weight: bold;
+        }
+        .logo-subtext {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            color: #FFC093;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body style="
@@ -36,23 +53,18 @@
                                     class="img-fluid mb-3"
                                     style="width:120px;">
                                 <br>
-                                <img src="images/title-grandbudapest.png"
-                                    alt="Title"
-                                    class="img-fluid"
-                                    style="max-width:250px;">
-                                <p class="text-white mt-2 fs-6">
-                                    HOTEL
-                                </p>
+                                <div class="logo-text font-title">GRAND BUDAPEST</div>
+                                <div class="logo-subtext font-title" >HOTEL</div>
                             </h1>
                         </div>
                     </div>
 
                     <!-- TITLE -->
-                    <div class="row mb-4">
+                    <div class="row mb-4 mt-5">
                         <div class="col text-center fw-bold font-title">
-                            <h1 class="display-6 text-white">
+                            <div class="h2 fw-bold text-white">
                                 Register
-                            </h1>
+                            </div>
                         </div>
                     </div>
 
