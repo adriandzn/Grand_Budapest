@@ -255,23 +255,23 @@
 
                         <div class="room-gallery">
 
-                            <img src="images/deluxe1.jpg"
+                            <img src="images/hotel_pictures/deluxe1.jpg"
                                 class="room-main-image shadow">
 
                             <div class="row mt-3">
 
                                 <div class="col-4">
-                                    <img src="images/deluxe2.jpg"
+                                    <img src="images/hotel_pictures/deluxe2.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/deluxe3.jpg"
+                                    <img src="images/hotel_pictures/deluxe3.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
                                 <div class="col-4">
-                                    <img src="images/deluxe4.jpg"
+                                    <img src="images/hotel_pictures/deluxe4.jpg"
                                         class="room-thumbnail shadow">
                                 </div>
 
