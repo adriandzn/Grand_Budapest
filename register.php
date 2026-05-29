@@ -11,12 +11,13 @@
 <body style="background-image: url('images/index-hero.png'); 
              background-size: cover; 
              background-position: center; 
-             background-color: rgba(100, 100, 100, 0.6); 
+             background-color: rgba(10, 10, 10, 0.75); 
              background-blend-mode: multiply; 
              min-height: 100vh; 
              background-attachment: fixed;
-             border-bottom: 0px solid #6a3e4f;">
-    <div class="container mt-5 w-25  rounded p-5 bg-brown">
+             border-bottom: 0px solid #6a3e4f;
+             backdrop-filter: blur(5px);">
+    <div class="container mt-5 w-25  rounded-5 p-5 bg-brown">
 
         <div class="row">
             <div class="col text-center">
@@ -38,7 +39,7 @@
             <!-- Fullname -->
             <div class="row mt-3">
                 <div class="col">
-                    <label for="firstName" class=" text-white form-label">Fullname</label>
+                    <label for="firstName" class="form-label font-body font-pink">Fullname</label>
                     <input type="text" name="Fullname" id="fullName" class="form-control rounded-5" placeholder="Type here">
                 </div>   
             </div>
@@ -47,7 +48,7 @@
             <!-- Username -->
             <div class="row mt-3">
                 <div class="col">
-                    <label for="username" class="text-white form-label">Username</label>
+                    <label for="username" class="form-label font-body font-pink">Username</label>
                     <input type="text" name="Uname" id="username" class="form-control rounded-5" placeholder="Type here">
                 </div>
             </div>
@@ -55,7 +56,7 @@
             <!-- Email JAdress -->
             <div class="row mt-3">
                 <div class="col">
-                    <label for="email" class="text-white form-label">Email address</label>
+                    <label for="email" class="form-label font-body font-pink">Email address</label>
                     <input type="text" name="email" id="email" class="form-control rounded-5" placeholder="Type here">
                 </div>
             </div>
@@ -64,7 +65,7 @@
         <!-- Password -->
             <div class="row mt-3">
                 <div class="col">
-                    <label for="password" class="text-white form-label">Create Your Password</label>
+                    <label for="password" class="form-label font-body font-pink">Create Your Password</label>
                     <input type="password" name="pass" id="password" class="form-control rounded-5" placeholder="Type here">
                 </div>
             </div>
@@ -72,7 +73,7 @@
         <!-- Password Confirmation -->
             <div class="row mt-3">
                 <div class="col">
-                    <label for="password" class="text-white form-label">Confirm Your Password</label>
+                    <label for="password" class="form-label font-body font-pink">Confirm Your Password</label>
                     <input type="password" name="passconf" id="passwordconf" class="form-control rounded-5" placeholder="Type here">
                 </div>
             </div>

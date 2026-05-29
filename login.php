@@ -9,12 +9,13 @@
 <body  style="background-image: url('images/index-hero.png'); 
              background-size: cover; 
              background-position: center; 
-             background-color: rgba(100, 100, 100, 0.6); 
+             background-color: rgba(10, 10, 10, 0.75); 
              background-blend-mode: multiply; 
              min-height: 100vh; 
              background-attachment: fixed;
-             border-bottom: 0px solid #6a3e4f;">
-    <div class="container mt-5 w-25  rounded p-5 bg-brown">
+             border-bottom: 0px solid #6a3e4f;
+             backdrop-filter: blur(5px);">
+    <div class="container mt-5 w-25  rounded-5 p-5 bg-brown">
         <div class="row">
             <div class="col text-center">
                 <h1>
@@ -33,27 +34,27 @@
         </div>
         <form action="login.php" method=post>
         <!-- Email input -->
-        <div class="form-outline mb-4 font-pink">
-            <label class="form-label" for="form2Example1">Username</label>
+        <div class="form-outline mb-4">
+            <label class="form-label font-body fs-5 font-pink" for="form2Example1">Username</label>
             <input type="text" name="username" id="form2Example1" class="form-control rounded-5" placeholder="Type here" />
         </div>
 
 
          <!-- Password input -->
-        <div class="form-outline mb-4 font-pink">
-            <label class="form-label" for="form2Example2">Password</label>
+        <div class="form-outline mb-4">
+            <label class="form-label font-body fs-5 font-pink" for="form2Example2">Password</label>
             <input type="password" name="pass" id="form2Example2" class="form-control rounded-5" placeholder="Type here"/>
         </div>
         <!-- Submit button -->
          <div class="row justify-content-center">
-        <input type="submit" name=sub value="Login" class="btn fw-bold bg-darkpink text font-body btn-block rounded-5 mb-4 w-50">
+        <input type="submit" name=sub value="Login" class="btn fw-bold bg-darkpink text font-body btn-block rounded-5 mb-4 w-50 pink-button">
         </div>
 
         <div class="row text-center text-white font-body ">
-            <div class = "col fs-4">
+            <div class = "col fs-5">
                 Don't have an account? 
                 <br>
-                <a href="#" class="btn btn-link text-white fs-5 text-decoration-none">
+                <a href="register.php" class="btn btn-link text-white fs-4 text-decoration">
                 Register Here
                 </a>
             </div>
