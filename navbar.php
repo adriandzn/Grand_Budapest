@@ -13,7 +13,7 @@
             <li class="nav-item"><a class="nav-link link" href="index.php">HOME</a></li>
             <li class="nav-item"><a class="nav-link link" href="rooms.php">ROOMS</a></li>
             <li class="nav-item"><a class="nav-link link" href="amenities_dining.php">AMENITIES</a></li>
-            <li class="nav-item"><a class="nav-link link" href="#">ABOUT</a></li>
+            <li class="nav-item"><a class="nav-link link" href="about.php">ABOUT</a></li>
         </ul>
 
         <!-- Logo -->
@@ -44,7 +44,7 @@
             <a href="index.php" style="font-size: 0.9rem;">HOME</a>
             <a href="rooms.php" style="font-size: 0.9rem;">ROOMS</a>
             <a href="amenities_dining.php" style="font-size: 0.9rem;">AMENITIES</a>
-            <a href="#" style="font-size: 0.9rem;">ABOUT</a>
+            <a href="about.php" style="font-size: 0.9rem;">ABOUT</a>
             <a href="contact.php" style="font-size: 0.9rem;">CONTACT</a>
             <a href="profile_overview.php" style="font-size: 0.9rem;">PROFILE</a>
             <a href="book_1.php" style="font-size: 0.9rem;">BOOK NOW</a>

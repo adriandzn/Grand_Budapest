@@ -77,7 +77,7 @@
                     <li class="nav-item"><a href="index.php" class="nav-link footer-link">Home</a></li>
                     <li class="nav-item"><a href="rooms.php" class="nav-link footer-link">Rooms</a></li>
                     <li class="nav-item"><a href="amenities_dining.php" class="nav-link footer-link">Amenities</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link footer-link">About</a></li>
+                    <li class="nav-item"><a href="about.php" class="nav-link footer-link">About</a></li>
                     <li class="nav-item"><a href="contact.php" class="nav-link footer-link">Contact</a></li>
                     <li class="nav-item"><a href="profile_overview.php" class="nav-link footer-link">Profile</a></li>
                     <li class="nav-item"><a href="book_1.php" class="nav-link footer-link">Book Now</a></li>
