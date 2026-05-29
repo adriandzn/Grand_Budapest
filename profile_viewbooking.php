@@ -408,7 +408,7 @@ $policyDescriptions = [
 
                     <?php for($i = 0; $i < count($policyTitles); $i++): ?>
 
-                    <div class="border-bottom pb-3 mb-3">
+                    <div class="border-top pt-3 mt-3">
 
                         <h6 class="fw-bold font-pink mb-1">
 
@@ -441,7 +441,7 @@ $policyDescriptions = [
                 <div class="bg-white rounded-5 shadow-sm p-4 p-lg-5">
 
                     <p class="text-center font-pink fw-semibold mb-5">
-                        In case of inquiries, booking modifications, or booking cancellations, kindly contact us
+                        In case of inquiries, booking modifications, or booking cancellations, kindly contact us:
                     </p>
 
                     <div class="row text-center mb-5 gy-4">
