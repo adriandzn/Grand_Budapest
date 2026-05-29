@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
 </head>
 <body  style="background-image: url('images/index-hero.png'); 
@@ -15,56 +15,162 @@
              background-attachment: fixed;
              border-bottom: 0px solid #6a3e4f;
              backdrop-filter: blur(5px);">
-    <div class="container mt-5 w-25  rounded-5 p-5 bg-brown">
-        <div class="row">
-            <div class="col text-center">
-                <h1>
-                    <img src="images/logo.png" alt="Logo" class="w-50 h-auto mb-2">
-                    <img src="images/title-grandbudapest.png" alt="Title" style="max-width: 100%; height: auto;">
-                    HOTEL
-                </h1>
-               
+
+    <!-- CENTER WRAPPER -->
+
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
+
+        <!-- RETAINED ROW -->
+
+        <div class="row justify-content-center w-100">
+
+            <!-- RETAINED COL -->
+
+            <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+
+                <!-- LOGIN CARD -->
+
+                <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
+
+                    <!-- LOGO -->
+
+                    <div class="row">
+
+                        <div class="col text-center">
+
+                            <h1>
+
+                                <img src="images/logo.png"
+                                    alt="Logo"
+                                    class="img-fluid mb-3"
+                                    style="width:120px;">
+
+                                <br>
+
+                                <img src="images/title-grandbudapest.png"
+                                    alt="Title"
+                                    class="img-fluid"
+                                    style="max-width:250px;">
+
+                                <p class="text-white mt-2 fs-5">
+                                    HOTEL
+                                </p>
+
+                            </h1>
+
+                        </div>
+
+                    </div>
+
+                    <!-- TITLE -->
+
+                    <div class="row mb-4">
+
+                        <div class="col text-center fw-bold font-title">
+
+                            <h1 class="display-6 text-white">
+                                Login
+                            </h1>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FORM -->
+
+                    <form action="login.php" method="post">
+
+                        <!-- USERNAME -->
+
+                        <div class="form-outline mb-4">
+
+                            <label
+                                class="form-label font-body fs-5 font-pink">
+
+                                Username
+
+                            </label>
+
+                            <input
+                                type="text"
+                                name="username"
+                                class="form-control rounded-5 px-4 py-2 border-0 shadow-sm"
+                                placeholder="Type here" />
+
+                        </div>
+
+                        <!-- PASSWORD -->
+
+                        <div class="form-outline mb-4">
+
+                            <label
+                                class="form-label font-body fs-5 font-pink">
+
+                                Password
+
+                            </label>
+
+                            <input
+                                type="password"
+                                name="pass"
+                                class="form-control rounded-5 px-4 py-2 border-0 shadow-sm"
+                                placeholder="Type here"/>
+
+                        </div>
+
+                        <!-- LOGIN BUTTON -->
+
+                        <div class="row justify-content-center">
+
+                            <div class="col-12 col-md-8 text-center">
+
+                                <input
+                                    type="submit"
+                                    name="sub"
+                                    value="Login"
+                                    class="btn fw-bold bg-darkpink font-body rounded-5 mb-4 pink-button w-100 py-2 pink-button fs-5">
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <!-- REGISTER -->
+
+                        <div class="row text-center text-white font-body">
+
+                            <div class="col fs-5">
+
+                                Don't have an account?
+
+                                <br>
+
+                                <a href="register.php"
+                                    class="btn btn-link text-white fs-5 text-decoration-none fw-bold">
+
+                                    Register Here
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
             </div>
+
         </div>
 
-        <div class="row mb-4">
-            <div class="col text-center fw-bold font-title">
-                <h1 class="display-6 text-white">Login</h1>
-            </div>
-        </div>
-        <form action="login.php" method=post>
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-            <label class="form-label font-body fs-5 font-pink" for="form2Example1">Username</label>
-            <input type="text" name="username" id="form2Example1" class="form-control rounded-5" placeholder="Type here" />
-        </div>
+    </div>
 
-
-         <!-- Password input -->
-        <div class="form-outline mb-4">
-            <label class="form-label font-body fs-5 font-pink" for="form2Example2">Password</label>
-            <input type="password" name="pass" id="form2Example2" class="form-control rounded-5" placeholder="Type here"/>
-        </div>
-        <!-- Submit button -->
-         <div class="row justify-content-center">
-        <input type="submit" name=sub value="Login" class="btn fw-bold bg-darkpink text font-body btn-block rounded-5 mb-4 w-50 pink-button">
-        </div>
-
-        <div class="row text-center text-white font-body ">
-            <div class = "col fs-5">
-                Don't have an account? 
-                <br>
-                <a href="register.php" class="btn btn-link text-white fs-4 text-decoration">
-                Register Here
-                </a>
-            </div>
-            
-        </div>
-        </form>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </div>    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
+
 </html>
 <?php
 require_once "dbaseconnection.php";
