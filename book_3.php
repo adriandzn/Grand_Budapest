@@ -23,8 +23,6 @@
 
     <section class="position-relative overflow-hidden">
 
-        <!-- BACKGROUND -->
-
         <div
             style="
                 background-image:url('images/index-hero.png');
@@ -41,8 +39,6 @@
 
         </div>
 
-        <!-- HERO CONTENT -->
-
         <div class="position-absolute top-50 start-0 translate-middle-y w-100">
 
             <div class="container">
@@ -57,7 +53,7 @@
 
     </section>
 
-    <!-- PROGRESS -->
+    <!-- Progress Bar -->
 
     <section class="py-5">
 
@@ -72,7 +68,7 @@
 
     </section>
 
-    <!-- FORM SECTION -->
+    <!-- Form Section -->
 
     <section class="pb-5">
 
@@ -329,13 +325,12 @@
 
                             <div class="text-center mt-5">
 
-                                <button
-                                    type="submit"
-                                    class="btn bg-darkpink text-dark fw-bold rounded-pill px-5 py-3 shadow-sm pink-button gap-3 font-body">
-
-                                    Next
-
-                                </button>
+                                <!-- Next Button -->
+                                <div class="row">
+                                    <div class="col d-flex justify-content-center">
+                                        <input type="submit" name="next" class="btn pink-button font-title d-flex align-items-center px-5 py-2 shadow" value="Next" style=" min-width: 200px;">
+                                    </div>
+                                </div>
 
                                 <p class="text-white small mt-4 mb-0">
 
