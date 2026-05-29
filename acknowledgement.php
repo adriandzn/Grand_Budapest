@@ -63,10 +63,10 @@
                     </p>
 
                     <div class="d-flex justify-content-center gap-3 flex-wrap">
-                        <a href="profile_overview.php" class="btn bg-pink text-dark fw-bold rounded-pill px-5 py-3 shadow-sm">
+                        <a href="profile_overview.php" class="btn bg-darkpink font-darkbrown fw-bold rounded-pill px-5 py-3 shadow-sm">
                             Go to Profile
                         </a>
-                        <a href="index.php" class="btn border border-pink text-white rounded-pill px-5 py-3 shadow-sm" style="background-color: rgba(255,255,255,0.05);">
+                        <a href="index.php" class="btn border bg-darkpink font-darkbrown fw-bold border-pink rounded-pill px-5 py-3 shadow-sm"">
                             Back to Home
                         </a>
                     </div>
