@@ -145,13 +145,13 @@
 
             <!-- Dropdown Menu -->
             <div class="hamburger-menu" id="hamburgerMenu">
-                <a href="index.php">HOME</a>
-                <a href="rooms.php">ROOMS</a>
-                <a href="amenities_dining.php">AMENITIES</a>
-                <a href="#">ABOUT</a>
-                <a href="contact.php">CONTACT</a>
-                <a href="profile_overview.php">PROFILE</a>
-                <a href="#">BOOK NOW</a>
+                <a href="index.php" style="font-size: 0.9rem;">HOME</a>
+                <a href="rooms.php" style="font-size: 0.9rem;">ROOMS</a>
+                <a href="amenities_dining.php" style="font-size: 0.9rem;">AMENITIES</a>
+                <a href="#" style="font-size: 0.9rem;">ABOUT</a>
+                <a href="contact.php" style="font-size: 0.9rem;">CONTACT</a>
+                <a href="profile_overview.php" style="font-size: 0.9rem;">PROFILE</a>
+                <a href="#" style="font-size: 0.9rem;">BOOK NOW</a>
             </div>
 
         </div>
