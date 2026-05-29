@@ -82,7 +82,7 @@
                             Enjoy comfort and simplicity in our thoughtfully designed Standard Room.
                         </p>
 
-                        <a href="#" class="btn btn-link font-pink fs-5 text-decoration-none">
+                        <a href="rooms.php#standard-room" class="btn btn-link font-pink fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -106,7 +106,7 @@
                             Upgrade your stay with our Deluxe Room, featuring a more spacious layout and enhanced amenities.
                         </p>
 
-                        <a href="#" class="btn btn-link font-pink fs-5 text-decoration-none">
+                        <a href="rooms.php#deluxe-room" class="btn btn-link font-pink fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -130,7 +130,7 @@
                             Experience premium luxury in our Suite Room, designed for families or guests seeking the ultimate comfort.
                         </p>
 
-                        <a href="#" class="btn btn-link font-pink fs-5 text-decoration-none">
+                        <a href="rooms.php#suite-room" class="btn btn-link font-pink fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -174,7 +174,7 @@
                             Indulge in a lavish buffet experience featuring a curated selection of international and local cuisine.
                         </p>
 
-                        <a href="#" class="btn btn-link font-darkbrown fs-5 text-decoration-none">
+                        <a href="amenities_dining.php" class="btn btn-link font-darkbrown fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -198,7 +198,7 @@
                             Experience fine dining at its finest in our signature restaurant. Our chefs craft each dish with precision, using high-quality ingredients to deliver a perfect balance of flavor and presentation.
                         </p>
 
-                       <a href="#" class="btn btn-link font-darkbrown fs-5 text-decoration-none">
+                       <a href="amenities_dining.php" class="btn btn-link font-darkbrown fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -222,7 +222,7 @@
                             Unwind and relax at our elegant bar, where timeless charm meets modern taste. Enjoy handcrafted cocktails, premium wines, and a wide selection of spirits in a cozy yet refined atmosphere.
                         </p>
 
-                        <a href="#" class="btn btn-link font-darkbrown fs-5 text-decoration-none">
+                        <a href="amenities_dining.php" class="btn btn-link font-darkbrown fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -266,7 +266,7 @@
                            A well-equipped space designed to keep you active and energized during your stay.
                         </p>
 
-                        <a href="#" class="btn btn-link font-pink fs-5 text-decoration-none">
+                        <a href="amenities_activities.php" class="btn btn-link font-pink fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -290,7 +290,7 @@
                             A calm, relaxing space offering treatments designed to ease stress and restore balance.
                         </p>
 
-                        <a href="#" class="btn btn-link font-pink fs-5 text-decoration-none">
+                        <a href="amenities_activities.php" class="btn btn-link font-pink fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>
@@ -314,7 +314,7 @@
                             A serene swimming area perfect for a refreshing dip or quiet relaxation.
                         </p>
 
-                        <a href="#" class="btn btn-link font-pink fs-5 text-decoration-none">
+                        <a href="amenities_activities.php" class="btn btn-link font-pink fs-5 text-decoration-none">
                         Learn More
                         </a>
                     </div>

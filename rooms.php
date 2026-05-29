@@ -16,11 +16,9 @@
 <body class="bg-lightpink">
 
     <!-- NAVBAR -->
-
     <?php include 'navbar.php'; ?>
 
     <!-- HERO SECTION -->
-
     <section class="hero-section text-white">
 
         <div class="container">
@@ -46,8 +44,7 @@
     </section>
 
     <!-- STANDARD ROOM -->
-
-    <section class="py-5">
+    <section class="py-5" id="standard-room">
 
         <div class="container">
 
@@ -170,8 +167,7 @@
     </section>
 
     <!-- DELUXE ROOM -->
-
-    <section class="pb-5">
+    <section class="pb-5" id="deluxe-room">
 
         <div class="container">
 
@@ -294,8 +290,7 @@
     </section>
 
     <!-- SUITE ROOM -->
-
-    <section>
+    <section id="suite-room">
 
         <div class="container">
 
