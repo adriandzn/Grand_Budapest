@@ -20,6 +20,7 @@
                 <h1>
                     <img src="images/logo.png" alt="Logo" class="w-50 h-auto mb-2">
                     <img src="images/title-grandbudapest.png" alt="Title" style="max-width: 100%; height: auto;">
+                    HOTEL
                 </h1>
                
             </div>
