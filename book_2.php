@@ -196,12 +196,12 @@
             <div class="row bg-white rounded-5 shadow mt-5">
 
                 <!-- Image -->
-                <div class="col-6 px-4 py-4">
+                <div class="col-md-6 col-12 px-4 py-4">
                     <img src="images/placeholder1.png" alt="Standard Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
-                <div class="col-6 px-4 py-4 d-flex flex-column">
+                <div class="col-md-6 col-12 px-4 py-4 d-flex flex-column">
                     <div class="row pt-3">
                         <div class="col font-title h4 fw-bold">Standard Room</div>
                     </div>
@@ -231,10 +231,10 @@
                         <div class="col font-title h4 fw-bold">Number of Guests</div>
                     </div>
                     <div class="row pt-3">
-                        <div class="col-8">
+                        <div class="col-md-8 col-12">
                             <div class="row">
                                 <!-- Adult -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="adult" class="form-label font-body h5 fw-bold">Adults</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="adult" id="adult" required>
                                         <option value="1">1</option>
@@ -243,7 +243,7 @@
                                 </div>
 
                                 <!-- Extra Pax -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="extra-pax" class="form-label font-body h5 fw-bold">Extra Pax</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="extra-pax" id="extra-pax" required>
                                         <option value="0">0</option>
@@ -259,7 +259,7 @@
                         </div>
 
                         <!-- Next Button -->
-                        <div class="col-4 d-flex align-items-center justify-content-center">
+                        <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
                             <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
@@ -291,12 +291,12 @@
             <div class="row bg-white rounded-5 shadow mt-5">
 
                 <!-- Image -->
-                <div class="col-6 px-4 py-4">
+                <div class="col-md-6 col-12 px-4 py-4">
                     <img src="images/placeholder1.png" alt="Deluxe Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
-                <div class="col-6 px-4 py-4 d-flex flex-column">
+                <div class="col-md-6 col-12 px-4 py-4 d-flex flex-column">
                     <div class="row pt-3">
                         <div class="col font-title h4 fw-bold">Deluxe Room</div>
                     </div>
@@ -326,10 +326,10 @@
                         <div class="col font-title h4 fw-bold">Number of Guests</div>
                     </div>
                     <div class="row pt-3">
-                        <div class="col-8">
+                        <div class="col-md-8 col-12">
                             <div class="row">
                                 <!-- Adult -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="adult" class="form-label font-body h5 fw-bold">Adults</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="adult" id="adult" required>
                                         <option value="1">1</option>
@@ -338,17 +338,17 @@
                                 </div>
 
                                 <!-- Children -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="children" class="form-label font-body h5 fw-bold">Children</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="children" id="children" required>
-                                        <option value="0">0</option>
+                                        <option value="1">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                     </select>
                                 </div>
 
                                 <!-- Extra Pax -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="extra-pax" class="form-label font-body h5 fw-bold">Extra Pax</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="extra-pax" id="extra-pax" required>
                                         <option value="0">0</option>
@@ -364,7 +364,7 @@
                         </div>
 
                         <!-- Next Button -->
-                        <div class="col-4 d-flex align-items-center justify-content-center">
+                        <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
                             <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
@@ -396,12 +396,12 @@
             <div class="row bg-white rounded-5 shadow mt-5">
 
                 <!-- Image -->
-                <div class="col-6 px-4 py-4">
-                    <img src="images/placeholder1.png" alt="Deluxe Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="col-md-6 col-12 px-4 py-4">
+                    <img src="images/placeholder1.png" alt="Suite Room" class="img-fluid rounded-5" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
 
                 <!-- Details -->
-                <div class="col-6 px-4 py-4 d-flex flex-column">
+                <div class="col-md-6 col-12 px-4 py-4 d-flex flex-column">
                     <div class="row pt-3">
                         <div class="col font-title h4 fw-bold">Suite Room</div>
                     </div>
@@ -431,10 +431,10 @@
                         <div class="col font-title h4 fw-bold">Number of Guests</div>
                     </div>
                     <div class="row pt-3">
-                        <div class="col-8">
+                        <div class="col-md-8 col-12">
                             <div class="row">
                                 <!-- Adult -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="adult" class="form-label font-body h5 fw-bold">Adults</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="adult" id="adult" required>
                                         <option value="1">1</option>
@@ -445,19 +445,19 @@
                                 </div>
 
                                 <!-- Children -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="children" class="form-label font-body h5 fw-bold">Children</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="children" id="children" required>
-                                        <option value="0">0</option>
+                                        <option value="1">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
-                                        <option value="2">3</option>
-                                        <option value="2">4</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
                                     </select>
                                 </div>
 
                                 <!-- Extra Pax -->
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <label for="extra-pax" class="form-label font-body h5 fw-bold">Extra Pax</label>
                                     <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="extra-pax" id="extra-pax" required>
                                         <option value="0">0</option>
@@ -473,7 +473,7 @@
                         </div>
 
                         <!-- Next Button -->
-                        <div class="col-4 d-flex align-items-center justify-content-center">
+                        <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
                             <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
