@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
 </head>
-<body>
+<body class = "bg-lightpink">
     
     <!-- NAVBAR -->
     <?php include 'navbar.php'; ?>
@@ -16,34 +16,44 @@
     <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100 shadow">
 
     <!-- Standard Room -->
-    <section>
+    <section >
         <div class="container border rounded mt-5">
             <div class="row">
-                <div class="col p-5">
+                <div class="col p-5 bg-white">
                     <h1 class="text-start">
                         Standard Room
                     </h1>
                     <p>
                         Enjoy comfort and simplicity in our thoughtfully designed Standard Room. Perfect for solo travelers or couples, this space offers a relaxing atmosphere with essential amenities for a pleasant stay.
                     </p>
-                    <p>
+                    <p class = "fw-bold font-pink ">
                         ₱4,500.00 / night
                     </p>
-                    <p>
+                    
+                    <h1 class = "fw-bold h4">
                         Details:
-                        <br>
+                    </h1>
+                    <div class="col fw-bold">
+                        <img src="images/logo-profile-brown.png" alt="" style = "width: 30px;" class = "me-2">
                         2 Adults
-                        <br>
+                    </div>
+                    <div class="col fw-bold">
+                        <img src="images/logo-bed-brown.png" alt="" style = "width: 30px;" class = "me-2">
                         1 Queen Bed
-                    </p>
+                    </div>
 
-                    <p>
+                    <h1 class = "fw-bold h4 mt-3">
                         Features: 
-                        <br>
-                        Free Wifi        Smart Tv
-                        <br>
-                        Air Conditioning        Private Bathroom
-                    </p>
+                    </h1>
+                    <div class="col fw-bold">
+                        <img src="images/logo-profile-brown.png" alt="" style = "width: 30px;" class = "me-2">
+                        Free Wifi
+                    </div>
+                    <div class="col fw-bold">
+                        <img src="images/logo-profile-brown.png" alt="" style = "width: 30px;" class = "me-2">
+                        Air Conditioning
+                    </div>
+
                 </div>
                 <div class="col text-center bg-lightbrown border rounded-end  p-5">
                     <img src="images/index-hero.png" alt="hero banner" class="img-fluid w-100 rounded shadow">
@@ -63,7 +73,7 @@
     <section>
         <div class="container border rounded mt-5">
             <div class="row">
-                <div class="col p-5">
+                <div class="col p-5 bg-white">
                     <h1 class="text-start">
                         Standard Room
                     </h1>
@@ -106,7 +116,7 @@
     <section>
         <div class="container border rounded mt-5">
             <div class="row">
-                <div class="col p-5">
+                <div class="col p-5 bg-white">
                     <h1 class="text-start">
                         Standard Room
                     </h1>
@@ -127,7 +137,7 @@
                     <p>
                         Features: 
                         <br>
-                        Free Wifi        Smart Tv
+                        Free Wifi Smart Tv
                         <br>
                         Air Conditioning        Private Bathroom
                     </p>
