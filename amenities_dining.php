@@ -75,8 +75,7 @@ $venueReverse = [
         background-size: cover; 
         background-position: center; 
         background-color: rgba(0,0,0,0.6); 
-        background-blend-mode: multiply;
-        border-bottom: 0px solid #6a3e4f;">
+        background-blend-mode: multiply;">
 
         <div class="container py-4 ps-5">
             <div class="row">
