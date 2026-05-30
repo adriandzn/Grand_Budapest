@@ -103,23 +103,49 @@
 
                     <form action="" method="POST">
 
-                        <!-- FULLNAME -->
+                        <!-- FIRSTNAME -->
 
                         <div class="row mt-4">
 
                             <div class="col">
 
-                                <label for="fullName"
+                                <label for="firstName"
                                     class="form-label font-body font-pink fw-semibold fs-6">
 
-                                    Fullname
+                                    First Name
 
                                 </label>
 
                                 <input
                                     type="text"
-                                    name="Fullname"
-                                    id="fullName"
+                                    name="Firstname"
+                                    id="firstName"
+                                    class="form-control rounded-pill border-0 px-4 py-2"
+                                    placeholder="Type here"
+                                    style="font-size: 14px;"
+                                    >
+
+                            </div>
+
+                        </div>
+
+                        <!-- LASTNAME -->
+
+                        <div class="row mt-4">
+
+                            <div class="col">
+
+                                <label for="lastName"
+                                    class="form-label font-body font-pink fw-semibold fs-6">
+
+                                    Last Name
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="Lastname"
+                                    id="lastName"
                                     class="form-control rounded-pill border-0 px-4 py-2"
                                     placeholder="Type here"
                                     style="font-size: 14px;"
