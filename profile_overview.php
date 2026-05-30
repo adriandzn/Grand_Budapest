@@ -6,17 +6,42 @@
         $_SESSION['GBfullname'],
         $_SESSION['GBusername'],
         $_SESSION['GBemail'],
-        '•••••••'
     ];
 
-    $bookingInfo = [
-        'Deluxe Room',
-        '#123456',
-        'Confirmed',
-        'May 25 - 31, 2026',
-        '8 Guests',
-        'images/index-hero.png'
-    ];
+
+    // Get most recent reservation
+    $reservesql = "SELECT r.reservation_id, r.check_in_date, r.check_out_date, r.reservation_status, d.room_type FROM tbl_reservationdetails r INNER JOIN tbl_roomdetails d ON r.room_id = d.room_id WHERE r.user_id = " . $_SESSION['GBid'] . " ORDER BY r.reservation_id DESC LIMIT 1";
+
+    $result = $conn->query($reservesql);
+    $latestBooking = $result->fetch_assoc();
+
+
+
+    if ($latestBooking) {
+        if ($latestBooking['room_type'] == "Standard") {
+            $roomImage = "images/hotel_pictures/standard1.png";
+        }
+        elseif ($latestBooking['room_type'] == "Deluxe") {
+            $roomImage = "images/hotel_pictures/deluxe1.jpg";
+        }
+        elseif ($latestBooking['room_type'] == "Suite") {
+            $roomImage = "images/hotel_pictures/suite1.jpg";
+        }
+
+        $statusClass = "bg-secondary text-white";
+
+        switch ($latestBooking['reservation_status']) {
+            case "Confirmed":
+                $statusClass = "bg-success text-white";
+                break;
+
+            case "Pending":
+                $statusClass = "bg-warning text-dark";
+                break;
+        }
+    }
+
+
 
 
     //Log Out Button
@@ -46,16 +71,25 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+
+    <style>
+        .booking-btn {
+            background-color: #de7994;
+            color: #2b241f;
+        }
+        .booking-btn:hover {
+            background-color: #a35b6e;
+            color: #2b241f;
+        }
+    </style>
 </head>
 
 <body class="bg-lightpink font-body">
 
     <!-- NAVBAR -->
-
     <?php include 'navbar.php'; ?>
 
     <!-- HERO SECTION -->
-
     <section class="text-white py-5"
         style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
@@ -100,49 +134,33 @@
     </section>
 
     <!-- Navigation -->
-
     <nav class="bg-darkbrown py-3">
-
         <div class="container">
-
             <div class="row justify-content-center text-center gap-5 gap-md-5">
 
                 <div class="col-auto mx-5">
-
                     <a href="profile_overview.php"
                         class="font-pink font-title text-decoration-none pb-1 fw-semibold px-3">
-
                         Overview
-
                     </a>
-
                 </div>
 
                 <div class="col-auto mx-5">
-
                     <a href="profile_booking.php"
                         class="font-white font-title text-decoration-none pb-1 fw-semibold px-3">
-
                         All Bookings
-
                     </a>
-
                 </div>
-
             </div>
-
         </div>
-
     </nav>
 
     <!-- MAIN SECTION -->
-
     <main class="container my-5" id="profile">
 
         <div class="row g-4">
 
             <!-- ACCOUNT INFORMATION -->
-
             <div class="col-lg-6">
 
                 <div class="card rounded-4 shadow-sm border-0">
@@ -150,128 +168,61 @@
                     <div class="card-body p-5">
 
                         <div class="d-flex align-items-center gap-3 mb-5">
-
-                            <div class="rounded-circle bg-lightpink d-flex align-items-center justify-content-center"
-                                style="width:56px; height:56px;">
-
-                                <img src="images/logo-profile-pink.png"
-                                    alt="Profile icon"
-                                    style="height:28px; width:auto;">
-
-                            </div>
-
                             <div>
-
                                 <h3 class="h4 fw-bold mb-0">
                                     Account Information
                                 </h3>
-
                             </div>
-
                         </div>
 
                         <div class="row">
 
                             <!-- LABELS -->
-
                             <div class="col-5">
-
                                 <ul class="list-unstyled mb-0">
 
                                     <li class="d-flex align-items-center mb-4">
-
-                                        <img src="images/logo-edit-pink.png"
-                                            alt="Full name"
-                                            style="height:18px; width:auto;"
-                                            class="me-3">
-
                                         <p class="text-secondary mb-0 fs-5">
                                             Full Name
                                         </p>
-
                                     </li>
 
                                     <li class="d-flex align-items-center mb-4">
-
-                                        <img src="images/logo-edit-pink.png"
-                                            alt="Username"
-                                            style="height:18px; width:auto;"
-                                            class="me-3">
-
                                         <p class="text-secondary mb-0 fs-5">
                                             Username
                                         </p>
-
                                     </li>
 
                                     <li class="d-flex align-items-center mb-4">
-
-                                        <img src="images/logo-edit-pink.png"
-                                            alt="Email"
-                                            style="height:18px; width:auto;"
-                                            class="me-3">
-
                                         <p class="text-secondary mb-0 fs-5">
                                             Email
                                         </p>
-
                                     </li>
-
-                                    <li class="d-flex align-items-center">
-
-                                        <img src="images/logo-edit-pink.png"
-                                            alt="Password"
-                                            style="height:18px; width:auto;"
-                                            class="me-3">
-
-                                        <p class="text-secondary mb-0 fs-5">
-                                            Password
-                                        </p>
-
-                                    </li>
-
                                 </ul>
 
                             </div>
 
                             <!-- VALUES -->
-
                             <div class="col-7">
 
                                 <ul class="list-unstyled mb-0">
-
                                     <li class="mb-4">
-
                                         <p class="mb-0 fw-semibold fs-5">
                                             <?php echo $userInfo[0]; ?>
                                         </p>
-
                                     </li>
 
                                     <li class="mb-4">
-
                                         <p class="mb-0 fw-semibold fs-5">
                                             <?php echo $userInfo[1]; ?>
                                         </p>
-
                                     </li>
 
                                     <li class="mb-4">
-
                                         <p class="mb-0 fw-semibold fs-5">
                                             <?php echo $userInfo[2]; ?>
                                         </p>
-
                                     </li>
-
-                                    <li>
-
-                                        <p class="mb-0 fw-semibold fs-5">
-                                            <?php echo $userInfo[3]; ?>
-                                        </p>
-
-                                    </li>
-
                                 </ul>
 
                             </div>
@@ -284,91 +235,84 @@
 
             </div>
 
-            <!-- UPCOMING STAY -->
+            <?php if($latestBooking): ?>
 
-            <div class="col-lg-6">
+                <!-- UPCOMING STAY -->
+                <div class="col-lg-6">
 
-                <div class="card rounded-4 shadow-sm border-0 bg-lightbrown text-white">
+                    <div class="card rounded-4 shadow-sm border-0 bg-lightbrown text-white">
 
-                    <div class="card-body p-5">
+                        <div class="card-body p-5">
 
-                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
 
-                            <div>
+                                <div>
+                                    <h3 class="h4 fw-bold mb-0">
+                                        Upcoming Stay
+                                    </h3>
+                                </div>
 
-                                <h3 class="h4 fw-bold mb-0">
-                                    Upcoming Stay
-                                </h3>
+                                <?php if($latestBooking): ?>
+                                    <span class="badge rounded-pill px-4 py-2 fs-6 <?php echo $statusClass; ?>">
+                                        <?php echo $latestBooking['reservation_status']; ?>
+                                    </span>
+                                <?php endif; ?>
 
                             </div>
 
-                            <span class="badge rounded-pill bg-success text-white px-4 py-2 fs-6">
+                            <!-- IMAGE -->
 
-                                <?php echo $bookingInfo[2]; ?>
+                            <div class="rounded-4 overflow-hidden mb-4"
+                                style="min-height:220px;
+                                background:url('<?php echo $roomImage; ?>')
+                                center/cover no-repeat;">
+                            </div>
 
-                            </span>
+                            <!-- BOOKING INFO -->
 
-                        </div>
+                            <h4 class="h3 text-pink fw-bold mb-2">
+                                <?php echo $latestBooking['room_type']; ?> Room
+                            </h4>
 
-                        <!-- IMAGE -->
+                            <p class=" fs-5 mb-4">
+                                Reservation ID #<?php echo $latestBooking['reservation_id']; ?>
+                            </p>
 
-                        <div class="rounded-4 overflow-hidden mb-4"
-                            style="min-height:220px;
-                            background:url('<?php echo $bookingInfo[5]; ?>')
-                            center/cover no-repeat;">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <img src="images/logo-calendar-pink.png"
+                                    alt="Dates"
+                                    style="height:22px; width:auto;">
 
-                        </div>
+                                <span class="fs-5">
+                                    <?php
+                                        echo date("F j, Y", strtotime($latestBooking['check_in_date']));
+                                        echo " - ";
+                                        echo date("F j, Y", strtotime($latestBooking['check_out_date']));
+                                    ?>
+                                </span>
+                            </div>
 
-                        <!-- BOOKING INFO -->
-
-                        <h4 class="h3 text-pink fw-bold mb-2">
-
-                            <?php echo $bookingInfo[0]; ?>
-
-                        </h4>
-
-                        <p class=" fs-5 mb-4">
-
-                            Booking <?php echo $bookingInfo[1]; ?>
-
-                        </p>
-
-                        <div class="d-flex align-items-center gap-3 mb-3">
-
-                            <img src="images/logo-calendar-pink.png"
-                                alt="Dates"
-                                style="height:22px; width:auto;">
-
-                            <span class="fs-5">
-                                <?php echo $bookingInfo[3]; ?>
-                            </span>
+                            <a href="profile_viewbooking.php?id=<?php echo $latestBooking['reservation_id']; ?>"
+                                class="btn booking-btn rounded-pill px-5 py-3 fw-semibold fs-5 shadow">
+                                View Booking
+                            </a>
 
                         </div>
-
-                        <div class="d-flex align-items-center gap-3 mb-5">
-
-                            <img src="images/logo-profile-pink.png"
-                                alt="Guests"
-                                style="height:22px; width:auto;">
-
-                            <span class="fs-5">
-                                <?php echo $bookingInfo[4]; ?>
-                            </span>
-
-                        </div>
-
-                        <a href="profile_viewbooking.php"
-                            class="btn rounded-pill px-5 py-3 bg-lightpink text-darkbrown fw-semibold fs-5">
-
-                            View Booking
-
-                        </a>
 
                     </div>
 
                 </div>
 
-            </div>
+            <?php else: ?>
+                <div class="card-body col-lg-6 p-5 bg-lightbrown text-white rounded-4">
+                    <h3 class="h4 fw-bold mb-3">Upcoming Stay</h3>
+                    <h5 class="mb-5">You currently have no reservations.</h5>
+                    <a href="book_1.php"
+                        class="btn booking-btn rounded-pill px-4 py-3 text-white fw-semibold">
+                        Book a Room
+                    </a>
+                </div>
+            <?php endif; ?>
 
         </div>
 
