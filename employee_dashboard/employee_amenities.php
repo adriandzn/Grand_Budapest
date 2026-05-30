@@ -163,15 +163,15 @@ $amenities = $conn->query($amenity_sql);
                                         <input type="hidden" name="amenity_id" value="<?php echo $amn['amenity_id']; ?>">
                                         
                                         <div class="mb-3">
-                                            <label class="form-label fw-semibold text-dark">Amenity Facility Name</label>
+                                            <label class="form-label fw-semibold text-dark">Amenity Name</label>
                                             <input type="text" name="amenity_name" value="<?php echo $amn['amenity_name']; ?>" class="form-control rounded-3" required maxlength="45">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label fw-semibold text-dark">Description Summary</label>
+                                            <label class="form-label fw-semibold text-dark">Description</label>
                                             <textarea name="description" class="form-control rounded-3" rows="3" required maxlength="100"><?php echo $amn['description']; ?></textarea>
                                         </div>
                                         <div class="mb-1">
-                                            <label class="form-label fw-semibold text-dark">Price Per Use Charge (₱)</label>
+                                            <label class="form-label fw-semibold text-dark">Price Per Use (₱)</label>
                                             <input type="number" step="0.01" name="price_per_use" value="<?php echo $amn['price_per_use']; ?>" class="form-control rounded-3" required min="0">
                                         </div>
                                     </div>
@@ -207,7 +207,7 @@ $amenities = $conn->query($amenity_sql);
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-semibold text-dark">Description</label>
-                        <textarea name="description" class="form-control rounded-3" rows="3" placeholder="Briefly write what is included..." required maxlength="100"></textarea>
+                        <textarea name="description" class="form-control rounded-3" rows="3" placeholder="Write short description" required maxlength="100"></textarea>
                     </div>
                     <div class="mb-1">
                         <label class="form-label fw-semibold text-dark">Price Per Use (₱)</label>
@@ -216,7 +216,7 @@ $amenities = $conn->query($amenity_sql);
                 </div>
                 <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
                     <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="btn_save_amenity" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Save Amenity</button>
+                    <button type="submit" name="btn_save_amenity" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Add Amenity</button>
                 </div>
             </form>
         </div>
