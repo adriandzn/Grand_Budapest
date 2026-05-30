@@ -12,12 +12,9 @@ require 'vendor/autoload.php';
 
 function send_verification($fullname, $email, $otp){
 
-
     $mail = new PHPMailer(true);
 
-
     try {
-
 
         // Server settings
         $mail->isSMTP();
@@ -28,11 +25,9 @@ function send_verification($fullname, $email, $otp){
         $mail->SMTPSecure = 'tls';
         $mail->Port       = 587;
 
-
         // Recipients
         $mail->setFrom('francisco.armas.cics@ust.edu.ph', 'Grand Budapest');
         $mail->addAddress($email);
-
 
         // Content
         $mail->isHTML(true);
@@ -48,7 +43,6 @@ function send_verification($fullname, $email, $otp){
 
         $mail->send();
 
-
         echo "
         <script>
             Swal.fire({
@@ -60,9 +54,7 @@ function send_verification($fullname, $email, $otp){
         </script>
         ";
 
-
     } catch (Exception $e) {
-
 
         echo "
         <script>
@@ -77,4 +69,3 @@ function send_verification($fullname, $email, $otp){
     }
 }
 ?>
-
