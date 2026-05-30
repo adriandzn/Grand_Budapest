@@ -39,23 +39,11 @@
 
             // Identify User ROLE and direct to corresponding page
             if ($GBrole == "Admin") {
-                ?>
-                    <script>
-                        window.location.href = "admin_dashboard.php";
-                    </script>
-                <?php
+                header("location:admin_dashboard.php");
             } else if ($GBrole == "Employee") {
-                ?>
-                    <script>
-                        window.location.href = "employee_dashboard.php";
-                    </script>
-                <?php
+                header("location:employee_dashboard.php");
             } else if ($GBrole == "Customer") {
-                ?>
-                    <script>
-                        window.location.href = "index.php";
-                    </script>
-                <?php
+                header("location:index.php");
             }
 
 
