@@ -97,7 +97,7 @@
 
                     <!-- FORM -->
 
-                    <form>
+                    <form action="" method="post">
 
                         <div class="mb-4">
 
@@ -106,6 +106,7 @@
                             </label>
 
                             <input type="text"
+                                name="fullName"
                                 class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
                                 placeholder="Type here">
 
@@ -118,22 +119,24 @@
                             </label>
 
                             <input type="email"
+                                name="email"
                                 class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
                                 placeholder="Type here">
 
                         </div>
 
-                        <div class="mb-4">
+                        <!-- <div class="mb-4">
 
                             <label class="fw-semibold fs-5 mb-3">
                                 Contact Number <span class="text-danger">*</span>
                             </label>
 
-                            <input type="text"
+                            <input type="tel"
+                                name="contact"
                                 class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
                                 placeholder="Type here">
 
-                        </div>
+                        </div> -->
 
                         <div class="mb-4">
 
@@ -142,6 +145,7 @@
                             </label>
 
                             <textarea class="form-control rounded-4 border-darkpink p-4 fs-5"
+                                name="message"
                                 rows="6"
                                 placeholder="How can we help you?"></textarea>
 
@@ -152,7 +156,8 @@
                         <div class="text-center mt-5">
 
                             <button type="submit"
-                                class="btn bg-darkpink text-dark fw-bold rounded-pill px-5 py-3 shadow-sm fs-5">
+                                name="submit"
+                                class="btn bg-darkpink pink-button text-dark fw-bold rounded-pill px-5 py-3 shadow-sm fs-5">
 
                                 SEND
 
@@ -368,7 +373,23 @@
     <?php include 'footer.php'; ?>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
 </html>
+
+
+<?php
+    require_once "contactemail.php";
+
+    if (isset($_POST['submit'])) {
+
+        $GBfullname = $_POST['fullName'];
+        $GBemail = $_POST['email'];
+        $GBmessage = $_POST['message'];
+
+        send_verification($GBfullname, $GBemail, $GBmessage);
+    }
+
+?>
