@@ -87,8 +87,6 @@ if ($page == 'dashboard') {
                         <a href="?page=rooms" class="btn <?php echo $page == 'rooms' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Rooms</a>
                         <a href="?page=reservations" class="btn <?php echo $page == 'reservations' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Reservations</a>
                         <a href="?page=amenities" class="btn <?php echo $page == 'amenities' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Amenities</a>
-                        <a href="?page=users" class="btn <?php echo $page == 'users' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Users</a>
-                        <a href="?page=logs" class="btn <?php echo $page == 'logs' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Logs</a>
                     </nav>
                 </div>
 
