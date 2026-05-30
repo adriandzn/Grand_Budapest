@@ -150,8 +150,10 @@ if ($page == 'dashboard') {
                                                     <td>
                                                         <?php if($row['reservation_status'] === 'Confirmed'): ?>
                                                             <span class="badge bg-success px-3 py-2 rounded-pill">Confirmed</span>
+                                                        <?php elseif($row['reservation_status'] === 'Pending'): ?>
+                                                            <span class="badge bg-warning font-brown px-3 py-2 rounded-pill">Pending</span>
                                                         <?php else: ?>
-                                                            <span class="badge bg-darkbrown text-white px-3 py-2 rounded-pill"><?php echo $row['reservation_status']; ?></span>
+                                                            <span class="badge bg-danger text-white px-3 py-2 rounded-pill"><?php echo $row['reservation_status']; ?></span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td class="text-end fw-semibold">₱<?php echo number_format($row['total_price'], 2); ?></td>
@@ -173,67 +175,6 @@ if ($page == 'dashboard') {
                                     <a href="?page=reservations" class="btn btn-outline-light rounded-4 py-3 text-start">Manage Reservations</a>
                                     <a href="?page=rooms" class="btn btn-outline-light rounded-4 py-3 text-start">Update Room Status</a>
                                     <a href="?page=users" class="btn btn-outline-light rounded-4 py-3 text-start">Manage System Users</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-4">
-                        <div class="col-12 col-xl-6">
-                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="font-title fw-bold text-darkbrown mb-0">System Activity Feed</h4>
-                                    <a href="?page=logs" class="btn btn-sm btn-outline-dark rounded-pill px-3">Audit Logs</a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table align-middle table-sm">
-                                        <thead class="table-light">
-                                            <tr><th>Operator Name</th><th>Action Log Entry Payload</th><th>Timestamp</th></tr>
-                                        </thead>
-                                        <tbody style="font-size: 0.85rem;">
-                                            <?php if($recentLogs && $recentLogs->num_rows > 0): ?>
-                                                <?php while($log = $recentLogs->fetch_assoc()) { ?>
-                                                <tr>
-                                                    <td class="fw-bold text-dark"><?php echo $log['full_name']; ?></td>
-                                                    <td><code><?php echo $log['action']; ?></code></td>
-                                                    <td class="text-muted font-mono" style="font-size: 0.75rem;"><?php echo date('m/d h:i A', strtotime($log['date_time'])); ?></td>
-                                                </tr>
-                                                <?php } ?>
-                                            <?php else: ?>
-                                                <tr><td colspan="3" class="text-center text-muted py-3">No recent system events reported.</td></tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-xl-6">
-                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="font-title fw-bold text-darkbrown mb-0">On-Duty Operators</h4>
-                                    <a href="?page=users" class="btn btn-sm btn-outline-dark rounded-pill px-3">All Profiles</a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table align-middle table-sm">
-                                        <thead class="table-light">
-                                            <tr><th>ID Ref</th><th>Full Name</th><th>Username Handle</th><th>Clearance Tier</th></tr>
-                                        </thead>
-                                        <tbody style="font-size: 0.85rem;">
-                                            <?php if($activeStaff && $activeStaff->num_rows > 0): ?>
-                                                <?php while($staff = $activeStaff->fetch_assoc()) { ?>
-                                                <tr>
-                                                    <td class="text-muted font-mono">#<?php echo $staff['user_id']; ?></td>
-                                                    <td class="fw-bold text-dark"><?php echo $staff['full_name']; ?></td>
-                                                    <td class="text-secondary">@<?php echo $staff['username']; ?></td>
-                                                    <td><span class="badge bg-darkbrown rounded-pill text-white px-2.5 py-1 text-uppercase" style="font-size:0.7rem;"><?php echo $staff['role']; ?></span></td>
-                                                </tr>
-                                                <?php } ?>
-                                            <?php else: ?>
-                                                <tr><td colspan="4" class="text-center text-muted py-3">No active staff structures found.</td></tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>

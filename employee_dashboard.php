@@ -141,10 +141,12 @@ if ($page == 'dashboard') {
                                                     <td><small><?php echo $row['email']; ?></small></td>
                                                     <td><small class="font-mono"><?php echo $row['check_in_date']; ?></small></td>
                                                     <td>
-                                                        <?php if($row['reservation_status'] === 'Confirmed'): ?>
+                                                       <?php if($row['reservation_status'] === 'Confirmed'): ?>
                                                             <span class="badge bg-success px-3 py-2 rounded-pill">Confirmed</span>
+                                                        <?php elseif($row['reservation_status'] === 'Pending'): ?>
+                                                            <span class="badge bg-warning font-brown px-3 py-2 rounded-pill">Pending</span>
                                                         <?php else: ?>
-                                                            <span class="badge bg-darkbrown text-white px-3 py-2 rounded-pill"><?php echo $row['reservation_status']; ?></span>
+                                                            <span class="badge bg-danger text-white px-3 py-2 rounded-pill"><?php echo $row['reservation_status']; ?></span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td class="text-end fw-semibold">₱<?php echo number_format($row['total_price'], 2); ?></td>
@@ -166,79 +168,6 @@ if ($page == 'dashboard') {
                                     <a href="?page=reservations" class="btn btn-outline-light rounded-4 py-3 text-start">Manage Reservations</a>
                                     <a href="?page=rooms" class="btn btn-outline-light rounded-4 py-3 text-start">Update Room Status</a>
                                     <a href="?page=amenities" class="btn btn-outline-light rounded-4 py-3 text-start">Review Amenities Usage</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-4">
-                        <div class="col-12 col-xl-7">
-                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="font-title fw-bold text-darkbrown mb-0">Action Required: Pending Approvals</h4>
-                                    <span class="badge bg-darkbrown text-white rounded-pill px-2.5 py-1 text-uppercase" style="font-size:0.7rem;">Attention Desk</span>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table align-middle table-sm">
-                                        <thead class="table-light">
-                                            <tr><th>Guest Name</th><th>Check-In</th><th>Value Metric</th><th class="text-end">Action Link</th></tr>
-                                        </thead>
-                                        <tbody style="font-size: 0.85rem;">
-                                            <?php if($pendingList && $pendingList->num_rows > 0): ?>
-                                                <?php while($pRow = $pendingList->fetch_assoc()) { ?>
-                                                <tr>
-                                                    <td class="fw-bold text-dark"><?php echo $pRow['full_name']; ?></td>
-                                                    <td class="font-mono text-muted"><?php echo $pRow['check_in_date']; ?></td>
-                                                    <td class="fw-semibold text-secondary">₱<?php echo number_format($pRow['total_price'], 2); ?></td>
-                                                    <td class="text-end">
-                                                        <a href="?page=reservations" class="btn btn-sm btn-darkbrown text-white py-0 px-2 rounded-pill" style="font-size: 0.75rem;">Process</a>
-                                                    </td>
-                                                </tr>
-                                                <?php } ?>
-                                            <?php else: ?>
-                                                <tr><td colspan="4" class="text-center text-muted py-3">All processing queues are currently clear.</td></tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-xl-5">
-                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h4 class="font-title fw-bold text-darkbrown mb-0">Shift Task Summary</h4>
-                                    <span class="badge bg-lightpink text-darkbrown rounded-pill px-2.5 py-1 text-uppercase" style="font-size:0.7rem;">Active Data</span>
-                                </div>
-                                
-                                <div class="d-flex flex-column gap-3" style="font-size: 0.95rem;">
-                                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
-                                        <span class="text-muted">Processed Bookings</span>
-                                        <span class="fw-bold text-success"><?php echo $confirmedReservations; ?> Completed</span>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
-                                        <span class="text-muted">Remaining Queue Action</span>
-                                        <span class="fw-bold text-danger"><?php echo $pendingReservations; ?> Awaiting Approval</span>
-                                    </div>
-
-                                    <div class="mt-2">
-                                        <?php 
-                                            $totalActiveQueue = $confirmedReservations + $pendingReservations;
-                                            $clearanceRate = $totalActiveQueue > 0 ? round(($confirmedReservations / $totalActiveQueue) * 100) : 100;
-                                        ?>
-                                        <div class="d-flex justify-content-between text-muted small mb-1 fw-semibold">
-                                            <span>Queue Clearance Rate</span>
-                                            <span><?php echo $clearanceRate; ?>% Done</span>
-                                        </div>
-                                        <div class="progress rounded-pill" style="height: 8px;">
-                                            <div class="progress-bar bg-darkbrown rounded-pill" role="progressbar" style="width: <?php echo $clearanceRate; ?>%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 p-3 rounded-4 bg-lightpink text-darkbrown small border border-pink text-center">
-                                    <strong>Operational Insight:</strong> Keep the remaining pending items empty before shift handovers occur.
                                 </div>
                             </div>
                         </div>
