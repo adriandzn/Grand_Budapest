@@ -16,7 +16,7 @@
     $latestBooking = $result->fetch_assoc();
 
 
-
+    // Image and Status
     if ($latestBooking) {
         if ($latestBooking['room_type'] == "Standard") {
             $roomImage = "images/hotel_pictures/standard1.png";
