@@ -98,7 +98,7 @@ $logs = $conn->query($logs_sql);
                         <th>User</th>
                         <th>Action Performed</th>
                         <th>Date & Time</th>
-                        <th class="text-center">Actions</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>

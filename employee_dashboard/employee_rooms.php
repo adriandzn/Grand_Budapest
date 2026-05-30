@@ -158,7 +158,7 @@ $room_modals_buffer = [];
                         <th>Capacity</th>
                         <th>Price/Night</th>
                         <th>Status</th>
-                        <th class="text-end">Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
