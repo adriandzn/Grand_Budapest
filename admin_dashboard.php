@@ -33,7 +33,7 @@ if ($page == 'dashboard') {
     $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
     $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
 
-    // Table dataset 1: Fixed safe query for recent reservations (removed broken inner join causing errors)
+    // Table dataset 1: Fixed safe query for recent reservations
     $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
 
     // Table dataset 2: System audit trail logs
@@ -53,12 +53,24 @@ if ($page == 'dashboard') {
     <title>Admin Dashboard - Grand Budapest Hotel</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+    <style>
+        /* Premium Header Styling matching hotel branding */
+        .welcome-card {
+            background: linear-gradient(135deg, #2c2421 0%, #423530 100%);
+            border-left: 5px solid #fbb4b9;
+        }
+        .text-gold-light {
+            color: #fbb4b9;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+    </style>
 </head>
 <body class="bg-lightpink font-body">
 
     <div class="d-flex min-vh-100">
 
-        <aside class="bg-darkbrown text-white flex-shrink-0" style="width: 260px; min-height: 100vh;">
+        <aside class="bg-darkbrown text-white flex-shrink-0 position-sticky top-0" style="width: 260px; height: 100vh; overflow: hidden;">
             <div class="d-flex flex-column justify-content-between h-100 p-4">
                 <div>
                     <div class="mb-5 text-center">
@@ -70,8 +82,8 @@ if ($page == 'dashboard') {
                     <div class="mb-4 px-3 py-3 rounded-4 bg-brown d-flex align-items-center gap-3">
                         <img src="images/logo-profile-pink.png" alt="Administrator" style="width: 28px;">
                         <div>
-                            <div class="font-title fw-bold"><?php echo htmlspecialchars($_SESSION['GBfullname']); ?></div>
-                            <div class="small text-light"><?php echo htmlspecialchars($_SESSION['GBrole']); ?></div>
+                            <div class="font-title fw-bold"><?php echo $_SESSION['GBfullname']; ?></div>
+                            <div class="small text-light"><?php echo $_SESSION['GBrole']; ?></div>
                         </div>
                     </div>
 
@@ -85,7 +97,7 @@ if ($page == 'dashboard') {
                     </nav>
                 </div>
 
-                <form method="POST" action="">
+                <form method="POST" action="" class="w-100">
                     <button type="submit" name="logout" class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2 text-darkbrown w-100">
                         <img src="images/logo-logout-brown.png" alt="Log out" style="height:20px; width:auto;">
                         Log Out
@@ -98,10 +110,14 @@ if ($page == 'dashboard') {
             <div class="container-fluid py-4 px-4 px-md-5">
 
                 <?php if ($page == 'dashboard'): ?>
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+                    <div class="welcome-card text-white rounded-4 shadow-sm p-4 mb-4 d-flex align-items-center justify-content-between">
                         <div>
-                            <div class="font-title text-darkbrown fs-2 fw-bold">Dashboard</div>
-                            <p class="mb-0 text-darkbrown">Welcome back, Admin! Here's what's happening today.</p>
+                            <span class="text-gold-light text-uppercase fw-bold d-block mb-1">Management Portal</span>
+                            <h1 class="font-title fs-2 fw-bold mb-1" style="color: #fff;">Dashboard Overview</h1>
+                            <p class="mb-0 text-light-50" style="font-size: 0.95rem;">Welcome back, <strong><?php echo $_SESSION['GBfullname']; ?></strong>! Here is an update on the hotel's status for today.</p>
+                        </div>
+                        <div class="d-none d-md-block pe-2">
+                            <img src="images/logo-profile-pink.png" alt="Hotel Icon" style="width: 45px; opacity: 0.75;">
                         </div>
                     </div>
 
@@ -117,7 +133,7 @@ if ($page == 'dashboard') {
                             <div class="bg-white rounded-4 shadow-sm p-4 h-100">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <h3 class="font-title fw-bold mb-1 text-darkbrown">Recent Reservations</h3>
-                                    <a href="?page=reservations" class="btn btn-sm btn-outline-secondary rounded-pill px-3">View all</a>
+                                    <a href="?page=reservations" class="btn btn-sm btn-outline-dark rounded-pill px-3">View all</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-middle">
@@ -128,14 +144,14 @@ if ($page == 'dashboard') {
                                             <?php if($recentReservations && $recentReservations->num_rows > 0): ?>
                                                 <?php while($row = $recentReservations->fetch_assoc()) { ?>
                                                 <tr>
-                                                    <td class="fw-bold text-dark"><?php echo htmlspecialchars($row['full_name']); ?></td>
-                                                    <td><small><?php echo htmlspecialchars($row['email']); ?></small></td>
-                                                    <td><small class="font-mono"><?php echo htmlspecialchars($row['check_in_date']); ?></small></td>
+                                                    <td class="fw-bold text-dark"><?php echo $row['full_name']; ?></td>
+                                                    <td><small><?php echo $row['email']; ?></small></td>
+                                                    <td><small class="font-mono"><?php echo $row['check_in_date']; ?></small></td>
                                                     <td>
                                                         <?php if($row['reservation_status'] === 'Confirmed'): ?>
                                                             <span class="badge bg-success px-3 py-2 rounded-pill">Confirmed</span>
                                                         <?php else: ?>
-                                                            <span class="badge bg-secondary px-3 py-2 rounded-pill"><?php echo htmlspecialchars($row['reservation_status']); ?></span>
+                                                            <span class="badge bg-darkbrown text-white px-3 py-2 rounded-pill"><?php echo $row['reservation_status']; ?></span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td class="text-end fw-semibold">₱<?php echo number_format($row['total_price'], 2); ?></td>
@@ -167,7 +183,7 @@ if ($page == 'dashboard') {
                             <div class="bg-white rounded-4 shadow-sm p-4 h-100">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h4 class="font-title fw-bold text-darkbrown mb-0">System Activity Feed</h4>
-                                    <a href="?page=logs" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Audit Logs</a>
+                                    <a href="?page=logs" class="btn btn-sm btn-outline-dark rounded-pill px-3">Audit Logs</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-middle table-sm">
@@ -178,8 +194,8 @@ if ($page == 'dashboard') {
                                             <?php if($recentLogs && $recentLogs->num_rows > 0): ?>
                                                 <?php while($log = $recentLogs->fetch_assoc()) { ?>
                                                 <tr>
-                                                    <td class="fw-bold text-dark"><?php echo htmlspecialchars($log['full_name']); ?></td>
-                                                    <td><code><?php echo htmlspecialchars($log['action']); ?></code></td>
+                                                    <td class="fw-bold text-dark"><?php echo $log['full_name']; ?></td>
+                                                    <td><code><?php echo $log['action']; ?></code></td>
                                                     <td class="text-muted font-mono" style="font-size: 0.75rem;"><?php echo date('m/d h:i A', strtotime($log['date_time'])); ?></td>
                                                 </tr>
                                                 <?php } ?>
@@ -196,7 +212,7 @@ if ($page == 'dashboard') {
                             <div class="bg-white rounded-4 shadow-sm p-4 h-100">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h4 class="font-title fw-bold text-darkbrown mb-0">On-Duty Operators</h4>
-                                    <a href="?page=users" class="btn btn-sm btn-outline-secondary rounded-pill px-3">All Profiles</a>
+                                    <a href="?page=users" class="btn btn-sm btn-outline-dark rounded-pill px-3">All Profiles</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-middle table-sm">
@@ -208,9 +224,9 @@ if ($page == 'dashboard') {
                                                 <?php while($staff = $activeStaff->fetch_assoc()) { ?>
                                                 <tr>
                                                     <td class="text-muted font-mono">#<?php echo $staff['user_id']; ?></td>
-                                                    <td class="fw-bold text-dark"><?php echo htmlspecialchars($staff['full_name']); ?></td>
-                                                    <td class="text-secondary">@<?php echo htmlspecialchars($staff['username']); ?></td>
-                                                    <td><span class="badge bg-dark rounded-pill px-2.5 py-1 text-uppercase" style="font-size:0.7rem;"><?php echo htmlspecialchars($staff['role']); ?></span></td>
+                                                    <td class="fw-bold text-dark"><?php echo $staff['full_name']; ?></td>
+                                                    <td class="text-secondary">@<?php echo $staff['username']; ?></td>
+                                                    <td><span class="badge bg-darkbrown rounded-pill text-white px-2.5 py-1 text-uppercase" style="font-size:0.7rem;"><?php echo $staff['role']; ?></span></td>
                                                 </tr>
                                                 <?php } ?>
                                             <?php else: ?>
@@ -229,7 +245,7 @@ if ($page == 'dashboard') {
                     if (in_array($page, $allowed_pages)) {
                         include("admin_dashboard/admin_" . $page . ".php");
                     } else {
-                        echo "<div class='alert alert-danger rounded-4 shadow-sm'>Page architecture blueprint not found.</div>";
+                        echo "<div class='alert alert-danger rounded-4 shadow-sm' style='background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;'>Page architecture blueprint not found.</div>";
                     }
                 endif; ?>
 

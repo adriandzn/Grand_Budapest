@@ -1,27 +1,26 @@
 <?php
 // ==========================================
-// 0. BACKEND ROOM DELETION LOGIC (NEW)
+// 0. BACKEND ROOM DELETION LOGIC
 // ==========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
-    $room_id = intval($_POST['room_id']);
+    $room_id = $_POST['room_id'];
     
-    $stmt = $conn->prepare("DELETE FROM tbl_roomdetails WHERE room_id = ?");
-    $stmt->bind_param("i", $room_id);
+    $delete_sql = "DELETE FROM tbl_roomdetails WHERE room_id = $room_id";
     
-    if ($stmt->execute()) {
+    if ($conn->query($delete_sql)) {
         if (isset($_SESSION['GBid'])) {
             $user_id = $_SESSION['GBid'];
             $log_action = "Permanently Deleted Room ID #$room_id";
             $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
         }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
                 <strong>Success!</strong> Room record successfully deleted.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
                 <strong>Database Error!</strong> Cannot delete room. It is likely linked to active guest reservations.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     }
 }
@@ -30,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
 // 1. BACKEND ROOM ADDITION LOGIC
 // ==========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
-    $room_number = intval($_POST['room_number']);
-    $room_type = $conn->real_escape_string($_POST['room_type']);
+    $room_number = $_POST['room_number'];
+    $room_type = $_POST['room_type'];
     $availability_status = "Available";
 
     if ($room_type === "Standard") {
@@ -47,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
 
     $check_room = $conn->query("SELECT * FROM tbl_roomdetails WHERE room_number = $room_number");
     if ($check_room->num_rows > 0) {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
                 <strong>Error!</strong> Room Number '.$room_number.' already exists.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     } else {
         $insert_sql = "INSERT INTO tbl_roomdetails (room_number, room_type, description, capacity, price_per_night, availability_status) 
@@ -60,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
                 $log_action = "Added a new $room_type Room (#$room_number)";
                 $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
             }
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
                     <strong>Success!</strong> Room #'.$room_number.' successfully deployed.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>';
@@ -72,10 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
 // 2. BACKEND ROOM UPDATE (EDIT) LOGIC
 // ==========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
-    $room_id = intval($_POST['room_id']);
-    $room_number = intval($_POST['room_number']);
-    $room_type = $conn->real_escape_string($_POST['room_type']);
-    $availability_status = $conn->real_escape_string($_POST['availability_status']);
+    $room_id = $_POST['room_id'];
+    $room_number = $_POST['room_number'];
+    $room_type = $_POST['room_type'];
+    $availability_status = $_POST['availability_status'];
 
     if ($room_type === "Standard") {
         $description = "Enjoy comfort and simplicity in our thoughtfully designed Standard Room.";
@@ -90,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
 
     $check_room = $conn->query("SELECT * FROM tbl_roomdetails WHERE room_number = $room_number AND room_id != $room_id");
     if ($check_room->num_rows > 0) {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
                 <strong>Error!</strong> Cannot update. Room Number '.$room_number.' is already assigned to another room.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     } else {
         $update_sql = "UPDATE tbl_roomdetails SET 
@@ -110,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
                 $log_action = "Updated Room ID #$room_id (Now Room #$room_number, Tier: $room_type, Status: $availability_status)";
                 $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
             }
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
                     <strong>Success!</strong> Room #'.$room_number.' changes saved successfully.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>';
@@ -124,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
 $search_query = "";
 $rooms_sql = "SELECT * FROM tbl_roomdetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
-    $search_query = $conn->real_escape_string($_POST['searchinput']);
+    $search_query = $_POST['searchinput'];
     $rooms_sql .= " WHERE room_id LIKE '%$search_query%' 
                     OR room_number LIKE '%$search_query%' 
                     OR room_type LIKE '%$search_query%' 
@@ -140,7 +139,7 @@ $rooms = $conn->query($rooms_sql);
     
     <div class="d-flex gap-2 w-100 mobile-w-auto justify-content-md-end" style="max-width: 600px;">
         <form method="POST" action="" class="d-flex gap-2 flex-grow-1">
-            <input type="search" name="searchinput" value="<?php echo isset($_POST['searchinput']) ? htmlspecialchars($_POST['searchinput']) : ''; ?>" placeholder="Search rooms..." class="form-control rounded-pill border-secondary shadow-sm">
+            <input type="search" name="searchinput" value="<?php echo isset($_POST['searchinput']) ? $_POST['searchinput'] : ''; ?>" placeholder="Search rooms..." class="form-control rounded-pill border-secondary shadow-sm">
             <button type="submit" name="btnsearch" class="btn pink-button text-dark px-4 rounded-pill fw-semibold shadow-sm">Search</button>
         </form>
         <button type="button" class="btn btn-dark bg-darkbrown text-white px-4 rounded-pill fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#addRoomModal">
@@ -169,27 +168,29 @@ $rooms = $conn->query($rooms_sql);
                     <?php while($room = $rooms->fetch_assoc()) { ?>
                     <tr>
                         <td>#<?php echo $room['room_id']; ?></td>
-                        <td><?php echo htmlspecialchars($room['room_number']); ?></td>
-                        <td class="fw-bold"><?php echo htmlspecialchars($room['room_type']); ?></td>
-                        <td><small class="text-muted"><?php echo htmlspecialchars($room['description']); ?></small></td>
-                        <td><?php echo htmlspecialchars($room['capacity']); ?> Guests</td>
+                        <td><?php echo $room['room_number']; ?></td>
+                        <td class="fw-bold"><?php echo $room['room_type']; ?></td>
+                        <td><small class="text-muted"><?php echo $room['description']; ?></small></td>
+                        <td><?php echo $room['capacity']; ?> Guests</td>
                         <td>₱<?php echo number_format($room['price_per_night'], 2); ?></td>
                         <td>
                             <?php if($room['availability_status'] == 'Available'): ?>
-                                <span class="badge bg-success rounded-pill px-3 py-2">Available</span>
+                                <span class="badge rounded-pill px-3 py-2 bg-success"">Available</span>
+                            <?php elseif($room['availability_status'] == 'Occupied'): ?>
+                                <span class="badge font-brown rounded-pill px-3 py-2 bg-warning"><?php echo $room['availability_status']; ?></span>
                             <?php else: ?>
-                                <span class="badge bg-danger rounded-pill px-3 py-2"><?php echo htmlspecialchars($room['availability_status']); ?></span>
+                                <span class="badge text-white rounded-pill px-3 py-2 bg-danger"><?php echo $room['availability_status']; ?></span>
                             <?php endif; ?>
                         </td>
                         <td class="text-end">
                             <div class="d-inline-flex gap-2">
-                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editRoomModal_<?php echo $room['room_id']; ?>">
+                                <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editRoomModal_<?php echo $room['room_id']; ?>">
                                     Edit
                                 </button>
                                 
                                 <form method="POST" action="" onsubmit="return confirm('Are you sure you want to delete Room #<?php echo $room['room_number']; ?>?');" class="m-0">
                                     <input type="hidden" name="room_id" value="<?php echo $room['room_id']; ?>">
-                                    <button type="submit" name="btn_delete_room" class="btn btn-sm btn-danger rounded-pill px-3">
+                                    <button type="submit" name="btn_delete_room" class="btn btn-sm btn-dark bg-darkbrown rounded-pill px-3">
                                         Delete
                                     </button>
                                 </form>
@@ -200,7 +201,7 @@ $rooms = $conn->query($rooms_sql);
                     <div class="modal fade" id="editRoomModal_<?php echo $room['room_id']; ?>" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
-                                <div class="modal-header bg-primary text-white py-3">
+                                <div class="modal-header bg-darkbrown text-white py-3">
                                     <h5 class="modal-title font-title fw-bold">Edit Room Config Details</h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
@@ -209,7 +210,7 @@ $rooms = $conn->query($rooms_sql);
                                         <input type="hidden" name="room_id" value="<?php echo $room['room_id']; ?>">
                                         <div class="mb-3">
                                             <label class="form-label fw-semibold text-dark">Room Number</label>
-                                            <input type="number" name="room_number" value="<?php echo htmlspecialchars($room['room_number']); ?>" class="form-control rounded-3" required min="1">
+                                            <input type="number" name="room_number" value="<?php echo $room['room_number']; ?>" class="form-control rounded-3" required min="1">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label fw-semibold text-dark">Room Configuration Tier</label>
@@ -229,8 +230,8 @@ $rooms = $conn->query($rooms_sql);
                                         </div>
                                     </div>
                                     <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
-                                        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="btn_update_room" class="btn btn-primary fw-bold rounded-pill px-4 shadow-sm">Save Changes</button>
+                                        <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="btn_update_room" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Save Changes</button>
                                     </div>
                                 </form>
                             </div>
@@ -269,7 +270,7 @@ $rooms = $conn->query($rooms_sql);
                     </div>
                 </div>
                 <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
-                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" name="btn_save_room" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Save Room</button>
                 </div>
             </form>
