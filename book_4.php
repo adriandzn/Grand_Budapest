@@ -95,12 +95,18 @@
         
 
         // String Query and Transfer to MySQL
-        $reservesql = "INSERT INTO tbl_reservationdetails (user_id, check_in_date, check_out_date, total_price, reservation_status, full_name, gender, birth_date, address, email, contact, special_request) VALUES (". $_SESSION['GBid'] .", '". $_SESSION['GBcheckin'] ."', '". $_SESSION['GBcheckout'] ."', $GAtotalamount, 'Pending', '". $_SESSION['GBreservename'] ."', '". $_SESSION['GBgender']  ."', '". $_SESSION['GBbirthday'] ."', '". $_SESSION['GBaddress']  ."', '". $_SESSION['GBemail'] ."', ". $_SESSION['GBcontact']  .", '". $_SESSION['GBrequest'] ."')";
+        $reservesql = "INSERT INTO tbl_reservationdetails (user_id, room_id, check_in_date, check_out_date, total_price, reservation_status, full_name, gender, birth_date, address, email, contact, special_request) VALUES (". $_SESSION['GBid'] .", ". $_SESSION['GBroomid'] ." , '". $_SESSION['GBcheckin'] ."', '". $_SESSION['GBcheckout'] ."', $GAtotalamount, 'Pending', '". $_SESSION['GBreservename'] ."', '". $_SESSION['GBgender']  ."', '". $_SESSION['GBbirthday'] ."', '". $_SESSION['GBaddress']  ."', '". $_SESSION['GBemail'] ."', ". $_SESSION['GBcontact']  .", '". $_SESSION['GBrequest'] ."')";
 
         $result = $conn -> query($reservesql);
 
         // Check if saved
         if ($result == True) {
+
+            $updatesql = "UPDATE tbl_roomdetails
+                SET availability_status = 'Occupied'
+                WHERE room_id = ".$_SESSION['GBroomid'];
+            $conn->query($updatesql);
+
             ?>
                 <script>
                     Swal.fire({
