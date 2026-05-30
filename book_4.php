@@ -101,12 +101,6 @@
 
         // Check if saved
         if ($result == True) {
-
-            $updatesql = "UPDATE tbl_roomdetails
-                SET availability_status = 'Occupied'
-                WHERE room_id = ".$_SESSION['GBroomid'];
-            $conn->query($updatesql);
-
             ?>
                 <script>
                     Swal.fire({
