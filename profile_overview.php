@@ -41,6 +41,9 @@
             case "Cancelled":
                 $statusClass = "bg-danger text-white";
                 break;
+            case "Completed":
+                $statusClass = "bg-black text-white";
+                break;
         }
     }
 
