@@ -1,7 +1,6 @@
 <?php
-// ==========================================
-// 1. SECURE MANUAL LOG NOTE INJECTION LOGIC
-// ==========================================
+
+// Manual Log Note
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_log_note'])) {
     $note_message = "[MANUAL ADMIN NOTE] " . $_POST['note_content'];
     
@@ -23,9 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_log_note']))
     }
 }
 
-// ==========================================
-// 2. BACKEND LOG UPDATE (EDIT) LOGIC
-// ==========================================
+// Update Log Note
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_log'])) {
     $target_id = $_POST['log_id'];
     $updated_content = $_POST['note_content'];
@@ -45,9 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_log'])) {
     }
 }
 
-// ==========================================
-// 3. BACKEND LOG DELETION LOGIC
-// ==========================================
+// Delete Log Note
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_log'])) {
     $target_id = $_POST['log_id'];
 
@@ -66,9 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_log'])) {
     }
 }
 
-// ==========================================
-// 4. SEARCH & INNER JOIN TRAILING FETCH
-// ==========================================
+// Search and Display Logs
 $search_query = "";
 $logs_sql = "SELECT l.*, u.full_name, u.role FROM tbl_logs l INNER JOIN tbl_userdetails u ON l.user_id = u.user_id";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {

@@ -1,7 +1,5 @@
 <?php
-// ==========================================
-// 1. BACKEND USER INSERTION (ADD) LOGIC
-// ==========================================
+// Insert User
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_user'])) {
     $full_name = $_POST['full_name'];
     $email = $_POST['email'];
@@ -36,9 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_user'])) {
     }
 }
 
-// ==========================================
-// 2. BACKEND USER UPDATE (EDIT) LOGIC
-// ==========================================
+// Update User
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_user'])) {
     $target_id = $_POST['user_id'];
     $full_name = $_POST['full_name'];
@@ -71,9 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_user'])) {
     }
 }
 
-// ==========================================
-// 3. BACKEND USER DELETION LOGIC
-// ==========================================
+// Delete User
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_user'])) {
     $target_id = $_POST['user_id'];
 
@@ -107,9 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_user'])) {
     }
 }
 
-// ==========================================
-// 4. SEARCH PROCESSING
-// ==========================================
+// Search and Display Users
 $search_query = "";
 $user_sql = "SELECT * FROM tbl_userdetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
@@ -222,6 +214,7 @@ $users = $conn->query($user_sql);
                                                 <label class="form-label fw-semibold">Status</label>
                                                 <select name="status" class="form-select rounded-3" required>
                                                     <option value="Active" <?php echo ($user['status'] == 'Active')?'selected':''; ?>>Active</option>
+                                                    <option value="Pending" <?php echo ($user['status'] == 'Pending')?'selected':''; ?>>Pending</option>
                                                     <option value="Inactive" <?php echo ($user['status'] == 'Inactive')?'selected':''; ?>>Inactive / Blocked</option>
                                                 </select>
                                             </div>
@@ -282,6 +275,7 @@ $users = $conn->query($user_sql);
                             <label class="form-label fw-semibold text-dark">Status</label>
                             <select name="status" class="form-select rounded-3" required>
                                 <option value="Active" selected>Active</option>
+                                <option value="Pending">Pending</option>
                                 <option value="Inactive">Inactive / Blocked</option>
                             </select>
                         </div>
