@@ -152,7 +152,7 @@ $logs = $conn->query($logs_sql);
                                     </div>
                                     <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
                                         <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="btn_update_log" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Save Log Mutation</button>
+                                        <button type="submit" name="btn_update_log" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Save Log</button>
                                     </div>
                                 </form>
                             </div>
@@ -171,12 +171,11 @@ $logs = $conn->query($logs_sql);
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
             <div class="modal-header bg-darkbrown text-white py-3">
-                <h5 class="modal-title font-title fw-bold">Write System Event Management Note</h5>
+                <h5 class="modal-title font-title fw-bold">Add Manual Log Note</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <form method="POST" action="">
                 <div class="modal-body p-4">
-                    <p class="text-muted small">*This feature allows internal operators to record administrative logs (e.g., shifts, cash drawer corrections, or emergency exceptions) into the central audit trail database history.*</p>
                     <div class="mb-1">
                         <label class="form-label fw-semibold text-dark">Log Content Message</label>
                         <textarea name="note_content" class="form-control rounded-3 font-mono" rows="4" placeholder="Ex: Manual adjustment performed to correct a pricing discrepancy on booking checkout overrides..." required></textarea>

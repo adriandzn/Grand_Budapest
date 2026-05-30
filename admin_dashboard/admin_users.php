@@ -132,7 +132,7 @@ $users = $conn->query($user_sql);
             <button type="submit" name="btnsearch" class="btn pink-button text-dark px-4 rounded-pill fw-semibold shadow-sm">Search</button>
         </form>
         <button type="button" class="btn btn-dark bg-darkbrown text-white px-4 rounded-pill fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
-            + New Operator Account
+            + New Account
         </button>
     </div>
 </div>
@@ -185,7 +185,7 @@ $users = $conn->query($user_sql);
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
                                 <div class="modal-header bg-darkbrown text-white py-3">
-                                    <h5 class="modal-title font-title fw-bold">Modify User Registry Profile</h5>
+                                    <h5 class="modal-title font-title fw-bold">Modify User Profile</h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
                                 <form method="POST" action="">
@@ -193,7 +193,7 @@ $users = $conn->query($user_sql);
                                         <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                                         
                                         <div class="mb-3">
-                                            <label class="form-label fw-semibold">Full Legal Name</label>
+                                            <label class="form-label fw-semibold">Full Name</label>
                                             <input type="text" name="full_name" value="<?php echo $user['full_name']; ?>" class="form-control rounded-3" required>
                                         </div>
                                         <div class="mb-3">
@@ -201,7 +201,7 @@ $users = $conn->query($user_sql);
                                             <input type="email" name="email" value="<?php echo $user['email']; ?>" class="form-control rounded-3" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label fw-semibold">Login Username Identifier</label>
+                                            <label class="form-label fw-semibold">Username</label>
                                             <input type="text" name="username" value="<?php echo $user['username']; ?>" class="form-control rounded-3" required>
                                         </div>
                                         <div class="mb-3">
@@ -246,32 +246,32 @@ $users = $conn->query($user_sql);
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
             <div class="modal-header bg-darkbrown text-white py-3">
-                <h5 class="modal-title font-title fw-bold">Provision New Access Account</h5>
+                <h5 class="modal-title font-title fw-bold">Add an Account</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <form method="POST" action="">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label fw-semibold text-dark">Full Operator Name</label>
-                        <input type="text" name="full_name" class="form-control rounded-3" placeholder="Ex: Jane Miller" required>
+                        <label class="form-label fw-semibold text-dark">Full Name</label>
+                        <input type="text" name="full_name" class="form-control rounded-3" placeholder="Ex: Adrian Dizon" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold text-dark">Email Contact Address</label>
-                        <input type="email" name="email" class="form-control rounded-3" placeholder="miller.j@hoteldomain.com" required>
+                        <label class="form-label fw-semibold text-dark">Email Address</label>
+                        <input type="email" name="email" class="form-control rounded-3" placeholder="adriandizon@gmail.com" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold text-dark">Login Username Account Handle</label>
-                        <input type="text" name="username" class="form-control rounded-3" placeholder="janemiller2024" required>
+                        <label class="form-label fw-semibold text-dark">Username</label>
+                        <input type="text" name="username" class="form-control rounded-3" placeholder="adriandizon28" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold text-dark">Access Passphrase Password</label>
-                        <input type="password" name="password" class="form-control rounded-3" placeholder="••••••••••••" required>
+                        <label class="form-label fw-semibold text-dark">Add Password</label>
+                        <input type="password" name="password" class="form-control rounded-3" required>
                     </div>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold text-dark">Operational Role Access</label>
+                            <label class="form-label fw-semibold text-dark">Role Access</label>
                             <select name="role" class="form-select rounded-3" required>
-                                <option value="" disabled selected>-- Select Tier Level --</option>
+                                <option value="" disabled selected>-- Select Role Access --</option>
                                 <option value="Admin">Admin (Full Administrative Configuration Access)</option>
                                 <option value="Employee">Employee (Standard Operating View Actions)</option>
                             </select>
