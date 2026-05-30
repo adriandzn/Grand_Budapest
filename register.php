@@ -277,31 +277,49 @@ function validatePassword() {
         $GBusername = $_POST['username'];
         $GBpassword = md5($_POST['password']);
         $GBemail = $_POST['email'];
-        $GBotp = rand(000000,999999);
+        $GBotp = rand(100000, 999999); // Fixed to guarantee a 6-digit number
 
-        // String Query and Transfer to MySQL
-        $insertsql = "INSERT INTO tbl_userdetails (full_name, role, username, password, email, otp, status) VALUES ('$GBfullname', 'Customer', '$GBusername', '$GBpassword', '$GBemail', $GBotp, 'Pending')";
+        // 1. CHECK IF USERNAME ALREADY EXISTS
+        $checkUserSql = "SELECT * FROM tbl_userdetails WHERE username = '$GBusername'";
+        $checkResult = $conn->query($checkUserSql);
 
-        $result = $conn -> query($insertsql);
-
-        // Check if saved
-        if ($result == True) {
-            send_verification($GBfullname, $GBemail, $GBotp);
+        if ($checkResult->num_rows > 0) {
+            // Username is taken -> Trigger SweetAlert error
             ?>
             <script>
                 Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Success! You are now registered.",
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then (() => {
-                    window.location.href = "otpverification.php";
-                })
+                    icon: "error",
+                    title: "Username Taken",
+                    text: "The username '<?php echo htmlspecialchars($GBusername); ?>' is already registered. Please choose another one.",
+                    confirmButtonColor: "#975265" // Matches your pink theme
+                });
             </script>
             <?php
         } else {
-            echo $conn -> error;
+            // 2. USERNAME IS UNIQUE -> Proceed with registration
+            $insertsql = "INSERT INTO tbl_userdetails (full_name, role, username, password, email, otp, status) VALUES ('$GBfullname', 'Customer', '$GBusername', '$GBpassword', '$GBemail', $GBotp, 'Pending')";
+
+            $result = $conn->query($insertsql);
+
+            // Check if saved
+            if ($result == True) {
+                send_verification($GBfullname, $GBemail, $GBotp);
+                ?>
+                <script>
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Success! You are now registered.",
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then (() => {
+                        window.location.href = "otpverification.php";
+                    })
+                </script>
+                <?php
+            } else {
+                echo $conn->error;
+            }
         }
     }
 ?>
