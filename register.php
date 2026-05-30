@@ -53,10 +53,10 @@
 ">
 
     <!-- MAIN CONTAINER -->
-
     <div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
         <div class="row justify-content-center w-100">      
             <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+
                 <!-- LOGIN CARD -->
                 <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
 
@@ -75,6 +75,7 @@
                             </a>
                         </div>
                     </div>
+
                     <!-- LOGO -->
                     <div class="row">
                         <div class="col text-center">
@@ -99,73 +100,73 @@
                         </div>
                     </div>
 
+
                     <!-- FORM -->
+                    <form action="" method="post">
 
-                    <form action="" method="POST">
-
-                        <!-- FULLNAME -->
-
+                        <!-- FIRSTNAME -->
                         <div class="row mt-4">
-
                             <div class="col">
-
-                                <label for="fullName"
+                                <label for="firstName"
                                     class="form-label font-body font-pink fw-semibold fs-6">
-
-                                    Fullname
-
+                                    First Name
                                 </label>
 
                                 <input
                                     type="text"
-                                    name="Fullname"
-                                    id="fullName"
+                                    name="firstName"
+                                    id="firstName"
                                     class="form-control rounded-pill border-0 px-4 py-2"
-                                    placeholder="Type here"
+                                    placeholder="Enter your first name"
                                     style="font-size: 14px;"
-                                    >
-
+                                >
                             </div>
+                        </div>
 
+                        <!-- LASTNAME -->
+                        <div class="row mt-4">
+                            <div class="col">
+                                <label for="lastName"
+                                    class="form-label font-body font-pink fw-semibold fs-6">
+                                    Last Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    id="lastName"
+                                    class="form-control rounded-pill border-0 px-4 py-2"
+                                    placeholder="Enter your last name"
+                                    style="font-size: 14px;"
+                                >
+                            </div>
                         </div>
 
                         <!-- USERNAME -->
-
                         <div class="row mt-3">
-
                             <div class="col">
-
                                 <label for="username"
                                     class="form-label font-body font-pink fw-semibold fs-6">
-
                                     Username
-
                                 </label>
 
                                 <input
                                     type="text"
-                                    name="Uname"
+                                    name="username"
                                     id="username"
                                     class="form-control rounded-pill border-0 px-4 py-2"
-                                    placeholder="Type here"
+                                    placeholder="Create a username for your account"
                                     style="font-size: 14px;"
-                                    >
-
+                                >
                             </div>
-
                         </div>
 
                         <!-- EMAIL -->
-
                         <div class="row mt-3">
-
                             <div class="col">
-
                                 <label for="email"
                                     class="form-label font-body font-pink fw-semibold fs-6">
-
                                     Email Address
-
                                 </label>
 
                                 <input
@@ -173,80 +174,59 @@
                                     name="email"
                                     id="email"
                                     class="form-control rounded-pill border-0 px-4 py-2"
-                                    placeholder="Type here"
+                                    placeholder="Enter your email address"
                                     style="font-size: 14px;"
-                                    >
-
+                                >
                             </div>
-
                         </div>
 
                         <!-- PASSWORD -->
-
                         <div class="row mt-3">
-
                             <div class="col">
-
                                 <label for="password"
                                     class="form-label font-body font-pink fw-semibold fs-6">
-
                                     Create Your Password
-
                                 </label>
 
                                 <input
                                     type="password"
-                                    name="pass"
+                                    name="password"
                                     id="password"
                                     class="form-control rounded-pill border-0 px-4 py-2"
-                                    placeholder="Type here"
+                                    placeholder="Create a password for your account"
                                     style="font-size: 14px;"
-                                    >
-
+                                >
                             </div>
-
                         </div>
 
                         <!-- CONFIRM PASSWORD -->
-
                         <div class="row mt-3">
-
                             <div class="col">
-
                                 <label for="passwordconf"
                                     class="form-label font-body font-pink fw-semibold fs-6">
-
                                     Confirm Your Password
-
                                 </label>
 
                                 <input
                                     type="password"
-                                    name="passconf"
+                                    name="passwordconf"
                                     id="passwordconf"
                                     class="form-control rounded-pill border-0 px-4 py-2"
                                     placeholder="Type here"
                                     style="font-size: 14px;"
-                                    >
-
+                                >
                             </div>
-
                         </div>
 
                         <!-- SUBMIT -->
-
                         <div class="row mt-5">
-
                             <div class="col text-center">
-
                                 <input
                                     type="submit"
-                                    name="submitButton"
+                                    name="submit"
                                     value="Register"
                                     class="btn fw-bold font-title bg-darkpink rounded-pill py-3 w-100 pink-button shadow-sm">
-
                             </div>
-
                         </div>
 
                     </form>
@@ -262,95 +242,32 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function previewImg(event) {
-            var displayimg = document.getElementById("preview");
-            displayimg.src = URL.createObjectURL(event.target.files[0]);
-        }
-    </script>
 
 </body>
 </html>
 
 
+<?php
+    require_once "verifyotpemail.php";
+    require_once "dbaseconnection.php";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <?php
-   require_once "verifyotpemail.php";
-   require_once "dbaseconnection.php";
-
-
-
-
-
-
-
-
-
-
-    if (isset($_POST['submitButton'])) {
+    if (isset($_POST['submit'])) {
        
-        $JAFirstName = $_POST['Fname'];
-        $JALastName = $_POST['Lname'];
-        $JAEmail = $_POST['email'];
-        $JAUsername = $_POST['Uname'];
-        $JAPassword = md5($_POST['pass']);
-        $JAContactNumber = $_POST['contact'];
-        $JABirthday = $_POST['Bdate'];
-        $JAGender = $_POST['gen'];
-        $JACountry = $_POST['country'];
-        $JAcomms = $_POST['comms'];
-        $JAimagepath = "imagesja/" . $_FILES['upload_img']['name'];
-        $JAfullname = $_POST['Fname'] . " ". $_POST['Lname'];
+        $GBfullname = $_POST['firstName'] . " " . $_POST['lastName'];
+        $GBusername = $_POST['username'];
+        $GBpassword = md5($_POST['password']);
+        $GBemail = $_POST['email'];
+        $GBotp = rand(000000,999999);
 
+        // String Query and Transfer to MySQL
+        $insertsql = "INSERT INTO tbl_userdetails (full_name, role, username, password, email, otp, status) VALUES ('$GBfullname', 'Customer', '$GBusername', '$GBpassword', '$GBemail', $GBotp, 'Pending')";
 
-
-
-
-
-
-
-        copy($_FILES['upload_img']['tmp_name'], $JAimagepath);
-
-
-        $JAotp = rand(000000,999999);
-        // String Query
-        $insertsql = "Insert into tbl_userdetails_ja (first_name, last_name, email, username, pass, contact, birthday, gender, country, comments, img_pathja, user_typeja, otpja, statusja) values ('$JAFirstName', '$JALastName', '$JAEmail', '$JAUsername', '$JAPassword', '$JAContactNumber', '$JABirthday', '$JAGender', '$JACountry', '$JAcomms', '$JAimagepath', 'Employee', $JAotp, 'Pending')";
-       
-        // Convert string to an actual query and transfer it to mysql
         $result = $conn -> query($insertsql);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Check if saved
         if ($result == True) {
-            send_verification($JAfullname, $JAEmail, $JAotp);
-        ?>
+            send_verification($GBfullname, $GBemail, $GBotp);
+            ?>
             <script>
                 Swal.fire({
                     position: "center",
@@ -359,12 +276,12 @@
                     showConfirmButton: false,
                     timer: 1500
                 }).then (() => {
-                    window.location.href = "OTPverification.php";
+                    window.location.href = "otpverification.php";
                 })
             </script>
-        <?php
+            <?php
         } else {
             echo $conn -> error;
         }
     }
-?> -->
+?>

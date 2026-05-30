@@ -17,7 +17,6 @@ $bookingInfo = [
 $personalLabels = [
     'Name',
     'Gender',
-    'Nationality',
     'Birth Date',
     'Email',
     'Contact Number',
@@ -27,7 +26,6 @@ $personalLabels = [
 $personalValues = [
     'Adrian D. Dizon',
     'Male',
-    'Filipino',
     'February 28, 2005',
     'adrian.dizon.cics@ust.edu.ph',
     '09123456789',
