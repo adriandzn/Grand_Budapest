@@ -1,5 +1,18 @@
 <?php
+    require_once "dbaseconnection.php";
     session_start();
+
+    // Check available rooms per type
+    function getAvailableCount($conn, $type) {
+        $countsql = "SELECT COUNT(*) as total FROM tbl_roomdetails WHERE room_type = '$type' AND availability_status = 'Available'";
+        $result = $conn->query($countsql);
+        return $result->fetch_assoc()['total'];
+    }
+
+    $standardAvailable = getAvailableCount($conn, 'Standard');
+    $deluxeAvailable = getAvailableCount($conn, 'Deluxe');
+    $suiteAvailable = getAvailableCount($conn, 'Suite');
+
 
     // STANDARD ROOM FORM
     if (isset($_POST['standard-next'])) {
@@ -7,7 +20,19 @@
         $GBchildren = 0;
         $GBextrapax = $_POST['standard-extrapax'];
 
+        // Get Random Room
+        $getsql = "SELECT room_id 
+            FROM tbl_roomdetails 
+            WHERE room_type = 'Standard' 
+            AND availability_status = 'Available'
+            ORDER BY RAND() 
+            LIMIT 1";
+
+        $result = $conn->query($getsql);
+        $room = $result->fetch_assoc();
+
         // SESSION VARIABLES
+        $_SESSION['GBroomid'] = $room['room_id'];
         $_SESSION['GBadult'] = $GBadult;
         $_SESSION['GBchildren'] = $GBchildren;
         $_SESSION['GBextrapax'] = $GBextrapax;
@@ -23,7 +48,19 @@
         $GBchildren = $_POST['deluxe-children'];
         $GBextrapax = $_POST['deluxe-extrapax'];
 
+        // Get Random Room
+        $getsql = "SELECT room_id 
+            FROM tbl_roomdetails 
+            WHERE room_type = 'Deluxe' 
+            AND availability_status = 'Available'
+            ORDER BY RAND() 
+            LIMIT 1";
+
+        $result = $conn->query($getsql);
+        $room = $result->fetch_assoc();
+
         // SESSION VARIABLES
+        $_SESSION['GBroomid'] = $room['room_id'];
         $_SESSION['GBadult'] = $GBadult;
         $_SESSION['GBchildren'] = $GBchildren;
         $_SESSION['GBextrapax'] = $GBextrapax;
@@ -39,7 +76,19 @@
         $GBchildren = $_POST['suite-children'];
         $GBextrapax = $_POST['suite-extrapax'];
 
+        // Get Random Room
+        $getsql = "SELECT room_id 
+            FROM tbl_roomdetails 
+            WHERE room_type = 'Suite' 
+            AND availability_status = 'Available'
+            ORDER BY RAND() 
+            LIMIT 1";
+
+        $result = $conn->query($getsql);
+        $room = $result->fetch_assoc();
+
         // SESSION VARIABLES
+        $_SESSION['GBroomid'] = $room['room_id'];
         $_SESSION['GBadult'] = $GBadult;
         $_SESSION['GBchildren'] = $GBchildren;
         $_SESSION['GBextrapax'] = $GBextrapax;
@@ -59,6 +108,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
     <link rel="stylesheet" href="css/book.css">
+
+    <style>
+        .disabled-room {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(100%);
+        }
+    </style>
+
 </head>
 <body class="bg-lightpink">
 
@@ -141,9 +199,11 @@
                     <div class="font-body h4 fw-bold">₱ 4,500.00</div>
                     <div class="font-body h5 fw-bold font-gray">per night</div>
                     <button type="button"
-                        class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow"
+                        class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow
+                        <?= ($standardAvailable == 0) ? 'disabled-room' : '' ?>"
+                        <?= ($standardAvailable == 0) ? 'disabled' : '' ?>
                         onclick="showRoomForm('standard-form')">
-                        Select Room
+                        <?= ($standardAvailable == 0) ? 'Not Available' : 'Select Room' ?>
                     </button>
                 </div>
                 
@@ -179,9 +239,11 @@
                     <div class="font-body h4 fw-bold">₱ 8,599.00</div>
                     <div class="font-body h5 fw-bold font-gray">per night</div>
                     <button type="button"
-                        class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow"
+                        class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow
+                        <?= ($deluxeAvailable == 0) ? 'disabled-room' : '' ?>"
+                        <?= ($deluxeAvailable == 0) ? 'disabled' : '' ?>
                         onclick="showRoomForm('deluxe-form')">
-                        Select Room
+                        <?= ($deluxeAvailable == 0) ? 'Not Available' : 'Select Room' ?>
                     </button>
                 </div>
                 
@@ -217,9 +279,11 @@
                     <div class="font-body h4 fw-bold">₱ 14,999.00</div>
                     <div class="font-body h5 fw-bold font-gray">per night</div>
                     <button type="button"
-                        class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow"
+                        class="mt-3 btn pink-button font-title d-flex align-items-center px-5 py-2 shadow
+                        <?= ($suiteAvailable == 0) ? 'disabled-room' : '' ?>"
+                        <?= ($suiteAvailable == 0) ? 'disabled' : '' ?>
                         onclick="showRoomForm('suite-form')">
-                        Select Room
+                        <?= ($suiteAvailable == 0) ? 'Not Available' : 'Select Room' ?>
                     </button>
                 </div>
             </div>
