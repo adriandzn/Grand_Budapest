@@ -90,7 +90,7 @@ $logs = $conn->query($logs_sql);
             <button type="submit" name="btnsearch" class="btn pink-button text-dark px-4 rounded-pill fw-semibold shadow-sm">Search</button>
         </form>
         <button type="button" class="btn btn-secondary px-4 rounded-pill fw-semibold shadow-sm text-white" data-bs-toggle="modal" data-bs-target="#addLogNoteModal">
-            ✍️ Add Manual Log Note
+            Add Manual Log Note
         </button>
     </div>
 </div>
