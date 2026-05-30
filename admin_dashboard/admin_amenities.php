@@ -1,7 +1,5 @@
 <?php
-// ==========================================
-// 1. BACKEND AMENITY ADDITION LOGIC
-// ==========================================
+// Adding amenities
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) {
     $amenity_name = $_POST['amenity_name'];
     $description = $_POST['description'];
@@ -23,9 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) 
     }
 }
 
-// ==========================================
-// 2. BACKEND AMENITY UPDATE (EDIT) LOGIC
-// ==========================================
+// Updating amenities
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])) {
     $amenity_id = $_POST['amenity_id'];
     $amenity_name = $_POST['amenity_name'];
@@ -56,9 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])
     }
 }
 
-// ==========================================
-// 3. BACKEND AMENITY DELETION LOGIC (NEW)
-// ==========================================
+
+// Deleting amenities
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])) {
     $amenity_id = $_POST['amenity_id'];
 
@@ -86,9 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])
     }
 }
 
-// ==========================================
-// 4. SEARCH FILTRATION PROCESSING
-// ==========================================
+// Searching amenities
 $search_query = "";
 $amenity_sql = "SELECT * FROM tbl_amenitydetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {

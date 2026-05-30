@@ -1,7 +1,6 @@
 <?php
-// ==========================================
-// 1. BACKEND RESERVATION INSERTION (ADD) LOGIC
-// ==========================================
+
+// Inserting Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'])) {
     $full_name = $_POST['full_name'];
     $contact = $_POST['contact'];
@@ -28,9 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'
     }
 }
 
-// ==========================================
-// 2. BACKEND RESERVATION UPDATE (EDIT) LOGIC
-// ==========================================
+// Updating Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservation'])) {
     $res_id = $_POST['reservation_id'];
     $full_name = $_POST['full_name'];
@@ -60,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservatio
     }
 }
 
-// Quick Approve Action Link integration
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_reservation'])) {
     $res_id = $_POST['reservation_id'];
     if ($conn->query("UPDATE tbl_reservationdetails SET reservation_status = 'Confirmed' WHERE reservation_id = $res_id")) {
@@ -71,9 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_reservation']
     }
 }
 
-// ==========================================
-// 3. BACKEND RESERVATION DELETION LOGIC
-// ==========================================
+// Deleting Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservation'])) {
     $res_id = $_POST['reservation_id'];
     
@@ -101,9 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservatio
     }
 }
 
-// ==========================================
-// 4. SEARCH PROCESSING
-// ==========================================
+// Searching Reservation
 $search_query = "";
 $res_sql = "SELECT * FROM tbl_reservationdetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {

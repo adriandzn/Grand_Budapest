@@ -1,7 +1,5 @@
 <?php
-// ==========================================
-// 0. BACKEND ROOM DELETION LOGIC (FIXED)
-// ==========================================
+// Deleting Rooms
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
     $room_id = intval($_POST['room_id']);
     
@@ -28,9 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
     }
 }
 
-// ==========================================
-// 1. BACKEND ROOM ADDITION LOGIC
-// ==========================================
+// Adding New Rooms
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
     $room_number = intval($_POST['room_number']);
     $room_type = $conn->real_escape_string($_POST['room_type']);
@@ -70,9 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
     }
 }
 
-// ==========================================
-// 2. BACKEND ROOM UPDATE (EDIT) LOGIC
-// ==========================================
+// Updating Existing Rooms
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
     $room_id = intval($_POST['room_id']);
     $room_number = intval($_POST['room_number']);
@@ -120,9 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
     }
 }
 
-// ==========================================
-// 3. SEARCH FILTRATION PROCESSING
-// ==========================================
+// Search and Display Rooms
 $search_query = "";
 $rooms_sql = "SELECT * FROM tbl_roomdetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
@@ -136,7 +128,6 @@ if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
 $rooms_sql .= " ORDER BY room_id DESC";
 $rooms = $conn->query($rooms_sql);
 
-// Array to temporarily track loop modals for compliant structural injection
 $room_modals_buffer = [];
 ?>
 
@@ -172,7 +163,6 @@ $room_modals_buffer = [];
                 </thead>
                 <tbody>
                     <?php while($room = $rooms->fetch_assoc()) { 
-                        // Buffer the modal markup to cleanly output outside the table DOM segment later
                         ob_start();
                         ?>
                         <div class="modal fade" id="editRoomModal_<?php echo $room['room_id']; ?>" tabindex="-1" aria-hidden="true">
@@ -258,7 +248,6 @@ $room_modals_buffer = [];
 </div>
 
 <?php 
-// Secure structural rendering execution of the buffered Edit Modals safely outside the table DOM
 foreach ($room_modals_buffer as $modal_html) {
     echo $modal_html;
 }
