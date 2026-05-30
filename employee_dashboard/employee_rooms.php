@@ -3,23 +3,26 @@
 // 0. BACKEND ROOM DELETION LOGIC
 // ==========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
-    $room_id = $_POST['room_id'];
+    $room_id = intval($_POST['room_id']);
     
-    $delete_sql = "DELETE FROM tbl_roomdetails WHERE room_id = $room_id";
-    
-    if ($conn->query($delete_sql)) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Permanently Deleted Room ID #$room_id";
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+    try {
+        $delete_sql = "DELETE FROM tbl_roomdetails WHERE room_id = $room_id";
+        
+        if ($conn->query($delete_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Permanently Deleted Room ID #$room_id";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Room record successfully deleted.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>';
         }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Room record successfully deleted.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    } else {
+    } catch (mysqli_sql_exception $e) {
+        // Captures the constraint violation and displays your styled notification instead of crashing
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Cannot delete room. It is likely linked to active guest reservations.
+                <strong>Database Error!</strong> Cannot delete room #' . $room_id . '. This room is linked to active or historical guest reservations.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     }
