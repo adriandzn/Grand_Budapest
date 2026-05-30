@@ -102,7 +102,7 @@
 
 
                     <!-- FORM -->
-                    <form action="" method="post">
+                    <form action="" method="post" onsubmit="return validatePassword()">
 
                         <!-- FIRSTNAME -->
                         <div class="row mt-4">
@@ -243,6 +243,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+function validatePassword() {
+
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("passwordconf").value;
+
+    if (password !== confirmPassword) {
+
+        Swal.fire({
+            icon: "error",
+            title: "Passwords do not match!",
+            text: "Please make sure both passwords are identical."
+        });
+
+        return false; // Prevent form submission
+    }
+
+    return true; // Allow form submission
+}
+</script>
 </body>
 </html>
 
