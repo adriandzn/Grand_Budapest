@@ -38,6 +38,9 @@
             case "Pending":
                 $statusClass = "bg-warning text-dark";
                 break;
+            case "Cancelled":
+                $statusClass = "bg-danger text-white";
+                break;
         }
     }
 

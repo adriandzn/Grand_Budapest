@@ -171,6 +171,9 @@
                                                         case "Pending":
                                                             $statusClass = "bg-warning text-dark";
                                                             break;
+                                                        case "Cancelled":
+                                                            $statusClass = "bg-danger text-white";
+                                                            break;
                                                     }
                                                 ?>
                                                 <span class="badge rounded-pill px-4 py-2 fs-6 <?php echo $statusClass; ?>">
