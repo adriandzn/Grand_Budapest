@@ -102,9 +102,9 @@ $logs = $conn->query($logs_sql);
                 <thead class="table-light">
                     <tr>
                         <th>Log ID</th>
-                        <th>User Employee Reference</th>
-                        <th>Action Performed Log Metric</th>
-                        <th>Date & Time Timestamp</th>
+                        <th>User</th>
+                        <th>Action Performed</th>
+                        <th>Date & Time</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -135,19 +135,19 @@ $logs = $conn->query($logs_sql);
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
                                 <div class="modal-header bg-darkbrown text-white py-3">
-                                    <h5 class="modal-title font-title fw-bold">Modify System Event Log Entry #<?php echo $log['log_id']; ?></h5>
+                                    <h5 class="modal-title font-title fw-bold">Edit Log #<?php echo $log['log_id']; ?></h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
                                 <form method="POST" action="">
                                     <div class="modal-body p-4">
                                         <input type="hidden" name="log_id" value="<?php echo $log['log_id']; ?>">
                                         <div class="mb-3">
-                                            <label class="form-label fw-semibold text-dark">Log Metric Entry Payload Statement</label>
+                                            <label class="form-label fw-semibold text-dark">Log Message</label>
                                             <textarea name="note_content" class="form-control rounded-3 font-mono text-sm" rows="5" required><?php echo $log['action']; ?></textarea>
                                         </div>
                                         <div class="text-muted text-xs p-3 bg-light rounded border border-secondary border-opacity-25">
-                                            <strong>Record Actor Metadata:</strong> <?php echo $log['full_name']; ?> [<?php echo $log['role']; ?>]<br>
-                                            <strong>Creation Timestamp:</strong> <?php echo $log['date_time']; ?>
+                                            <strong>User:</strong> <?php echo $log['full_name']; ?> [<?php echo $log['role']; ?>]<br>
+                                            <strong>Date & Time:</strong> <?php echo $log['date_time']; ?>
                                         </div>
                                     </div>
                                     <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
@@ -177,13 +177,13 @@ $logs = $conn->query($logs_sql);
             <form method="POST" action="">
                 <div class="modal-body p-4">
                     <div class="mb-1">
-                        <label class="form-label fw-semibold text-dark">Log Content Message</label>
-                        <textarea name="note_content" class="form-control rounded-3 font-mono" rows="4" placeholder="Ex: Manual adjustment performed to correct a pricing discrepancy on booking checkout overrides..." required></textarea>
+                        <label class="form-label fw-semibold text-dark">Log Message</label>
+                        <textarea name="note_content" class="form-control rounded-3 font-mono" rows="4" placeholder="Type here" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
                     <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="btn_save_log_note" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Record Internal Log Note</button>
+                    <button type="submit" name="btn_save_log_note" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Add Manual Log Note</button>
                 </div>
             </form>
         </div>
