@@ -161,6 +161,8 @@ $users = $conn->query($user_sql);
                         <td>
                             <?php if($user['status'] == 'Active'): ?>
                                 <span class="badge rounded-pill px-3 py-2 bg-success">Active</span>
+                            <?php elseif($user['status'] == 'Pending'): ?>
+                                <span class="badge rounded-pill px-3 py-2 bg-warning text-dark">Pending</span>
                             <?php else: ?>
                                 <span class="badge text-white rounded-pill px-3 py-2 bg-danger"><?php echo $user['status']; ?></span>
                             <?php endif; ?>
