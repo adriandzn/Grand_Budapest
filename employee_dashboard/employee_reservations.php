@@ -159,6 +159,7 @@ $reservations = $conn->query($res_sql);
                             $status = $res['reservation_status'];
                             if($status == 'Pending') echo '<span class="badge text-dark rounded-pill px-3 py-2 bg-warning">Pending</span>';
                             elseif($status == 'Confirmed') echo '<span class="badge rounded-pill px-3 py-2 bg-success">Confirmed</span>';
+                            elseif($status == 'Completed') echo '<span class="badge rounded-pill px-3 py-2 bg-info text-dark font-body">Completed</span>';
                             else echo '<span class="badge bg-danger rounded-pill px-3 py-2">'.$status.'</span>';
                             ?>
                         </td>
@@ -229,6 +230,7 @@ $reservations = $conn->query($res_sql);
                                                 <select name="reservation_status" class="form-select rounded-3" required>
                                                     <option value="Pending" <?php echo ($status == 'Pending')?'selected':''; ?>>Pending Approval</option>
                                                     <option value="Confirmed" <?php echo ($status == 'Confirmed')?'selected':''; ?>>Confirmed</option>
+                                                    <option value="Completed" <?php echo ($status == 'Completed')?'selected':''; ?>>Completed</option>
                                                     <option value="Cancelled" <?php echo ($status == 'Cancelled')?'selected':''; ?>>Cancelled</option>
                                                 </select>
                                             </div>

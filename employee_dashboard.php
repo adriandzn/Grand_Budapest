@@ -145,6 +145,8 @@ if ($page == 'dashboard') {
                                                             <span class="badge bg-success px-3 py-2 rounded-pill">Confirmed</span>
                                                         <?php elseif($row['reservation_status'] === 'Pending'): ?>
                                                             <span class="badge bg-warning font-brown px-3 py-2 rounded-pill">Pending</span>
+                                                        <?php elseif($row['reservation_status'] === 'Completed'): ?>
+                                                            <span class="badge bg-info px-3 py-2 rounded-pill text-dark">Completed</span>
                                                         <?php else: ?>
                                                             <span class="badge bg-danger text-white px-3 py-2 rounded-pill"><?php echo $row['reservation_status']; ?></span>
                                                         <?php endif; ?>
