@@ -125,7 +125,7 @@
 
                                 <div class="col-lg-6">
 
-                                    <label class="text-white fw-semibold mb-2 small">
+                                    <label class="text-white fw-semibold mb-2 font-body medium">
 
                                         First Name
                                         <span class="text-danger">*</span>
@@ -142,7 +142,7 @@
 
                                 <div class="col-lg-6">
 
-                                    <label class="text-white fw-semibold mb-2 small">
+                                    <label class="text-white fw-semibold mb-2 font-body medium">
 
                                         Last Name
                                         <span class="text-danger">*</span>
@@ -163,9 +163,9 @@
 
                             <div class="row g-4 mb-3">
 
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
 
-                                    <label class="text-white fw-semibold mb-2 small">
+                                    <label class="text-white fw-semibold mb-2 font-body medium">
 
                                         Gender
                                         <span class="text-danger">*</span>
@@ -192,9 +192,9 @@
 
                                 </div>
 
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
 
-                                    <label class="text-white fw-semibold mb-2 small">
+                                    <label class="text-white fw-semibold mb-2 font-body medium">
 
                                         Birth Date
                                         <span class="text-danger">*</span>
@@ -208,30 +208,13 @@
 
                                 </div>
 
-                                <div class="col-lg-4">
-
-                                    <label class="text-white fw-semibold mb-2 small">
-
-                                        Nationality
-                                        <span class="text-danger">*</span>
-
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        class="form-control rounded-pill border-0 px-4 py-3 shadow-sm"
-                                        placeholder="Select Nationality"
-                                        required>
-
-                                </div>
-
                             </div>
 
                             <!-- ADDRESS -->
 
                             <div class="mb-4">
 
-                                <label class="text-white fw-semibold mb-2 small">
+                                <label class="text-white fw-semibold mb-2 font-body medium">
 
                                     Address
                                     <span class="text-danger">*</span>
@@ -252,7 +235,7 @@
 
                                 <div class="col-lg-6">
 
-                                    <label class="text-white fw-semibold mb-2 small">
+                                    <label class="text-white fw-semibold mb-2 font-body medium">
 
                                         Email
                                         <span class="text-danger">*</span>
@@ -269,7 +252,7 @@
 
                                 <div class="col-lg-6">
 
-                                    <label class="text-white fw-semibold mb-2 small">
+                                    <label class="text-white fw-semibold mb-2 font-body medium">
 
                                         Confirm Email
                                         <span class="text-danger">*</span>
@@ -290,7 +273,7 @@
 
                             <div class="mb-4">
 
-                                <label class="text-white fw-semibold mb-2 small">
+                                <label class="text-white fw-semibold mb-2 font-body medium">
 
                                     Contact Number
                                     <span class="text-danger">*</span>
@@ -309,7 +292,7 @@
 
                             <div class="mb-5">
 
-                                <label class="text-white fw-semibold mb-2 small">
+                                <label class="text-white fw-semibold mb-2 font-body medium">
 
                                     Special Request
 
@@ -333,7 +316,7 @@
                                     </div>
                                 </div>
 
-                                <p class="text-white small mt-4 mb-0">
+                                <p class="text-white font-body medium mt-4 mb-0">
 
                                     Your information is secure and will be used only in this booking.
 
