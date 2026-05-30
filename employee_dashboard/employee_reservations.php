@@ -1,7 +1,6 @@
 <?php
-// ==========================================
-// 1. BACKEND RESERVATION INSERTION (ADD) LOGIC
-// ==========================================
+
+// Insert Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'])) {
     $full_name = $_POST['full_name'];
     $contact = $_POST['contact'];
@@ -28,9 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'
     }
 }
 
-// ==========================================
-// 2. BACKEND RESERVATION UPDATE (EDIT) LOGIC
-// ==========================================
+// Update Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservation'])) {
     $res_id = $_POST['reservation_id'];
     $full_name = $_POST['full_name'];
@@ -60,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservatio
     }
 }
 
-// Quick Approve Action Link integration
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_reservation'])) {
     $res_id = $_POST['reservation_id'];
     if ($conn->query("UPDATE tbl_reservationdetails SET reservation_status = 'Confirmed' WHERE reservation_id = $res_id")) {
@@ -71,9 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_reservation']
     }
 }
 
-// ==========================================
-// 3. BACKEND RESERVATION DELETION LOGIC
-// ==========================================
+// Delete Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservation'])) {
     $res_id = $_POST['reservation_id'];
     
@@ -101,9 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservatio
     }
 }
 
-// ==========================================
-// 4. SEARCH PROCESSING
-// ==========================================
+// Search and Display Reservations
 $search_query = "";
 $res_sql = "SELECT * FROM tbl_reservationdetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
@@ -135,7 +127,7 @@ $reservations = $conn->query($res_sql);
     <?php if ($reservations->num_rows > 0): ?>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
-                <thead class="table-light">
+                <thead class="table-light font-body">
                     <tr>
                         <th>Res ID</th>
                         <th>Guest Name</th>
@@ -150,17 +142,17 @@ $reservations = $conn->query($res_sql);
                     <?php while($res = $reservations->fetch_assoc()) { ?>
                     <tr>
                         <td>#<?php echo $res['reservation_id']; ?></td>
-                        <td class="fw-bold"><?php echo $res['full_name']; ?><br><small class="text-muted"><?php echo $res['email']; ?></small></td>
+                        <td class="fw-bold"><?php echo $res['full_name']; ?><br><small class="text-muted font-body"><?php echo $res['email']; ?></small></td>
                         <td><?php echo $res['contact']; ?></td>
                         <td><small><?php echo $res['check_in_date']; ?> to <?php echo $res['check_out_date']; ?></small></td>
                         <td>₱<?php echo number_format($res['total_price'], 2); ?></td>
                         <td>
                             <?php
                             $status = $res['reservation_status'];
-                            if($status == 'Pending') echo '<span class="badge text-dark rounded-pill px-3 py-2 bg-warning">Pending</span>';
-                            elseif($status == 'Confirmed') echo '<span class="badge rounded-pill px-3 py-2 bg-success">Confirmed</span>';
+                            if($status == 'Pending') echo '<span class="badge text-dark rounded-pill px-3 py-2 bg-warning font-body">Pending</span>';
+                            elseif($status == 'Confirmed') echo '<span class="badge rounded-pill px-3 py-2 bg-success font-body">Confirmed</span>';
                             elseif($status == 'Completed') echo '<span class="badge rounded-pill px-3 py-2 bg-info text-dark font-body">Completed</span>';
-                            else echo '<span class="badge bg-danger rounded-pill px-3 py-2">'.$status.'</span>';
+                            else echo '<span class="badge bg-danger rounded-pill px-3 py-2 font-body">'.$status.'</span>';
                             ?>
                         </td>
                         <td class="text-center">
@@ -172,7 +164,7 @@ $reservations = $conn->query($res_sql);
                                 <?php if($status == 'Pending'): ?>
                                     <form method="POST" action="" class="m-0">
                                         <input type="hidden" name="reservation_id" value="<?php echo $res['reservation_id']; ?>">
-                                        <button type="submit" name="approve_reservation" class="btn btn-sm btn-dark bg-darkbrown rounded-pill px-3 fw-semibold">Approve</button>
+                                        <button type="submit" name="approve_reservation" class="btn btn-sm text-white bg-primary rounded-pill px-3 fw-semibold">Approve</button>
                                     </form>
                                 <?php endif; ?>
 

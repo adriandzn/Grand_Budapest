@@ -1,6 +1,6 @@
 <?php
 
-// Inserting Reservation
+// Insert Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'])) {
     $full_name = $_POST['full_name'];
     $contact = $_POST['contact'];
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'
     }
 }
 
-// Updating Reservation
+// Update Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservation'])) {
     $res_id = $_POST['reservation_id'];
     $full_name = $_POST['full_name'];
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_reservation']
     }
 }
 
-// Deleting Reservation
+// Delete Reservation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservation'])) {
     $res_id = $_POST['reservation_id'];
     
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservatio
     }
 }
 
-// Searching Reservation
+// Search and Display Reservations
 $search_query = "";
 $res_sql = "SELECT * FROM tbl_reservationdetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {

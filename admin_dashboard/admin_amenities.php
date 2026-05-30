@@ -1,5 +1,5 @@
 <?php
-// Adding amenities
+// Add Amenities
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) {
     $amenity_name = $_POST['amenity_name'];
     $description = $_POST['description'];
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) 
     }
 }
 
-// Updating amenities
+// Update Amenities
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])) {
     $amenity_id = $_POST['amenity_id'];
     $amenity_name = $_POST['amenity_name'];
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])
 }
 
 
-// Deleting amenities
+// Delete Amenities
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])) {
     $amenity_id = $_POST['amenity_id'];
 
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])
     }
 }
 
-// Searching amenities
+// Search and Display Amenities
 $search_query = "";
 $amenity_sql = "SELECT * FROM tbl_amenitydetails";
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {

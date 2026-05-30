@@ -1,5 +1,5 @@
 <?php
-// Deleting Rooms
+// Delete Rooms
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
     $room_id = intval($_POST['room_id']);
     
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
     }
 }
 
-// Adding New Rooms
+// Add Rooms
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
     $room_number = intval($_POST['room_number']);
     $room_type = $conn->real_escape_string($_POST['room_type']);
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
     }
 }
 
-// Updating Existing Rooms
+// Update Rooms
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
     $room_id = intval($_POST['room_id']);
     $room_number = intval($_POST['room_number']);
