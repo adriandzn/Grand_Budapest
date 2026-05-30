@@ -1,22 +1,39 @@
 <?php
+    require_once "dbaseconnection.php";
+    session_start();
 
-session_start();
+    $userInfo = [
+        $_SESSION['GBfullname'],
+        $_SESSION['GBusername'],
+        $_SESSION['GBemail'],
+        '•••••••'
+    ];
 
-$userInfo = [
-    $_SESSION['GBfullname'],
-    'adriandzn',
-    'adrian.dizon.cics@ust.edu.ph',
-    '•••••••'
-];
+    $bookingInfo = [
+        'Deluxe Room',
+        '#123456',
+        'Confirmed',
+        'May 25 - 31, 2026',
+        '8 Guests',
+        'images/index-hero.png'
+    ];
 
-$bookingInfo = [
-    'Deluxe Room',
-    '#123456',
-    'Confirmed',
-    'May 25 - 31, 2026',
-    '8 Guests',
-    'images/index-hero.png'
-];
+
+    //Log Out Button
+    if (isset($_POST['logout'])) {
+
+        // LOGS - Logging Out
+        if (isset($_SESSION['GBid'])) {
+            $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
+            $conn->query($logsql);
+        }
+
+        // Abort Session
+        session_abort();
+
+        // Go Back to Log In Page
+        header("location:login.php");
+    }
 
 ?>
 
@@ -63,16 +80,16 @@ $bookingInfo = [
                         </span>!
                     </h1>
 
-                    <a href="#"
-                        class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 text-darkbrown">
-
-                        <img src="images/logo-logout-brown.png"
-                            alt="Log out"
-                            style="height:20px; width:auto;">
-
-                        Log Out
-
-                    </a>
+                    <form method="post">
+                        <button type="submit"
+                            name="logout"
+                            class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 text-darkbrown">
+                            <img src="images/logo-logout-brown.png"
+                                alt="Log out"
+                                style="height:20px; width:auto;">
+                            Log Out
+                        </button>
+                    </form>
 
                 </div>
 
