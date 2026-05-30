@@ -96,6 +96,11 @@
 
         // Check if saved
         if ($result == True) {
+            
+            // LOGS - Booked
+            $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Booked a Room', NOW())";
+            $conn -> query($logsql);
+
             ?>
                 <script>
                     Swal.fire({
