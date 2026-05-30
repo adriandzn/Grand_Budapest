@@ -155,7 +155,7 @@ $amenities = $conn->query($amenity_sql);
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
                                 <div class="modal-header bg-darkbrown text-white py-3">
-                                    <h5 class="modal-title font-title fw-bold">Modify Amenity Settings</h5>
+                                    <h5 class="modal-title font-title fw-bold">Edit Amenity</h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
                                 <form method="POST" action="">

@@ -118,7 +118,7 @@ $reservations = $conn->query($res_sql);
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-    <div class="font-title text-darkbrown fs-2 fw-bold">All Reservations</div>
+    <div class="font-title text-darkbrown fs-2 fw-bold">Reservations</div>
     
     <div class="d-flex gap-2 w-100 mobile-w-auto justify-content-md-end" style="max-width: 600px;">
         <form method="POST" action="" class="d-flex gap-2 flex-grow-1">
@@ -190,7 +190,7 @@ $reservations = $conn->query($res_sql);
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
                                 <div class="modal-header bg-darkbrown text-white py-3">
-                                    <h5 class="modal-title font-title fw-bold">Modify Reservation Booking #<?php echo $res['reservation_id']; ?></h5>
+                                    <h5 class="modal-title font-title fw-bold">Edit Booking #<?php echo $res['reservation_id']; ?></h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
                                 <form method="POST" action="">
@@ -292,7 +292,7 @@ $reservations = $conn->query($res_sql);
                             <input type="number" step="0.01" name="total_price" class="form-control rounded-3" placeholder="0.00" required min="0">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold text-dark">Initial Status Assignment</label>
+                            <label class="form-label fw-semibold text-dark">Status</label>
                             <select name="reservation_status" class="form-select rounded-3" required>
                                 <option value="Pending" selected>Pending Verification</option>
                                 <option value="Confirmed">Confirmed (Paid / Downpayment Settled)</option>
@@ -302,7 +302,7 @@ $reservations = $conn->query($res_sql);
                 </div>
                 <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
                     <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="btn_save_reservation" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Process Booking</button>
+                    <button type="submit" name="btn_save_reservation" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Add Booking</button>
                 </div>
             </form>
         </div>

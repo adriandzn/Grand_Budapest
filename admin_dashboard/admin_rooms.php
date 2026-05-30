@@ -141,7 +141,7 @@ $room_modals_buffer = [];
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-    <div class="font-title text-darkbrown fs-2 fw-bold">Room Management</div>
+    <div class="font-title text-darkbrown fs-2 fw-bold">Rooms</div>
     
     <div class="d-flex gap-2 w-100 mobile-w-auto justify-content-md-end" style="max-width: 600px;">
         <form method="POST" action="" class="d-flex gap-2 flex-grow-1">
@@ -179,7 +179,7 @@ $room_modals_buffer = [];
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content rounded-4 border-0 shadow-lg">
                                     <div class="modal-header bg-darkbrown text-white py-3">
-                                        <h5 class="modal-title font-title fw-bold">Edit Room Config Details</h5>
+                                        <h5 class="modal-title font-title fw-bold">Edit Room</h5>
                                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                     </div>
                                     <form method="POST" action="">
@@ -190,7 +190,7 @@ $room_modals_buffer = [];
                                                 <input type="number" name="room_number" value="<?php echo $room['room_number']; ?>" class="form-control rounded-3" required min="1">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label fw-semibold text-dark">Room Configuration Tier</label>
+                                                <label class="form-label fw-semibold text-dark">Room Type</label>
                                                 <select name="room_type" class="form-select rounded-3" required>
                                                     <option value="Standard" <?php echo ($room['room_type'] == 'Standard') ? 'selected' : ''; ?>>Standard Room</option>
                                                     <option value="Deluxe" <?php echo ($room['room_type'] == 'Deluxe') ? 'selected' : ''; ?>>Deluxe Room</option>
@@ -198,7 +198,7 @@ $room_modals_buffer = [];
                                                 </select>
                                             </div>
                                             <div class="mb-2">
-                                                <label class="form-label fw-semibold text-dark">Operational Status</label>
+                                                <label class="form-label fw-semibold text-dark">Status</label>
                                                 <select name="availability_status" class="form-select rounded-3" required>
                                                     <option value="Available" <?php echo ($room['availability_status'] == 'Available') ? 'selected' : ''; ?>>Available</option>
                                                     <option value="Occupied" <?php echo ($room['availability_status'] == 'Occupied') ? 'selected' : ''; ?>>Occupied</option>
@@ -268,7 +268,7 @@ foreach ($room_modals_buffer as $modal_html) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
             <div class="modal-header bg-darkbrown text-white py-3">
-                <h5 class="modal-title font-title fw-bold" id="addRoomModalLabel">Add New Hotel Room</h5>
+                <h5 class="modal-title font-title fw-bold" id="addRoomModalLabel">Add Room</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <form method="POST" action="">
@@ -278,9 +278,9 @@ foreach ($room_modals_buffer as $modal_html) {
                         <input type="number" name="room_number" class="form-control rounded-3" placeholder="e.g., 1001" required min="1">
                     </div>
                     <div class="mb-2">
-                        <label class="form-label fw-semibold text-dark">Room Configuration Tier</label>
+                        <label class="form-label fw-semibold text-dark">Room Type</label>
                         <select name="room_type" class="form-select rounded-3" required>
-                            <option value="" disabled selected>-- Select Tier Level --</option>
+                            <option value="" disabled selected>-- Select Room Type --</option>
                             <option value="Standard">Standard Room (₱4,500.00 / 2 Guests)</option>
                             <option value="Deluxe">Deluxe Room (₱8,599.00 / 4 Guests)</option>
                             <option value="Suite">Suite Room (₱14,999.00 / 8 Guests)</option>
