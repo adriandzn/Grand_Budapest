@@ -85,11 +85,6 @@
         'Guests are responsible for any damage to hotel property.'
     ];
 
-
-    // Payment Method
-    $GBpaymentmethod = $_POST['payment_method'];
-
-
     // When Submitted
     if (isset($_POST['book4-next'])) {
         
