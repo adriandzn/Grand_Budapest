@@ -1,3 +1,61 @@
+<?php
+    session_start();
+
+    if (isset($_POST['book1-next'])) {
+        $GBcheckin = $_POST['checkin'];
+        $GBcheckout = $_POST['checkout'];
+        
+        $checkinDate = new DateTime($GBcheckin);
+        $checkoutDate = new DateTime($GBcheckout);
+        $today = new DateTime(date("Y-m-d"));
+
+
+        if ($checkinDate < $today) {
+            ?>
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Check in date must start today.",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            });
+            </script>
+            <?php
+        } else if ($checkoutDate <= $checkinDate) {
+            ?>
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Check out date must be at least one day after the check in date.",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            });
+            </script>
+            <?php
+        } else {
+            $interval = $checkinDate->diff($checkoutDate);
+            $GBnights = $interval->days;
+
+            // SESSION VARIABLES
+            $_SESSION['GBcheckin'] = $GBcheckin;
+            $_SESSION['GBcheckout'] = $GBcheckout;
+            $_SESSION['GBnights'] = $GBnights;
+
+            header("location:book_2.php");
+        }
+
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +99,7 @@
             ?>
         </div>
 
-        <form action="book_2.php" method="post">
+        <form action="" method="post">
 
             <div class="bg-lightbrown rounded-5 my-5 p-5 shadow">
 
@@ -61,10 +119,10 @@
                         <label for="checkout" class="form-label font-body text-white">Check-out</label>
                         <input type="date" class="form-control rounded-5 border-0 py-3 px-4 shadow" id="checkout" name="checkout" required>
                     </div>
-
+                    
                     <div class="col-lg-2 col-12 d-flex align-items-end justify-content-center">
-                        <div class="rounded-5 py-3 px-4 font-body fw-bold font-darkbrown text-center bg-lightpink shadow">
-                            6 night/s
+                        <div id="displayNights" class="rounded-5 py-3 px-4 font-body fw-bold font-darkbrown text-center bg-lightpink shadow">
+                            0 night/s
                         </div>
                     </div>
 
@@ -89,8 +147,11 @@
                         <input type="submit" name="book1-next" class="btn pink-button font-title d-flex align-items-center px-5 py-2 shadow" value="Next" style=" min-width: 200px;">
                     </div>
                 </div>
+
             </div>
+
         </form>
+
     </div>
 
 
@@ -98,6 +159,30 @@
     <?php include 'footer.php'; ?>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const checkin = document.getElementById('checkin');
+        const checkout = document.getElementById('checkout');
+        const displayNights = document.getElementById('displayNights');
+
+        function calculateNights() {
+            const checkinDate = new Date(checkin.value);
+            const checkoutDate = new Date(checkout.value);
+
+            if (checkoutDate > checkinDate) {
+                const difference = (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24);
+
+                displayNights.textContent = difference + " night/s";
+            } else {
+                displayNights.textContent = "0 night/s";
+            }
+        }
+
+        checkin.addEventListener('change', calculateNights);
+        checkout.addEventListener('change', calculateNights);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 </html>

@@ -1,3 +1,55 @@
+<?php
+    session_start();
+
+    // STANDARD ROOM FORM
+    if (isset($_POST['standard-next'])) {
+        $GBadult = $_POST['standard-adult'];
+        $GBchildren = 0;
+        $GBextrapax = $_POST['standard-extrapax'];
+
+        // SESSION VARIABLES
+        $_SESSION['GBadult'] = $GBadult;
+        $_SESSION['GBchildren'] = $GBchildren;
+        $_SESSION['GBextrapax'] = $GBextrapax;
+        $_SESSION['GBroomtype'] = 'Standard';
+
+        header("location:book_3.php");
+    }
+
+
+    // DELUXE ROOM FORM
+    if (isset($_POST['deluxe-next'])) {
+        $GBadult = $_POST['deluxe-adult'];
+        $GBchildren = $_POST['deluxe-children'];
+        $GBextrapax = $_POST['deluxe-extrapax'];
+
+        // SESSION VARIABLES
+        $_SESSION['GBadult'] = $GBadult;
+        $_SESSION['GBchildren'] = $GBchildren;
+        $_SESSION['GBextrapax'] = $GBextrapax;
+        $_SESSION['GBroomtype'] = 'Deluxe';
+
+        header("location:book_3.php");
+    }
+
+
+    // SUITE ROOM FORM
+    if (isset($_POST['suite-next'])) {
+        $GBadult = $_POST['suite-adult'];
+        $GBchildren = $_POST['suite-children'];
+        $GBextrapax = $_POST['suite-extrapax'];
+
+        // SESSION VARIABLES
+        $_SESSION['GBadult'] = $GBadult;
+        $_SESSION['GBchildren'] = $GBchildren;
+        $_SESSION['GBextrapax'] = $GBextrapax;
+        $_SESSION['GBroomtype'] = 'Suite';
+
+        header("location:book_3.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,7 +227,8 @@
 
 
 
-        <!-- Standard Room Form -->
+
+        <!-- STANDARD ROOM FORM -->
         <div class="select-room bg-lightbrown rounded-5 my-5 p-5 shadow d-none" id="standard-form">
 
             <!-- Go Back Button -->
@@ -224,9 +277,10 @@
             </div>
 
             <!-- Number of Guests -->
-
             <div class="row bg-white rounded-5 shadow mt-5 p-4">
-                <form action="book_3.php" method="post">
+
+                <form action="" method="post">
+
                     <div class="row pt-2">
                         <div class="col font-title h4 fw-bold">Number of Guests</div>
                     </div>
@@ -235,8 +289,8 @@
                             <div class="row">
                                 <!-- Adult -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="adult" class="form-label font-body h5 fw-bold">Adults</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="adult" id="adult" required>
+                                    <label for="standard-adult" class="form-label font-body h5 fw-bold">Adults</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="standard-adult" id="standard-adult" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                     </select>
@@ -244,8 +298,8 @@
 
                                 <!-- Extra Pax -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="extra-pax" class="form-label font-body h5 fw-bold">Extra Pax</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="extra-pax" id="extra-pax" required>
+                                    <label for="standard-extrapax" class="form-label font-body h5 fw-bold">Extra Pax</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="standard-extrapax" id="standard-extrapax" required>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -260,17 +314,20 @@
 
                         <!-- Next Button -->
                         <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
-                            <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
+                            <input type="submit" value="Next" name="standard-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
                     </div>
+
                 </form>
+
             </div>
         </div>
 
 
 
-        <!-- Deluxe Room Form -->
+
+        <!-- DELUXE ROOM FORM -->
         <div class="select-room bg-lightbrown rounded-5 my-5 p-5 shadow d-none" id="deluxe-form">
 
             <!-- Go Back Button -->
@@ -319,9 +376,10 @@
             </div>
 
             <!-- Number of Guests -->
-
             <div class="row bg-white rounded-5 shadow mt-5 p-4">
-                <form action="book_3.php" method="post">
+
+                <form action="" method="post">
+
                     <div class="row pt-2">
                         <div class="col font-title h4 fw-bold">Number of Guests</div>
                     </div>
@@ -330,8 +388,8 @@
                             <div class="row">
                                 <!-- Adult -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="adult" class="form-label font-body h5 fw-bold">Adults</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="adult" id="adult" required>
+                                    <label for="deluxe-adult" class="form-label font-body h5 fw-bold">Adults</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="deluxe-adult" id="deluxe-adult" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                     </select>
@@ -339,9 +397,9 @@
 
                                 <!-- Children -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="children" class="form-label font-body h5 fw-bold">Children</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="children" id="children" required>
-                                        <option value="1">0</option>
+                                    <label for="deluxe-children" class="form-label font-body h5 fw-bold">Children</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="deluxe-children" id="deluxe-children" required>
+                                        <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                     </select>
@@ -349,8 +407,8 @@
 
                                 <!-- Extra Pax -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="extra-pax" class="form-label font-body h5 fw-bold">Extra Pax</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="extra-pax" id="extra-pax" required>
+                                    <label for="deluxe-extrapax" class="form-label font-body h5 fw-bold">Extra Pax</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="deluxe-extrapax" id="deluxe-extrapax" required>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -365,17 +423,20 @@
 
                         <!-- Next Button -->
                         <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
-                            <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
+                            <input type="submit" value="Next" name="deluxe-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
                     </div>
+
                 </form>
+
             </div>
         </div>
 
 
 
-        <!-- Suite Room Form -->
+
+        <!-- SUITE ROOM FORM -->
         <div class="select-room bg-lightbrown rounded-5 my-5 p-5 shadow d-none" id="suite-form">
 
             <!-- Go Back Button -->
@@ -424,9 +485,10 @@
             </div>
 
             <!-- Number of Guests -->
-
             <div class="row bg-white rounded-5 shadow mt-5 p-4">
-                <form action="book_3.php" method="post">
+
+                <form action="" method="post">
+
                     <div class="row pt-2">
                         <div class="col font-title h4 fw-bold">Number of Guests</div>
                     </div>
@@ -435,8 +497,8 @@
                             <div class="row">
                                 <!-- Adult -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="adult" class="form-label font-body h5 fw-bold">Adults</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="adult" id="adult" required>
+                                    <label for="suite-adult" class="form-label font-body h5 fw-bold">Adults</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="suite-adult" id="suite-adult" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -446,9 +508,9 @@
 
                                 <!-- Children -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="children" class="form-label font-body h5 fw-bold">Children</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="children" id="children" required>
-                                        <option value="1">0</option>
+                                    <label for="suite-children" class="form-label font-body h5 fw-bold">Children</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="suite-children" id="suite-children" required>
+                                        <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -458,8 +520,8 @@
 
                                 <!-- Extra Pax -->
                                 <div class="col d-flex flex-column justify-content-between">
-                                    <label for="extra-pax" class="form-label font-body h5 fw-bold">Extra Pax</label>
-                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="extra-pax" id="extra-pax" required>
+                                    <label for="suite-extrapax" class="form-label font-body h5 fw-bold">Extra Pax</label>
+                                    <select class="form-select rounded-pill bg-lightpink border-0 py-2 px-4 fw-bold" name="suite-extrapax" id="suite-extrapax" required>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -474,11 +536,13 @@
 
                         <!-- Next Button -->
                         <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
-                            <input type="submit" value="Next" name="book2-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
+                            <input type="submit" value="Next" name="suite-next" class="btn pink-button font-title px-5 py-2 shadow" style="width: 200px;">
                         </div>
 
                     </div>
+
                 </form>
+
             </div>
         </div>
 
