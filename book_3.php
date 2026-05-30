@@ -2,7 +2,7 @@
     session_start();
 
     if (isset($_POST['book3-next'])) {
-        $GBfullname = $_POST['firstName'] . " " . $_POST['lastName'];
+        $GBreservename = $_POST['firstName'] . " " . $_POST['lastName'];
         $GBgender = $_POST['gender'];
         $GBbirthday = $_POST['birthday'];
         $GBaddress = $_POST['address'];
@@ -11,7 +11,7 @@
         $GBrequest = $_POST['request'];
 
         // SESSION VARIABLES
-        $_SESSION['GBfullname'] = $GBfullname;
+        $_SESSION['GBreservename'] = $GBreservename;
         $_SESSION['GBgender'] = $GBgender;
         $_SESSION['GBbirthday'] = $GBbirthday;
         $_SESSION['GBaddress'] = $GBaddress;
@@ -176,13 +176,13 @@
                                         <option value="" selected disabled>
                                             Select Gender
                                         </option>
-                                        <option value="male">
+                                        <option value="Male">
                                             Male
                                         </option>
-                                        <option value="female">
+                                        <option value="Female">
                                             Female
                                         </option>
-                                        <option value="others">
+                                        <option value="Others">
                                             Others
                                         </option>
                                     </select>

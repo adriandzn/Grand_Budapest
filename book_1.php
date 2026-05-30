@@ -17,7 +17,7 @@
                 Swal.fire({
                     position: "center",
                     icon: "error",
-                    title: "Check in date must start today.",
+                    title: "Check in date must start at least from today.",
                     showConfirmButton: false,
                     timer: 3000
                 });

@@ -1,6 +1,26 @@
 <?php
+    require_once "dbaseconnection.php";
+    session_start();
+
+    // Computations
+    if ($_SESSION['GBroomtype'] == 'Standard') {
+        $GAroomprice = 4500;
+    } else if ($_SESSION['GBroomtype'] == 'Deluxe') {
+        $GAroomprice = 8599;
+    } else if ($_SESSION['GBroomtype'] == 'Suite') {
+        $GAroomprice = 14999;
+    }
+
+    $GAtotalguests = $_SESSION['GBadult'] + $_SESSION['GBchildren'] + $_SESSION['GBextrapax'];
+
+    $GAtotalroomprice = $GAroomprice * $_SESSION['GBnights'];
+    $GAaddguestfee = $_SESSION['GBextrapax'] * 1500;
+    $GAtotalamount = $GAtotalroomprice + $GAaddguestfee;
+
+
+    // Table Display Arrays
     $personalLabels = [
-        'Name',
+        'Full Name',
         'Gender',
         'Birth Date',
         'Email',
@@ -9,36 +29,38 @@
     ];
 
     $personalValues = [
-        'Adrian D. Dizon',
-        'Male',
-        'February 28, 2005',
-        'adrian.dizon.cics@ust.edu.ph',
-        '09123456789',
-        'Brookshire, Capital City'
+        $_SESSION['GBreservename'],
+        $_SESSION['GBgender'],
+        date_format(date_create($_SESSION['GBbirthday']), "F j, Y"),
+        $_SESSION['GBemail'],
+        $_SESSION['GBcontact'],
+        $_SESSION['GBaddress'] 
     ];
 
     $reservationLabels = [
         'Check-in Date',
         'Check-out Date',
-        'No. of Days',
+        'No. of Nights',
         'Room Type',
         'Room Price',
         'Guests',
+        'Special Request',
         'Total Room Price',
         'Additional Guest Fee',
         'Total Amount'
     ];
-
+    
     $reservationValues = [
-        'May 25, 2026',
-        'May 31, 2026',
-        '6 days',
-        'Suite Room',
-        '₱14,999.00 per night',
-        'Adult: 4<br>Children: 4<br>Additional Guest: 0<br>TOTAL: 8',
-        '₱89,994.00',
-        'N/A',
-        '<span class="text-success fw-bold">₱89,994.00</span>'
+        date_format(date_create($_SESSION['GBcheckin']), "F j, Y"),
+        date_format(date_create($_SESSION['GBcheckout']), "F j, Y"),
+        $_SESSION['GBnights'] . ' night/s',
+        $_SESSION['GBroomtype'] . ' Room',
+        '₱ ' . number_format($GAroomprice, 2),
+        'Adult: ' . $_SESSION['GBadult'] . '<br>Children: ' . $_SESSION['GBchildren'] . '<br>Additional Guest: ' . $_SESSION['GBextrapax'] . '<br>TOTAL: ' . $GAtotalguests,
+        $_SESSION['GBrequest'],
+        '₱ ' . number_format($GAtotalroomprice, 2),
+        '₱ ' . number_format($GAaddguestfee, 2),
+        '<span class="text-success fw-bold">₱ ' . number_format($GAtotalamount, 2) . '</span>'
     ];
 
     $policyTitles = [
@@ -62,6 +84,42 @@
         'Pets are not allowed within the hotel.',
         'Guests are responsible for any damage to hotel property.'
     ];
+
+
+    // Payment Method
+    $GBpaymentmethod = $_POST['payment_method'];
+
+
+    // When Submitted
+    if (isset($_POST['book4-next'])) {
+        
+
+        // String Query and Transfer to MySQL
+        $reservesql = "INSERT INTO tbl_reservationdetails (user_id, check_in_date, check_out_date, total_price, reservation_status, full_name, gender, birth_date, address, email, contact, special_request) VALUES (". $_SESSION['GBid'] .", '". $_SESSION['GBcheckin'] ."', '". $_SESSION['GBcheckout'] ."', $GAtotalamount, 'Pending', '". $_SESSION['GBreservename'] ."', '". $_SESSION['GBgender']  ."', '". $_SESSION['GBbirthday'] ."', '". $_SESSION['GBaddress']  ."', '". $_SESSION['GBemail'] ."', ". $_SESSION['GBcontact']  .", '". $_SESSION['GBrequest'] ."')";
+
+        $result = $conn -> query($reservesql);
+
+        // Check if saved
+        if ($result == True) {
+            ?>
+                <script>
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Success!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                </script>
+            <?php
+            header("location:acknowledgement.php");
+        } else {
+            echo $conn -> error;
+        }
+
+    }
+
+
 ?>
 
 
@@ -211,7 +269,7 @@
         </div>
 
 
-        <form action="acknowledgement.php" method="post">
+        <form action="" method="post">
 
             <!-- POLICIES -->
             <div class="row justify-content-center mb-4">
@@ -245,7 +303,7 @@
 
 
                         <div class="pt-5 form-check d-flex align-items-center gap-3">
-                            <input type="checkbox" name="agree" id="agree" class="form-check-input p-3 m-0">
+                            <input type="checkbox" name="agree" id="agree" class="form-check-input p-3 m-0" required>
 
                             <label for="agree" class="form-check-label font-body fw-bold h5 m-0">
                                 I have read and agreed to the policies of the hotel.
@@ -272,7 +330,7 @@
 
                             <!-- CARDS -->
                             <label class="d-flex align-items-center gap-4 px-4 py-3 border-bottom bg-light">
-                                <input type="radio" name="payment_method" value="card" class="form-check-input m-0">
+                                <input type="radio" name="payment_method" value="Card" class="form-check-input m-0" required>
 
                                 <div class="d-flex align-items-center gap-5">
                                     <img src="images/payment-visa.png" alt="Visa" style="height:20px;">
@@ -283,21 +341,21 @@
 
                             <!-- MAYA -->
                             <label class="d-flex align-items-center gap-4 px-4 py-3 border-bottom bg-light">
-                                <input type="radio" name="payment_method" value="maya" class="form-check-input m-0">
+                                <input type="radio" name="payment_method" value="Maya" class="form-check-input m-0" required>
                                 <img src="images/payment-maya.png" alt="Maya" style="height:20px;">
                             </label>
 
 
                             <!-- QRPH -->
                             <label class="d-flex align-items-center gap-4 px-4 py-3 border-bottom bg-light">
-                                <input type="radio" name="payment_method" value="qrph" class="form-check-input m-0">
+                                <input type="radio" name="payment_method" value="QRPh" class="form-check-input m-0" required>
                                 <img src="images/payment-qrph.png" alt="QRPH" style="height:20px;">
                             </label>
 
 
                             <!-- GCASH -->
                             <label class="d-flex align-items-center gap-4 px-4 py-3 bg-light">
-                                <input type="radio" name="payment_method" value="gcash" class="form-check-input m-0">
+                                <input type="radio" name="payment_method" value="GCash" class="form-check-input m-0" required>
                                 <img src="images/payment-gcash.png" alt="GCash" style="height:20px;">
                             </label>
 
