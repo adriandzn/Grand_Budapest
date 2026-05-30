@@ -44,13 +44,14 @@
     $GBuserotp = $_POST['otp'];
 
 
-    $otpsql = "Select * from tbl_userdetails where otp = '".$GBuserotp."'";
+    $otpsql = "SELECT * FROM tbl_userdetails where otp = '" . $GBuserotp . "'";
     $result = $conn->query($otpsql);
 
 
     if ($result->num_rows ==1) {
-        $updatesql = "Update tbl_userdetails SET otp = NULL, status = 'Active' WHERE otp = '".$GBuserotp."'";
+        $updatesql = "UPDATE tbl_userdetails SET otp = NULL, status = 'Active' WHERE otp = '" . $GBuserotp . "'";
         $conn->query($updatesql);
+
         ?>
         <script>
             Swal.fire({
@@ -64,6 +65,7 @@
             })
         </script>
         <?php
+
     } else {
         //if no otp matched
         ?>
@@ -79,7 +81,5 @@
         <?php
     }
 
-
     }
 ?>
-
