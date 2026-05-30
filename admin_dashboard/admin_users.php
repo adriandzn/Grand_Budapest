@@ -208,6 +208,7 @@ $users = $conn->query($user_sql);
                                                 <select name="role" class="form-select rounded-3" required>
                                                     <option value="Admin" <?php echo ($user['role'] == 'Admin')?'selected':''; ?>>Admin</option>
                                                     <option value="Employee" <?php echo ($user['role'] == 'Employee')?'selected':''; ?>>Employee</option>
+                                                    <option value="Customer" <?php echo ($user['role'] == 'Customer')?'selected':''; ?>>Customer</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
@@ -269,6 +270,7 @@ $users = $conn->query($user_sql);
                                 <option value="" disabled selected>-- Select Role Access --</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Employee">Employee</option>
+                                <option value="Customer">Customer</option>
                             </select>
                         </div>
                         <div class="col-md-6">
