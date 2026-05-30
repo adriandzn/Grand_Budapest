@@ -24,11 +24,25 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
 // 4. STATISTICAL COMPILATION: Cache metric blocks cleanly for the home view
 $totalRooms = 0; $totalUsers = 0; $totalReservations = 0; $pendingReservations = 0;
+$recentReservations = null; $recentLogs = null; $activeStaff = null;
+
 if ($page == 'dashboard') {
-    $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'];
-    $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM tbl_userdetails")->fetch_assoc()['total'];
-    $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'];
-    $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'];
+    // Core KPIs
+    $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
+    $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM tbl_userdetails")->fetch_assoc()['total'] ?? 0;
+    $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
+    $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
+
+    // Table dataset 1: Fixed safe query for recent reservations (removed broken inner join causing errors)
+    $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
+
+    // Table dataset 2: System audit trail logs
+    $recentLogs = $conn->query("SELECT l.*, u.full_name FROM tbl_logs l 
+                                INNER JOIN tbl_userdetails u ON l.user_id = u.user_id 
+                                ORDER BY l.log_id DESC LIMIT 5");
+
+    // Table dataset 3: Currently active operators registry
+    $activeStaff = $conn->query("SELECT user_id, full_name, username, role FROM tbl_userdetails WHERE status='Active' ORDER BY user_id DESC LIMIT 5");
 }
 ?>
 <!DOCTYPE html>
@@ -98,45 +112,112 @@ if ($page == 'dashboard') {
                         <div class="col-6 col-md-3"><div class="bg-white rounded-4 shadow-sm p-4 h-100"><div class="font-title fw-bold fs-2 text-darkbrown"><?php echo $totalUsers; ?></div><div class="text-muted">Users</div></div></div>
                     </div>
 
-                    <div class="row g-4">
+                    <div class="row g-4 mb-4">
                         <div class="col-12 col-xl-8">
                             <div class="bg-white rounded-4 shadow-sm p-4 h-100">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h3 class="font-title fw-bold mb-1">Recent Reservations</h3>
+                                    <h3 class="font-title fw-bold mb-1 text-darkbrown">Recent Reservations</h3>
                                     <a href="?page=reservations" class="btn btn-sm btn-outline-secondary rounded-pill px-3">View all</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-middle">
                                         <thead>
-                                            <tr><th>Guest</th><th>Room</th><th>Check-in</th><th>Status</th><th class="text-end">Total</th></tr>
+                                            <tr><th>Guest Name</th><th>Contact / Email</th><th>Check-In Date</th><th>Status</th><th class="text-end">Total Price</th></tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            $sql = "SELECT r.*, rm.room_type FROM tbl_reservationdetails r 
-                                                    INNER JOIN tbl_roomdetails rm ON r.room_id = rm.room_id 
-                                                    ORDER BY r.reservation_id DESC LIMIT 5";
-                                            $result = $conn->query($sql);
-                                            while($row = $result->fetch_assoc()) {
-                                            ?>
-                                            <tr>
-                                                <td class="fw-bold"><?php echo htmlspecialchars($row['full_name']); ?></td>
-                                                <td><?php echo htmlspecialchars($row['room_type']); ?></td>
-                                                <td><?php echo htmlspecialchars($row['check_in_date']); ?></td>
-                                                <td><span class="badge bg-secondary px-3 py-2 rounded-pill"><?php echo htmlspecialchars($row['reservation_status']); ?></span></td>
-                                                <td class="text-end fw-semibold">₱<?php echo number_format($row['total_price'], 2); ?></td>
-                                            </tr>
-                                            <?php } ?>
+                                            <?php if($recentReservations && $recentReservations->num_rows > 0): ?>
+                                                <?php while($row = $recentReservations->fetch_assoc()) { ?>
+                                                <tr>
+                                                    <td class="fw-bold text-dark"><?php echo htmlspecialchars($row['full_name']); ?></td>
+                                                    <td><small><?php echo htmlspecialchars($row['email']); ?></small></td>
+                                                    <td><small class="font-mono"><?php echo htmlspecialchars($row['check_in_date']); ?></small></td>
+                                                    <td>
+                                                        <?php if($row['reservation_status'] === 'Confirmed'): ?>
+                                                            <span class="badge bg-success px-3 py-2 rounded-pill">Confirmed</span>
+                                                        <?php else: ?>
+                                                            <span class="badge bg-secondary px-3 py-2 rounded-pill"><?php echo htmlspecialchars($row['reservation_status']); ?></span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td class="text-end fw-semibold">₱<?php echo number_format($row['total_price'], 2); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                            <?php else: ?>
+                                                <tr><td colspan="5" class="text-center text-muted py-3">No reservation records located.</td></tr>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-12 col-xl-4">
                             <div class="bg-brown rounded-4 shadow-sm p-4 text-white h-100">
                                 <h3 class="font-title fw-bold mb-4">Quick Actions</h3>
                                 <div class="d-grid gap-3">
                                     <a href="?page=reservations" class="btn btn-outline-light rounded-4 py-3 text-start">Manage Reservations</a>
                                     <a href="?page=rooms" class="btn btn-outline-light rounded-4 py-3 text-start">Update Room Status</a>
+                                    <a href="?page=users" class="btn btn-outline-light rounded-4 py-3 text-start">Manage System Users</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-12 col-xl-6">
+                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="font-title fw-bold text-darkbrown mb-0">System Activity Feed</h4>
+                                    <a href="?page=logs" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Audit Logs</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-sm">
+                                        <thead class="table-light">
+                                            <tr><th>Operator Name</th><th>Action Log Entry Payload</th><th>Timestamp</th></tr>
+                                        </thead>
+                                        <tbody style="font-size: 0.85rem;">
+                                            <?php if($recentLogs && $recentLogs->num_rows > 0): ?>
+                                                <?php while($log = $recentLogs->fetch_assoc()) { ?>
+                                                <tr>
+                                                    <td class="fw-bold text-dark"><?php echo htmlspecialchars($log['full_name']); ?></td>
+                                                    <td><code><?php echo htmlspecialchars($log['action']); ?></code></td>
+                                                    <td class="text-muted font-mono" style="font-size: 0.75rem;"><?php echo date('m/d h:i A', strtotime($log['date_time'])); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                            <?php else: ?>
+                                                <tr><td colspan="3" class="text-center text-muted py-3">No recent system events reported.</td></tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-6">
+                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="font-title fw-bold text-darkbrown mb-0">On-Duty Operators</h4>
+                                    <a href="?page=users" class="btn btn-sm btn-outline-secondary rounded-pill px-3">All Profiles</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-sm">
+                                        <thead class="table-light">
+                                            <tr><th>ID Ref</th><th>Full Name</th><th>Username Handle</th><th>Clearance Tier</th></tr>
+                                        </thead>
+                                        <tbody style="font-size: 0.85rem;">
+                                            <?php if($activeStaff && $activeStaff->num_rows > 0): ?>
+                                                <?php while($staff = $activeStaff->fetch_assoc()) { ?>
+                                                <tr>
+                                                    <td class="text-muted font-mono">#<?php echo $staff['user_id']; ?></td>
+                                                    <td class="fw-bold text-dark"><?php echo htmlspecialchars($staff['full_name']); ?></td>
+                                                    <td class="text-secondary">@<?php echo htmlspecialchars($staff['username']); ?></td>
+                                                    <td><span class="badge bg-dark rounded-pill px-2.5 py-1 text-uppercase" style="font-size:0.7rem;"><?php echo htmlspecialchars($staff['role']); ?></span></td>
+                                                </tr>
+                                                <?php } ?>
+                                            <?php else: ?>
+                                                <tr><td colspan="4" class="text-center text-muted py-3">No active staff structures found.</td></tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +229,7 @@ if ($page == 'dashboard') {
                     if (in_array($page, $allowed_pages)) {
                         include("admin_dashboard/admin_" . $page . ".php");
                     } else {
-                        echo "<div class='alert alert-danger'>Page not found.</div>";
+                        echo "<div class='alert alert-danger rounded-4 shadow-sm'>Page architecture blueprint not found.</div>";
                     }
                 endif; ?>
 

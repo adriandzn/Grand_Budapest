@@ -1,15 +1,129 @@
 <?php
+// ==========================================
+// 1. BACKEND USER INSERTION (ADD) LOGIC
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_user'])) {
+    $full_name = $conn->real_escape_string($_POST['full_name']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $_POST['password']; 
+    $role = $conn->real_escape_string($_POST['role']);
+    $status = $conn->real_escape_string($_POST['status']);
+
+    // Standard institutional security protocol: Hash passwords securely before database storage
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+    // Double check that usernames are unique to prevent collisions
+    $check_user = $conn->query("SELECT * FROM tbl_userdetails WHERE username = '$username' OR email = '$email'");
+    if ($check_user->num_rows > 0) {
+        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Error!</strong> Username or Email already exists in the system.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
+    } else {
+        // Explicitly including password column injection safely
+        $insert_sql = "INSERT INTO tbl_userdetails (full_name, email, username, password, role, status) 
+                       VALUES ('$full_name', '$email', '$username', '$hashed_password', '$role', '$status')";
+        
+        if ($conn->query($insert_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Registered new corporate account profile: " . $username . " (" . $role . ")";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                    <strong>Success!</strong> Account user profile ['.$username.'] added successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>';
+        }
+    }
+}
+
+// ==========================================
+// 2. BACKEND USER UPDATE (EDIT) LOGIC
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_user'])) {
+    $target_id = intval($_POST['user_id']);
+    $full_name = $conn->real_escape_string($_POST['full_name']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $username = $conn->real_escape_string($_POST['username']);
+    $role = $conn->real_escape_string($_POST['role']);
+    $status = $conn->real_escape_string($_POST['status']);
+
+    // Separate password logic: Only update the password field if the user typed something into it
+    $password_update_string = "";
+    if (!empty($_POST['password'])) {
+        $new_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $password_update_string = ", password = '$new_hash'";
+    }
+
+    $update_sql = "UPDATE tbl_userdetails SET 
+                    full_name = '$full_name', email = '$email', username = '$username', 
+                    role = '$role', status = '$status' $password_update_string 
+                   WHERE user_id = $target_id";
+    
+    if ($conn->query($update_sql)) {
+        if (isset($_SESSION['GBid'])) {
+            $user_id = $_SESSION['GBid'];
+            $log_action = "Updated user profile info metrics for Operator Account ID #$target_id";
+            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        }
+        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Success!</strong> User system operational data modified.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
+    }
+}
+
+// ==========================================
+// 3. BACKEND USER DELETION LOGIC (NEW)
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_user'])) {
+    $target_id = intval($_POST['user_id']);
+
+    // Prevent a user from accidentally deleting their own currently logged-in account session
+    if (isset($_SESSION['GBid']) && $_SESSION['GBid'] == $target_id) {
+        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Action Denied:</strong> You cannot delete your own currently active profile session.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
+    } else {
+        // Fetch username profile handle before executing drop query for audit logging clarity
+        $fetch_res = $conn->query("SELECT username FROM tbl_userdetails WHERE user_id = $target_id");
+        $target_username = ($fetch_res && $fetch_res->num_rows > 0) ? $fetch_res->fetch_assoc()['username'] : "Unknown Account";
+
+        $delete_sql = "DELETE FROM tbl_userdetails WHERE user_id = $target_id";
+        
+        if ($conn->query($delete_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Permanently dropped operator account profile: " . $target_username . " (ID #$target_id)";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                    <strong>Success!</strong> User account registry profile ['.$target_username.'] dropped permanently.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+                    <strong>Database Error:</strong> Unable to complete row delete query. ' . htmlspecialchars($conn->error) . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>';
+        }
+    }
+}
+
+// ==========================================
+// 4. SEARCH PROCESSING
+// ==========================================
 $search_query = "";
 $user_sql = "SELECT * FROM tbl_userdetails";
-
 if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
     $search_query = $conn->real_escape_string($_POST['searchinput']);
     $user_sql .= " WHERE user_id LIKE '%$search_query%' 
                    OR full_name LIKE '%$search_query%' 
-                   OR email LIKE '%$search_query%' 
                    OR username LIKE '%$search_query%' 
-                   OR role LIKE '%$search_query%' 
-                   OR status LIKE '%$search_query%'";
+                   OR role LIKE '%$search_query%'";
 }
 $user_sql .= " ORDER BY user_id DESC";
 $users = $conn->query($user_sql);
@@ -18,10 +132,15 @@ $users = $conn->query($user_sql);
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
     <div class="font-title text-darkbrown fs-2 fw-bold">User Management</div>
     
-    <form method="POST" action="" class="d-flex gap-2 w-100 mobile-w-auto" style="max-width: 400px;">
-        <input type="search" name="searchinput" value="<?php echo isset($_POST['searchinput']) ? htmlspecialchars($_POST['searchinput']) : ''; ?>" placeholder="Search user profile fields..." class="form-control rounded-pill border-secondary shadow-sm">
-        <button type="submit" name="btnsearch" class="btn pink-button text-dark px-4 rounded-pill fw-semibold shadow-sm">Search</button>
-    </form>
+    <div class="d-flex gap-2 w-100 mobile-w-auto justify-content-md-end" style="max-width: 600px;">
+        <form method="POST" action="" class="d-flex gap-2 flex-grow-1">
+            <input type="search" name="searchinput" value="<?php echo isset($_POST['searchinput']) ? htmlspecialchars($_POST['searchinput']) : ''; ?>" placeholder="Search system profiles..." class="form-control rounded-pill border-secondary shadow-sm">
+            <button type="submit" name="btnsearch" class="btn pink-button text-dark px-4 rounded-pill fw-semibold shadow-sm">Search</button>
+        </form>
+        <button type="button" class="btn btn-dark bg-darkbrown text-white px-4 rounded-pill fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            + New Operator Account
+        </button>
+    </div>
 </div>
 
 <div class="bg-white rounded-4 shadow-sm p-4">
@@ -32,10 +151,10 @@ $users = $conn->query($user_sql);
                     <tr>
                         <th>User ID</th>
                         <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Role</th>
+                        <th>Email / Username</th>
+                        <th>Role Access Level</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,8 +162,7 @@ $users = $conn->query($user_sql);
                     <tr>
                         <td>#<?php echo $user['user_id']; ?></td>
                         <td class="fw-bold"><?php echo htmlspecialchars($user['full_name']); ?></td>
-                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                        <td><?php echo htmlspecialchars($user['username']); ?></td>
+                        <td><?php echo htmlspecialchars($user['email']); ?><br><small class="text-muted">@<?php echo htmlspecialchars($user['username']); ?></small></td>
                         <td><span class="badge bg-dark px-3 py-1"><?php echo htmlspecialchars($user['role']); ?></span></td>
                         <td>
                             <?php if($user['status'] == 'Active'): ?>
@@ -53,12 +171,131 @@ $users = $conn->query($user_sql);
                                 <span class="badge bg-warning text-dark rounded-pill px-3 py-2"><?php echo htmlspecialchars($user['status']); ?></span>
                             <?php endif; ?>
                         </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editUserModal_<?php echo $user['user_id']; ?>">
+                                    Edit Profile
+                                </button>
+                                
+                                <form method="POST" action="" onsubmit="return confirm('CRITICAL WARNING: Are you entirely sure you want to permanently delete the profile container for user account \'<?php echo htmlspecialchars($user['username'], ENT_QUOTES); ?>\'? All record structures linked with this operator profile metadata will be lost.');" class="m-0">
+                                    <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                                    <button type="submit" name="btn_delete_user" class="btn btn-sm btn-danger rounded-pill px-3">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
+
+                    <div class="modal fade" id="editUserModal_<?php echo $user['user_id']; ?>" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content rounded-4 border-0 shadow-lg">
+                                <div class="modal-header bg-primary text-white py-3">
+                                    <h5 class="modal-title font-title fw-bold">Modify User Registry Profile</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form method="POST" action="">
+                                    <div class="modal-body p-4">
+                                        <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Full Legal Name</label>
+                                            <input type="text" name="full_name" value="<?php echo htmlspecialchars($user['full_name']); ?>" class="form-control rounded-3" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Work Email Address</label>
+                                            <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" class="form-control rounded-3" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Login Username Identifier</label>
+                                            <input type="text" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" class="form-control rounded-3" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Change Password (Optional)</label>
+                                            <input type="password" name="password" class="form-control rounded-3" placeholder="Leave blank to preserve current password structure">
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-semibold">System Authorization Role</label>
+                                                <select name="role" class="form-select rounded-3" required>
+                                                    <option value="Admin" <?php echo ($user['role'] == 'Admin')?'selected':''; ?>>Admin (Full Clearance)</option>
+                                                    <option value="Employee" <?php echo ($user['role'] == 'Employee')?'selected':''; ?>>Employee (Staff View)</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-semibold">Operational Status</label>
+                                                <select name="status" class="form-select rounded-3" required>
+                                                    <option value="Active" <?php echo ($user['status'] == 'Active')?'selected':''; ?>>Active Authorized State</option>
+                                                    <option value="Inactive" <?php echo ($user['status'] == 'Inactive')?'selected':''; ?>>Inactive / Blocked Access</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
+                                        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="btn_update_user" class="btn btn-primary fw-bold rounded-pill px-4 shadow-sm">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
     <?php else: ?>
-        <div class="text-center py-4 text-muted font-body">No matching users found.</div>
+        <div class="text-center py-4 text-muted font-body">No matching user records located.</div>
     <?php endif; ?>
+</div>
+
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-header bg-darkbrown text-white py-3">
+                <h5 class="modal-title font-title fw-bold">Provision New Access Account</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="">
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-dark">Full Operator Name</label>
+                        <input type="text" name="full_name" class="form-control rounded-3" placeholder="Ex: Jane Miller" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-dark">Email Contact Address</label>
+                        <input type="email" name="email" class="form-control rounded-3" placeholder="miller.j@hoteldomain.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-dark">Login Username Account Handle</label>
+                        <input type="text" name="username" class="form-control rounded-3" placeholder="janemiller2024" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-dark">Access Passphrase Password</label>
+                        <input type="password" name="password" class="form-control rounded-3" placeholder="••••••••••••" required>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold text-dark">Operational Role Access</label>
+                            <select name="role" class="form-select rounded-3" required>
+                                <option value="" disabled selected>-- Select Tier Level --</option>
+                                <option value="Admin">Admin (Full Administrative Configuration Access)</option>
+                                <option value="Employee">Employee (Standard Operating View Actions)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold text-dark">System Deployment State</label>
+                            <select name="status" class="form-select rounded-3" required>
+                                <option value="Active" selected>Active State Deployment</option>
+                                <option value="Inactive">Suspended Authorization State</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-toggle="modal">Cancel</button>
+                    <button type="submit" name="btn_save_user" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Deploy Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

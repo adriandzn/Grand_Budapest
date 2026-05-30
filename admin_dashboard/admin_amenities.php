@@ -57,7 +57,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])
 }
 
 // ==========================================
-// 3. SEARCH FILTRATION PROCESSING
+// 3. BACKEND AMENITY DELETION LOGIC (NEW)
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])) {
+    $amenity_id = intval($_POST['amenity_id']);
+
+    // Fetch the name of the amenity before deleting it for logging/auditing purposes
+    $fetch_res = $conn->query("SELECT amenity_name FROM tbl_amenitydetails WHERE amenity_id = $amenity_id");
+    $target_name = ($fetch_res && $fetch_res->num_rows > 0) ? $fetch_res->fetch_assoc()['amenity_name'] : "Unknown Amenity";
+
+    $delete_sql = "DELETE FROM tbl_amenitydetails WHERE amenity_id = $amenity_id";
+    
+    if ($conn->query($delete_sql)) {
+        if (isset($_SESSION['GBid'])) {
+            $user_id = $_SESSION['GBid'];
+            $log_action = "Permanently deleted Amenity Facility: " . $target_name . " (ID #$amenity_id)";
+            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        }
+        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Success!</strong> Amenity ['.$target_name.'] has been permanently dropped from the database.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
+    } else {
+        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Database Error:</strong> Unable to wipe entry row. ' . htmlspecialchars($conn->error) . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
+    }
+}
+
+// ==========================================
+// 4. SEARCH FILTRATION PROCESSING
 // ==========================================
 $search_query = "";
 $amenity_sql = "SELECT * FROM tbl_amenitydetails";
@@ -95,7 +125,7 @@ $amenities = $conn->query($amenity_sql);
                         <th>Amenity Name</th>
                         <th>Description</th>
                         <th>Price Per Use</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,9 +136,18 @@ $amenities = $conn->query($amenity_sql);
                         <td><?php echo htmlspecialchars($amn['description']); ?></td>
                         <td>₱<?php echo number_format($amn['price_per_use'], 2); ?></td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editAmenityModal_<?php echo $amn['amenity_id']; ?>">
-                                Edit
-                            </button>
+                            <div class="d-flex gap-2 justify-content-center">
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editAmenityModal_<?php echo $amn['amenity_id']; ?>">
+                                    Edit
+                                </button>
+                                
+                                <form method="POST" action="" onsubmit="return confirm('Are you completely sure you want to permanently delete the amenity \'<?php echo htmlspecialchars($amn['amenity_name'], ENT_QUOTES); ?>\'? This action cannot be reversed.');" class="m-0">
+                                    <input type="hidden" name="amenity_id" value="<?php echo $amn['amenity_id']; ?>">
+                                    <button type="submit" name="btn_delete_amenity" class="btn btn-sm btn-danger rounded-pill px-3">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
 

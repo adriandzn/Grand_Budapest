@@ -1,5 +1,32 @@
 <?php
 // ==========================================
+// 0. BACKEND ROOM DELETION LOGIC (NEW)
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
+    $room_id = intval($_POST['room_id']);
+    
+    $stmt = $conn->prepare("DELETE FROM tbl_roomdetails WHERE room_id = ?");
+    $stmt->bind_param("i", $room_id);
+    
+    if ($stmt->execute()) {
+        if (isset($_SESSION['GBid'])) {
+            $user_id = $_SESSION['GBid'];
+            $log_action = "Permanently Deleted Room ID #$room_id";
+            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        }
+        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Success!</strong> Room record successfully deleted.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
+    } else {
+        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Database Error!</strong> Cannot delete room. It is likely linked to active guest reservations.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
+    }
+}
+
+// ==========================================
 // 1. BACKEND ROOM ADDITION LOGIC
 // ==========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
@@ -61,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
         $capacity = 8; $price = 14999.00;
     }
 
-    // Ensure we aren't changing our room number to one that belongs to a different room
     $check_room = $conn->query("SELECT * FROM tbl_roomdetails WHERE room_number = $room_number AND room_id != $room_id");
     if ($check_room->num_rows > 0) {
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
@@ -136,7 +162,7 @@ $rooms = $conn->query($rooms_sql);
                         <th>Capacity</th>
                         <th>Price/Night</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th class="text-end">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,10 +181,19 @@ $rooms = $conn->query($rooms_sql);
                                 <span class="badge bg-danger rounded-pill px-3 py-2"><?php echo htmlspecialchars($room['availability_status']); ?></span>
                             <?php endif; ?>
                         </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editRoomModal_<?php echo $room['room_id']; ?>">
-                                Edit
-                            </button>
+                        <td class="text-end">
+                            <div class="d-inline-flex gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editRoomModal_<?php echo $room['room_id']; ?>">
+                                    Edit
+                                </button>
+                                
+                                <form method="POST" action="" onsubmit="return confirm('Are you sure you want to delete Room #<?php echo $room['room_number']; ?>?');" class="m-0">
+                                    <input type="hidden" name="room_id" value="<?php echo $room['room_id']; ?>">
+                                    <button type="submit" name="btn_delete_room" class="btn btn-sm btn-danger rounded-pill px-3">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
 
@@ -172,7 +207,6 @@ $rooms = $conn->query($rooms_sql);
                                 <form method="POST" action="">
                                     <div class="modal-body p-4">
                                         <input type="hidden" name="room_id" value="<?php echo $room['room_id']; ?>">
-                                        
                                         <div class="mb-3">
                                             <label class="form-label fw-semibold text-dark">Room Number</label>
                                             <input type="number" name="room_number" value="<?php echo htmlspecialchars($room['room_number']); ?>" class="form-control rounded-3" required min="1">
@@ -222,7 +256,7 @@ $rooms = $conn->query($rooms_sql);
                 <div class="modal-body p-4">
                     <div class="mb-3">
                         <label class="form-label fw-semibold text-dark">Room Number</label>
-                        <input type="number" name="room_number" class="form-control rounded-3" placeholder="e.g., 1001" required min="4">
+                        <input type="number" name="room_number" class="form-control rounded-3" placeholder="e.g., 1001" required min="1">
                     </div>
                     <div class="mb-2">
                         <label class="form-label fw-semibold text-dark">Room Configuration Tier</label>
