@@ -52,6 +52,7 @@ function send_verification($fullname, $email, $message){
             });
         </script>
         ";
+        
 
     } catch (Exception $e) {
 

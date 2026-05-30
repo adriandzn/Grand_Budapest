@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -382,6 +386,7 @@
 
 <?php
     require_once "contactemail.php";
+    require_once "dbaseconnection.php";
 
     if (isset($_POST['submit'])) {
 
@@ -389,7 +394,10 @@
         $GBemail = $_POST['email'];
         $GBmessage = $_POST['message'];
 
-        send_verification($GBfullname, $GBemail, $GBmessage);
-    }
+        // LOGS - Sent Contact Form
+        $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Sent Contact Form', NOW())";
+        $conn->query($logsql);
 
+        send_verification($GBfullname, $GBemail, $GBmessage);        
+    }
 ?>
