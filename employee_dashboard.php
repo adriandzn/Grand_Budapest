@@ -83,10 +83,12 @@ if ($page == 'dashboard') {
                     </div>
 
                     <nav class="d-grid gap-3">
-                        <a href="?page=dashboard" class="btn <?php echo $page == 'dashboard' ? 'btn-light text-darkbrown' : 'pink-button text-dark'; ?> py-3 fw-semibold">Dashboard</a>
-                        <a href="?page=rooms" class="btn <?php echo $page == 'rooms' ? 'btn-light text-darkbrown' : 'pink-button text-dark'; ?> py-3 fw-semibold">Rooms</a>
-                        <a href="?page=reservations" class="btn <?php echo $page == 'reservations' ? 'btn-light text-darkbrown' : 'pink-button text-dark'; ?> py-3 fw-semibold">Reservations</a>
-                        <a href="?page=amenities" class="btn <?php echo $page == 'amenities' ? 'btn-light text-darkbrown' : 'pink-button text-dark'; ?> py-3 fw-semibold">Amenities</a>
+                        <a href="?page=dashboard" class="btn <?php echo $page == 'dashboard' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Dashboard</a>
+                        <a href="?page=rooms" class="btn <?php echo $page == 'rooms' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Rooms</a>
+                        <a href="?page=reservations" class="btn <?php echo $page == 'reservations' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Reservations</a>
+                        <a href="?page=amenities" class="btn <?php echo $page == 'amenities' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Amenities</a>
+                        <a href="?page=users" class="btn <?php echo $page == 'users' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Users</a>
+                        <a href="?page=logs" class="btn <?php echo $page == 'logs' ? 'pink-button bg-light font-darkpink' : 'pink-button text-dark'; ?> py-3 fw-semibold">Logs</a>
                     </nav>
                 </div>
 
