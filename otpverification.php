@@ -44,12 +44,12 @@
     $GBuserotp = $_POST['otp'];
 
 
-    $otpsql = "Select * from tbl_userdetails where otpgb = '".$GBuserotp."'";
+    $otpsql = "Select * from tbl_userdetails where otp = '".$GBuserotp."'";
     $result = $conn->query($otpsql);
 
 
     if ($result->num_rows ==1) {
-        $updatesql = "Update tbl_userdetails SET otpgb = NULL, statusgb = 'Active' WHERE otpgb = '".$GBuserotp."'";
+        $updatesql = "Update tbl_userdetails SET otp = NULL, status = 'Active' WHERE otp = '".$GBuserotp."'";
         $conn->query($updatesql);
         ?>
         <script>
