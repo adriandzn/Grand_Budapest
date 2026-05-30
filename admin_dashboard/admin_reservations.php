@@ -255,7 +255,7 @@ $reservations = $conn->query($res_sql);
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content rounded-4 border-0 shadow-lg">
             <div class="modal-header bg-darkbrown text-white py-3">
-                <h5 class="modal-title font-title fw-bold">Create Direct Back-Office Reservation</h5>
+                <h5 class="modal-title font-title fw-bold">Book Reservation</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <form method="POST" action="">
