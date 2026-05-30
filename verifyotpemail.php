@@ -1,4 +1,3 @@
-<!-- emailverify.php --> //php mailer
 <?php
 
 
