@@ -48,8 +48,10 @@
     <div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
         <div class="row justify-content-center w-100">      
             <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+
                 <!-- LOGIN CARD -->
                 <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
+                    
                     <!-- LOGO -->
                     <div class="row">
                         <div class="col text-center">
