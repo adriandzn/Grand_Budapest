@@ -222,7 +222,7 @@ $rooms = $conn->query($rooms_sql);
                 <div class="modal-body p-4">
                     <div class="mb-3">
                         <label class="form-label fw-semibold text-dark">Room Number</label>
-                        <input type="number" name="room_number" class="form-control rounded-3" placeholder="e.g., 101" required min="1">
+                        <input type="number" name="room_number" class="form-control rounded-3" placeholder="e.g., 1001" required min="4">
                     </div>
                     <div class="mb-2">
                         <label class="form-label fw-semibold text-dark">Room Configuration Tier</label>
