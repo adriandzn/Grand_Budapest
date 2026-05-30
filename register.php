@@ -212,7 +212,7 @@
                                     name="passwordconf"
                                     id="passwordconf"
                                     class="form-control rounded-pill border-0 px-4 py-2"
-                                    placeholder="Type here"
+                                    placeholder="Confirm Your Password"
                                     style="font-size: 14px;"
                                 >
                             </div>
