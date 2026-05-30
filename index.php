@@ -327,43 +327,44 @@
 </section>
 
     <!-- FIFTH SECTION: Come Visit Us -->
-<section class = "bg-lightbrown py-5">
+<section class="bg-lightbrown py-5">
     <div class="container text-center px-4">
-        <div class="row">
-            <div class="col text-white">
+        <div class="row g-4 align-items-center"> 
+            
+            <div class="col-12 col-md-6 text-white">
                 <div>
                     <h2>Come Visit Us</h2>
                 </div>
-                <div>
+                <div class="mt-3">
                     <p>location: 1 Alpine Summit Drive Lutz, Zubrowka 1099 Republic of Zubrowka</p>
                     <p>Contact: +63 975 714 1559</p>
                     <p>Email: reservations@grandbudapest.zb</p>
                 </div>
                 <div class="d-flex justify-content-center align-items-center gap-5 py-3">
-                    <a href="#"><img src="images/logo-fb-white.png" alt="" style ="width:50px;"></a>
+                    <a href="#"><img src="images/logo-fb-white.png" alt="" style="width:50px;"></a>
                     <a href="#"><img src="images/logo-ig-white.png" alt="" style="width: 50px;"></a>
                     <a href="#"><img src="images/logo-tiktok-white.png" alt="" style="width: 50px;"></a>
                 </div>
                 
                 <div class="py-4">
-                        <div class="col d-flex justify-content-center">
-                            <a href="contact.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-3 shadow">
-                                CONTACT US
-                            </a>
-                        </div>
+                    <div class="col d-flex justify-content-center">
+                        <a href="contact.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-3 shadow">
+                            CONTACT US
+                        </a>
                     </div>
+                </div>
             </div>
-            <div class="col px-4">
+
+            <div class="col-12 col-md-6 px-4">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18..."
-                    width="100%" 
-                    height="400"
-                    class="rounded shadow"
-                    style="border:0;"
+                    class="rounded shadow map-frame w-100"
+                    style="border:0; min-height: 300px;"
                     allowfullscreen=""
                     loading="lazy">
                 </iframe>
             </div>
+
         </div>
     </div>
 </section>

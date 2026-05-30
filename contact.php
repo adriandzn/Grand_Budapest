@@ -224,7 +224,7 @@
                                 Email
                             </h5>
 
-                            <p class="mb-0 fw-semibold">
+                            <p class="mb-0 fw-semibold text-break">
                                 reservations@grandbudapest.zb
                             </p>
 
@@ -250,15 +250,15 @@
 
                         <img src="images/logo-fb-pink.png"
                             alt="Facebook"
-                            style="height: 55px;">
+                            class ="social-icon">
 
                         <img src="images/logo-ig-pink.png"
                             alt="Instagram"
-                            style="height: 55px;">
+                            class ="social-icon">
 
                         <img src="images/logo-tiktok-pink.png"
                             alt="TikTok"
-                            style="height: 55px;">
+                            class ="social-icon">
 
                     </div>
 
@@ -284,12 +284,12 @@
                             Where to Find Us?
                         </h2>
 
-                        <div class="d-flex align-items-start">
+                        <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start text-center text-md-start">
 
                             <img src="images/logo-pin-pink.png"
                                 alt="Location"
                                 style="width: 70px;"
-                                class="me-4">
+                                class="mb-3 mb-md-0 me-md-4">
 
                             <div>
 
@@ -323,8 +323,7 @@
 
                             <iframe
                                 src="https://maps.google.com/maps?q=1%20Alpine%20Summit%20Drive%20Lutz%20Zubrowka%201099&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                                width="100%"
-                                height="420"
+                                class="map-frame"
                                 style="border:0;"
                                 allowfullscreen=""
                                 loading="lazy">
