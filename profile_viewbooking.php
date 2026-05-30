@@ -38,6 +38,9 @@
         case "Pending":
             $statusClass = "bg-warning text-dark";
             break;
+        case "Cancelled":
+            $statusClass = "bg-danger text-white";
+            break;
     }
 
 
@@ -223,7 +226,7 @@
                         <div class="col-lg-4">
                             <img src="<?php echo $image; ?>"
                                 alt="Room"
-                                class="img-fluid rounded-4 w-100 shadow-sm">
+                                class="w-100 h-100 object-fit-cover rounded-4 shadow" style="max-height: 200px;">
                         </div>
 
                         <!-- DETAILS -->
