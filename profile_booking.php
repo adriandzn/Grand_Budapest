@@ -175,7 +175,7 @@
                                                             $statusClass = "bg-danger text-white";
                                                             break;
                                                         case "Completed":
-                                                            $statusClass = "bg-black text-white";
+                                                            $statusClass = "bg-info text-dark";
                                                             break;
                                                     }
                                                 ?>
