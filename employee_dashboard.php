@@ -2,7 +2,7 @@
 require_once "dbaseconnection.php";
 session_start();
 
-// 1. SECURITY WALL: Confirm identity and role clear access clearance levels
+// 1. SECURITY WALL: Confirm identity and role clear access clearance levels for Employee
 if (!isset($_SESSION['GBrole']) || $_SESSION['GBrole'] !== "Employee") {
     header("location: login.php");
     exit;
@@ -14,7 +14,7 @@ if (isset($_POST['logout'])) {
         $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
         $conn->query($logsql);
     }
-    session_destroy();
+    session_abort();
     header("location:login.php");
     exit;
 }
@@ -22,13 +22,22 @@ if (isset($_POST['logout'])) {
 // 3. TARGET ROUTING: Trace target panel execution views
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
-// 4. STATISTICAL COMPILATION: Cache metric blocks cleanly for the home view
-$totalRooms = 0; $totalUsers = 0; $totalReservations = 0; $pendingReservations = 0;
+// 4. STATISTICAL COMPILATION: Cache metric blocks cleanly for the employee view
+$totalRooms = 0; $totalReservations = 0; $pendingReservations = 0; $confirmedReservations = 0;
+$recentReservations = null; $pendingList = null;
+
 if ($page == 'dashboard') {
-    $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'];
-    $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM tbl_userdetails")->fetch_assoc()['total'];
-    $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'];
-    $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'];
+    // Core KPIs adjusted for frontline staff operational awareness
+    $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
+    $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
+    $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
+    $confirmedReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Confirmed'")->fetch_assoc()['total'] ?? 0;
+
+    // Table dataset 1: General dynamic feed of recent reservations
+    $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
+
+    // Table dataset 2: Actionable focus feed for missing/pending approvals to fill layout gaps
+    $pendingList = $conn->query("SELECT * FROM tbl_reservationdetails WHERE reservation_status='Pending' ORDER BY reservation_id DESC LIMIT 5");
 }
 ?>
 <!DOCTYPE html>
@@ -39,12 +48,24 @@ if ($page == 'dashboard') {
     <title>Employee Dashboard - Grand Budapest Hotel</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
+     <style>
+        /* Premium Header Styling matching hotel branding */
+        .welcome-card {
+            background: linear-gradient(135deg, #2c2421 0%, #423530 100%);
+            border-left: 5px solid #fbb4b9;
+        }
+        .text-gold-light {
+            color: #fbb4b9;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+    </style>
 </head>
 <body class="bg-lightpink font-body">
 
     <div class="d-flex min-vh-100">
 
-        <aside class="bg-darkbrown text-white flex-shrink-0" style="width: 260px; min-height: 100vh;">
+        <aside class="bg-darkbrown text-white flex-shrink-0 position-sticky top-0" style="width: 260px; height: 100vh; overflow: hidden;">
             <div class="d-flex flex-column justify-content-between h-100 p-4">
                 <div>
                     <div class="mb-5 text-center">
@@ -56,8 +77,8 @@ if ($page == 'dashboard') {
                     <div class="mb-4 px-3 py-3 rounded-4 bg-brown d-flex align-items-center gap-3">
                         <img src="images/logo-profile-pink.png" alt="Employee" style="width: 28px;">
                         <div>
-                            <div class="font-title fw-bold"><?php echo htmlspecialchars($_SESSION['GBfullname']); ?></div>
-                            <div class="small text-light"><?php echo htmlspecialchars($_SESSION['GBrole']); ?></div>
+                            <div class="font-title fw-bold"><?php echo $_SESSION['GBfullname']; ?></div>
+                            <div class="small text-light"><?php echo $_SESSION['GBrole']; ?></div>
                         </div>
                     </div>
 
@@ -69,7 +90,7 @@ if ($page == 'dashboard') {
                     </nav>
                 </div>
 
-                <form method="POST" action="">
+                <form method="POST" action="" class="w-100">
                     <button type="submit" name="logout" class="btn btn-light rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2 text-darkbrown w-100">
                         <img src="images/logo-logout-brown.png" alt="Log out" style="height:20px; width:auto;">
                         Log Out
@@ -82,71 +103,154 @@ if ($page == 'dashboard') {
             <div class="container-fluid py-4 px-4 px-md-5">
 
                 <?php if ($page == 'dashboard'): ?>
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+                    <div class="welcome-card text-white rounded-4 shadow-sm p-4 mb-4 d-flex align-items-center justify-content-between">
                         <div>
-                            <div class="font-title text-darkbrown fs-2 fw-bold">Dashboard</div>
-                            <p class="mb-0 text-darkbrown">Welcome back, Employee! Here's what's happening today.</p>
+                            <span class="text-gold-light text-uppercase fw-bold d-block mb-1">Management Portal</span>
+                            <h1 class="font-title fs-2 fw-bold mb-1" style="color: #fff;">Dashboard Overview</h1>
+                            <p class="mb-0 text-light-50" style="font-size: 0.95rem;">Welcome back, <strong><?php echo $_SESSION['GBfullname']; ?></strong>! Here is an update on the hotel's status for today.</p>
+                        </div>
+                        <div class="d-none d-md-block pe-2">
+                            <img src="images/logo-profile-pink.png" alt="Hotel Icon" style="width: 45px; opacity: 0.75;">
                         </div>
                     </div>
 
                     <div class="row g-3 mb-4">
                         <div class="col-6 col-md-3"><div class="bg-white rounded-4 shadow-sm p-4 h-100"><div class="font-title fw-bold fs-2 text-darkbrown"><?php echo $totalRooms; ?></div><div class="text-muted">Total Rooms</div></div></div>
-                        <div class="col-6 col-md-3"><div class="bg-white rounded-4 shadow-sm p-4 h-100"><div class="font-title fw-bold fs-2 text-darkbrown"><?php echo $totalReservations; ?></div><div class="text-muted">Reservations</div></div></div>
+                        <div class="col-6 col-md-3"><div class="bg-white rounded-4 shadow-sm p-4 h-100"><div class="font-title fw-bold fs-2 text-darkbrown"><?php echo $totalReservations; ?></div><div class="text-muted">Total Bookings</div></div></div>
                         <div class="col-6 col-md-3"><div class="bg-white rounded-4 shadow-sm p-4 h-100"><div class="font-title fw-bold fs-2 text-darkbrown"><?php echo $pendingReservations; ?></div><div class="text-muted">Pending Requests</div></div></div>
-                        <div class="col-6 col-md-3"><div class="bg-white rounded-4 shadow-sm p-4 h-100"><div class="font-title fw-bold fs-2 text-darkbrown"><?php echo $totalUsers; ?></div><div class="text-muted">Users</div></div></div>
+                        <div class="col-6 col-md-3"><div class="bg-white rounded-4 shadow-sm p-4 h-100"><div class="font-title fw-bold fs-2 text-darkbrown"><?php echo $confirmedReservations; ?></div><div class="text-muted">Confirmed Bookings</div></div></div>
                     </div>
 
-                    <div class="row g-4">
+                    <div class="row g-4 mb-4">
                         <div class="col-12 col-xl-8">
                             <div class="bg-white rounded-4 shadow-sm p-4 h-100">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h3 class="font-title fw-bold mb-1">Recent Reservations</h3>
-                                    <a href="?page=reservations" class="btn btn-sm btn-outline-secondary rounded-pill px-3">View all</a>
+                                    <h3 class="font-title fw-bold mb-1 text-darkbrown">Recent Reservations</h3>
+                                    <a href="?page=reservations" class="btn btn-sm btn-outline-dark rounded-pill px-3">View all</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table align-middle">
                                         <thead>
-                                            <tr><th>Guest</th><th>Room</th><th>Check-in</th><th>Status</th><th class="text-end">Total</th></tr>
+                                            <tr><th>Guest Name</th><th>Contact / Email</th><th>Check-In Date</th><th>Status</th><th class="text-end">Total Price</th></tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            $sql = "SELECT r.*, rm.room_type FROM tbl_reservationdetails r 
-                                                    INNER JOIN tbl_roomdetails rm ON r.room_id = rm.room_id 
-                                                    ORDER BY r.reservation_id DESC LIMIT 5";
-                                            $result = $conn->query($sql);
-                                            while($row = $result->fetch_assoc()) {
-                                            ?>
-                                            <tr>
-                                                <td class="fw-bold"><?php echo htmlspecialchars($row['full_name']); ?></td>
-                                                <td><?php echo htmlspecialchars($row['room_type']); ?></td>
-                                                <td><?php echo htmlspecialchars($row['check_in_date']); ?></td>
-                                                <td><span class="badge bg-secondary px-3 py-2 rounded-pill"><?php echo htmlspecialchars($row['reservation_status']); ?></span></td>
-                                                <td class="text-end fw-semibold">₱<?php echo number_format($row['total_price'], 2); ?></td>
-                                            </tr>
-                                            <?php } ?>
+                                            <?php if($recentReservations && $recentReservations->num_rows > 0): ?>
+                                                <?php while($row = $recentReservations->fetch_assoc()) { ?>
+                                                <tr>
+                                                    <td class="fw-bold text-dark"><?php echo $row['full_name']; ?></td>
+                                                    <td><small><?php echo $row['email']; ?></small></td>
+                                                    <td><small class="font-mono"><?php echo $row['check_in_date']; ?></small></td>
+                                                    <td>
+                                                        <?php if($row['reservation_status'] === 'Confirmed'): ?>
+                                                            <span class="badge bg-success px-3 py-2 rounded-pill">Confirmed</span>
+                                                        <?php else: ?>
+                                                            <span class="badge bg-darkbrown text-white px-3 py-2 rounded-pill"><?php echo $row['reservation_status']; ?></span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td class="text-end fw-semibold">₱<?php echo number_format($row['total_price'], 2); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                            <?php else: ?>
+                                                <tr><td colspan="5" class="text-center text-muted py-3">No reservation records located.</td></tr>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-12 col-xl-4">
                             <div class="bg-brown rounded-4 shadow-sm p-4 text-white h-100">
                                 <h3 class="font-title fw-bold mb-4">Quick Actions</h3>
                                 <div class="d-grid gap-3">
                                     <a href="?page=reservations" class="btn btn-outline-light rounded-4 py-3 text-start">Manage Reservations</a>
                                     <a href="?page=rooms" class="btn btn-outline-light rounded-4 py-3 text-start">Update Room Status</a>
+                                    <a href="?page=amenities" class="btn btn-outline-light rounded-4 py-3 text-start">Review Amenities Usage</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-12 col-xl-7">
+                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="font-title fw-bold text-darkbrown mb-0">Action Required: Pending Approvals</h4>
+                                    <span class="badge bg-darkbrown text-white rounded-pill px-2.5 py-1 text-uppercase" style="font-size:0.7rem;">Attention Desk</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-sm">
+                                        <thead class="table-light">
+                                            <tr><th>Guest Name</th><th>Check-In</th><th>Value Metric</th><th class="text-end">Action Link</th></tr>
+                                        </thead>
+                                        <tbody style="font-size: 0.85rem;">
+                                            <?php if($pendingList && $pendingList->num_rows > 0): ?>
+                                                <?php while($pRow = $pendingList->fetch_assoc()) { ?>
+                                                <tr>
+                                                    <td class="fw-bold text-dark"><?php echo $pRow['full_name']; ?></td>
+                                                    <td class="font-mono text-muted"><?php echo $pRow['check_in_date']; ?></td>
+                                                    <td class="fw-semibold text-secondary">₱<?php echo number_format($pRow['total_price'], 2); ?></td>
+                                                    <td class="text-end">
+                                                        <a href="?page=reservations" class="btn btn-sm btn-darkbrown text-white py-0 px-2 rounded-pill" style="font-size: 0.75rem;">Process</a>
+                                                    </td>
+                                                </tr>
+                                                <?php } ?>
+                                            <?php else: ?>
+                                                <tr><td colspan="4" class="text-center text-muted py-3">All processing queues are currently clear.</td></tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-5">
+                            <div class="bg-white rounded-4 shadow-sm p-4 h-100">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="font-title fw-bold text-darkbrown mb-0">Shift Task Summary</h4>
+                                    <span class="badge bg-lightpink text-darkbrown rounded-pill px-2.5 py-1 text-uppercase" style="font-size:0.7rem;">Active Data</span>
+                                </div>
+                                
+                                <div class="d-flex flex-column gap-3" style="font-size: 0.95rem;">
+                                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+                                        <span class="text-muted">Processed Bookings</span>
+                                        <span class="fw-bold text-success"><?php echo $confirmedReservations; ?> Completed</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+                                        <span class="text-muted">Remaining Queue Action</span>
+                                        <span class="fw-bold text-danger"><?php echo $pendingReservations; ?> Awaiting Approval</span>
+                                    </div>
+
+                                    <div class="mt-2">
+                                        <?php 
+                                            $totalActiveQueue = $confirmedReservations + $pendingReservations;
+                                            $clearanceRate = $totalActiveQueue > 0 ? round(($confirmedReservations / $totalActiveQueue) * 100) : 100;
+                                        ?>
+                                        <div class="d-flex justify-content-between text-muted small mb-1 fw-semibold">
+                                            <span>Queue Clearance Rate</span>
+                                            <span><?php echo $clearanceRate; ?>% Done</span>
+                                        </div>
+                                        <div class="progress rounded-pill" style="height: 8px;">
+                                            <div class="progress-bar bg-darkbrown rounded-pill" role="progressbar" style="width: <?php echo $clearanceRate; ?>%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-3 rounded-4 bg-lightpink text-darkbrown small border border-pink text-center">
+                                    <strong>Operational Insight:</strong> Keep the remaining pending items empty before shift handovers occur.
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 <?php else: 
-                    // DYNAMIC SUB-FILE EXTRACTION ROUTER PATTERN
-                    $allowed_pages = ['rooms', 'reservations', 'amenities', 'users', 'logs'];
+                    // DYNAMIC SUB-FILE EXTRACTION ROUTER PATTERN: Restricted array list for employee scopes
+                    $allowed_pages = ['rooms', 'reservations', 'amenities'];
                     if (in_array($page, $allowed_pages)) {
                         include("employee_dashboard/employee_" . $page . ".php");
                     } else {
-                        echo "<div class='alert alert-danger'>Page not found.</div>";
+                        echo "<div class='alert alert-danger rounded-4 shadow-sm' style='background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;'>Page architecture blueprint not found.</div>";
                     }
                 endif; ?>
 
