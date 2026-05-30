@@ -1,3 +1,26 @@
+<?php
+require_once "dbaseconnection.php";
+session_start();
+?>
+<?php
+
+$totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")
+                   ->fetch_assoc()['total'];
+
+$totalUsers = $conn->query("SELECT COUNT(*) AS total FROM tbl_userdetails")
+                   ->fetch_assoc()['total'];
+
+$totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")
+                          ->fetch_assoc()['total'];
+
+$pendingReservations = $conn->query("
+    SELECT COUNT(*) AS total
+    FROM tbl_reservationdetails
+    WHERE reservation_status='Pending'
+")->fetch_assoc()['total'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -192,12 +215,9 @@
                         <div class="bg-white rounded-4 shadow-sm p-4 h-100">
 
                             <div class="font-title fw-bold fs-2 text-darkbrown">
-                                45
-                            </div>
-
-                            <div class="text-muted">
-                                Total Rooms
-                            </div>
+    <?php echo $totalRooms; ?>
+</div>
+<div class="text-muted">Total Rooms</div>
 
                         </div>
 
@@ -208,12 +228,9 @@
                         <div class="bg-white rounded-4 shadow-sm p-4 h-100">
 
                             <div class="font-title fw-bold fs-2 text-darkbrown">
-                                8
-                            </div>
-
-                            <div class="text-muted">
-                                New Bookings
-                            </div>
+    <?php echo $totalReservations; ?>
+</div>
+<div class="text-muted">Reservations</div>
 
                         </div>
 
@@ -224,12 +241,9 @@
                         <div class="bg-white rounded-4 shadow-sm p-4 h-100">
 
                             <div class="font-title fw-bold fs-2 text-darkbrown">
-                                5
-                            </div>
-
-                            <div class="text-muted">
-                                Pending Requests
-                            </div>
+    <?php echo $pendingReservations; ?>
+</div>
+<div class="text-muted">Pending Requests</div>
 
                         </div>
 
@@ -240,12 +254,9 @@
                         <div class="bg-white rounded-4 shadow-sm p-4 h-100">
 
                             <div class="font-title fw-bold fs-2 text-darkbrown">
-                                68%
-                            </div>
-
-                            <div class="text-muted">
-                                Occupancy
-                            </div>
+    <?php echo $totalUsers; ?>
+</div>
+<div class="text-muted">Users</div>
 
                         </div>
 
@@ -282,6 +293,28 @@
                                 </button>
 
                             </div>
+                            <?php
+
+$logs = $conn->query("
+SELECT l.*, u.full_name
+FROM tbl_logs l
+INNER JOIN tbl_userdetails u
+ON l.user_id = u.user_id
+ORDER BY log_id DESC
+LIMIT 5
+");
+
+while($log = $logs->fetch_assoc()){
+
+    echo "<p>";
+    echo $log['full_name'];
+    echo " - ";
+    echo $log['action'];
+    echo " - ";
+    echo $log['date_time'];
+    echo "</p>";
+}
+?>
 
                             <!-- TABLE -->
 
@@ -305,97 +338,52 @@
 
                                     <tbody>
 
-                                        <tr>
+<?php
 
-                                            <td class="fw-bold">
-                                                Arielle Curtis
-                                            </td>
+$sql = "
+SELECT r.*, rm.room_type
+FROM tbl_reservationdetails r
+INNER JOIN tbl_roomdetails rm
+ON r.room_id = rm.room_id
+ORDER BY r.reservation_id DESC
+LIMIT 10
+";
 
-                                            <td>
-                                                Suite Room
-                                            </td>
+$result = $conn->query($sql);
 
-                                            <td>
-                                                May 27, 2026
-                                            </td>
+while($row = $result->fetch_assoc()) {
 
-                                            <td>
+?>
 
-                                                <span class="badge bg-lightpink text-darkbrown px-3 py-2 rounded-pill">
+<tr>
 
-                                                    Confirmed
+    <td class="fw-bold">
+        <?php echo $row['full_name']; ?>
+    </td>
 
-                                                </span>
+    <td>
+        <?php echo $row['room_type']; ?>
+    </td>
 
-                                            </td>
+    <td>
+        <?php echo $row['check_in_date']; ?>
+    </td>
 
-                                            <td class="text-end fw-semibold">
-                                                ₱12,500
-                                            </td>
+    <td>
+        <?php echo $row['reservation_status']; ?>
+    </td>
 
-                                        </tr>
+    <td class="text-end fw-semibold">
+        ₱<?php echo number_format($row['total_price'], 2); ?>
+    </td>
 
-                                        <tr>
+</tr>
 
-                                            <td class="fw-bold">
-                                                Luca Novak
-                                            </td>
+<?php
+}
+?>
 
-                                            <td>
-                                                Deluxe Room
-                                            </td>
-
-                                            <td>
-                                                May 26, 2026
-                                            </td>
-
-                                            <td>
-
-                                                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">
-
-                                                    Pending
-
-                                                </span>
-
-                                            </td>
-
-                                            <td class="text-end fw-semibold">
-                                                ₱8,200
-                                            </td>
-
-                                        </tr>
-
-                                        <tr>
-
-                                            <td class="fw-bold">
-                                                Mina Krieger
-                                            </td>
-
-                                            <td>
-                                                Standard Room
-                                            </td>
-
-                                            <td>
-                                                May 25, 2026
-                                            </td>
-
-                                            <td>
-
-                                                <span class="badge bg-success text-white px-3 py-2 rounded-pill">
-
-                                                    Checked In
-
-                                                </span>
-
-                                            </td>
-
-                                            <td class="text-end fw-semibold">
-                                                ₱4,700
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>
+</tbody>
 
                                 </table>
 
