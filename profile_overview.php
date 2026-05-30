@@ -1,7 +1,9 @@
 <?php
 
+session_start();
+
 $userInfo = [
-    'Adrian Dizon',
+    $_SESSION['GBfullname'],
     'adriandzn',
     'adrian.dizon.cics@ust.edu.ph',
     '•••••••'
