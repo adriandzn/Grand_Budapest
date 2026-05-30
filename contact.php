@@ -11,6 +11,29 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
 
+    <style>
+        .map-frame {
+            width: 100%;
+            height: 420px;
+        }
+
+        @media (max-width: 768px) {
+            .map-frame {
+                height: 250px;
+            }
+        }
+
+        .social-icon {
+            height: 55px;
+        }
+
+        @media (max-width: 768px) {
+            .social-icon {
+                height: 40px;
+            }
+        }
+    </style>
+
 </head>
 
 <body class="bg-lightpink font-body">
