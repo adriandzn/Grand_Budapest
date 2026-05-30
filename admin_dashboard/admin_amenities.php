@@ -1,6 +1,6 @@
 <?php
 // ==========================================
-// 1. BACKEND AMENITY INSERTION LOGIC
+// 1. BACKEND AMENITY ADDITION LOGIC
 // ==========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) {
     $amenity_name = $conn->real_escape_string($_POST['amenity_name']);
@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) 
                    VALUES ('$amenity_name', '$description', $price_per_use)";
     
     if ($conn->query($insert_sql)) {
-        // System Logging
         if (isset($_SESSION['GBid'])) {
             $user_id = $_SESSION['GBid'];
             $log_action = "Created new amenity: " . $amenity_name;
@@ -21,16 +20,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) 
                 <strong>Success!</strong> Amenity ['.$amenity_name.'] added successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
+    }
+}
+
+// ==========================================
+// 2. BACKEND AMENITY UPDATE (EDIT) LOGIC
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])) {
+    $amenity_id = intval($_POST['amenity_id']);
+    $amenity_name = $conn->real_escape_string($_POST['amenity_name']);
+    $description = $conn->real_escape_string($_POST['description']);
+    $price_per_use = floatval($_POST['price_per_use']);
+
+    $update_sql = "UPDATE tbl_amenitydetails SET 
+                    amenity_name = '$amenity_name', 
+                    description = '$description', 
+                    price_per_use = $price_per_use 
+                   WHERE amenity_id = $amenity_id";
+    
+    if ($conn->query($update_sql)) {
+        if (isset($_SESSION['GBid'])) {
+            $user_id = $_SESSION['GBid'];
+            $log_action = "Modified Amenity ID #$amenity_id properties ($amenity_name)";
+            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        }
+        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                <strong>Success!</strong> Amenity changes applied successfully.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
     } else {
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
-                <strong>Error!</strong> execution blocked: ' . htmlspecialchars($conn->error) . '
+                <strong>Error:</strong> ' . htmlspecialchars($conn->error) . '
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     }
 }
 
 // ==========================================
-// 2. SEARCH FILTRATION PROCESSING
+// 3. SEARCH FILTRATION PROCESSING
 // ==========================================
 $search_query = "";
 $amenity_sql = "SELECT * FROM tbl_amenitydetails";
@@ -78,8 +105,45 @@ $amenities = $conn->query($amenity_sql);
                         <td class="fw-bold"><?php echo htmlspecialchars($amn['amenity_name']); ?></td>
                         <td><?php echo htmlspecialchars($amn['description']); ?></td>
                         <td>₱<?php echo number_format($amn['price_per_use'], 2); ?></td>
-                        <td><button class="btn btn-sm btn-outline-secondary rounded-pill">Edit</button></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editAmenityModal_<?php echo $amn['amenity_id']; ?>">
+                                Edit
+                            </button>
+                        </td>
                     </tr>
+
+                    <div class="modal fade" id="editAmenityModal_<?php echo $amn['amenity_id']; ?>" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content rounded-4 border-0 shadow-lg">
+                                <div class="modal-header bg-primary text-white py-3">
+                                    <h5 class="modal-title font-title fw-bold">Modify Amenity Settings</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form method="POST" action="">
+                                    <div class="modal-body p-4">
+                                        <input type="hidden" name="amenity_id" value="<?php echo $amn['amenity_id']; ?>">
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold text-dark">Amenity Facility Name</label>
+                                            <input type="text" name="amenity_name" value="<?php echo htmlspecialchars($amn['amenity_name']); ?>" class="form-control rounded-3" required maxlength="45">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold text-dark">Description Summary</label>
+                                            <textarea name="description" class="form-control rounded-3" rows="3" required maxlength="100"><?php echo htmlspecialchars($amn['description']); ?></textarea>
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label fw-semibold text-dark">Price Per Use Charge (₱)</label>
+                                            <input type="number" step="0.01" name="price_per_use" value="<?php echo htmlspecialchars($amn['price_per_use']); ?>" class="form-control rounded-3" required min="0">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
+                                        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="btn_update_amenity" class="btn btn-primary fw-bold rounded-pill px-4 shadow-sm">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <?php } ?>
                 </tbody>
             </table>
@@ -89,12 +153,12 @@ $amenities = $conn->query($amenity_sql);
     <?php endif; ?>
 </div>
 
-<div class="modal fade" id="addAmenityModal" tabindex="-1" aria-labelledby="addAmenityModalLabel" aria-hidden="true">
+<div class="modal fade" id="addAmenityModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
             <div class="modal-header bg-darkbrown text-white py-3">
-                <h5 class="modal-title font-title fw-bold" id="addAmenityModalLabel">Register New Amenity Facility</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title font-title fw-bold">Register New Amenity Facility</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <form method="POST" action="">
                 <div class="modal-body p-4">
@@ -105,7 +169,6 @@ $amenities = $conn->query($amenity_sql);
                     <div class="mb-3">
                         <label class="form-label fw-semibold text-dark">Description</label>
                         <textarea name="description" class="form-control rounded-3" rows="3" placeholder="Briefly write what is included..." required maxlength="100"></textarea>
-                        <div class="form-text text-end">Max 100 characters allowed.</div>
                     </div>
                     <div class="mb-1">
                         <label class="form-label fw-semibold text-dark">Price Per Use (₱)</label>
