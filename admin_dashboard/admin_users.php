@@ -124,7 +124,7 @@ $users = $conn->query($user_sql);
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-    <div class="font-title text-darkbrown fs-2 fw-bold">User Management</div>
+    <div class="font-title text-darkbrown fs-2 fw-bold">Users</div>
     
     <div class="d-flex gap-2 w-100 mobile-w-auto justify-content-md-end" style="max-width: 600px;">
         <form method="POST" action="" class="d-flex gap-2 flex-grow-1">
@@ -185,7 +185,7 @@ $users = $conn->query($user_sql);
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
                                 <div class="modal-header bg-darkbrown text-white py-3">
-                                    <h5 class="modal-title font-title fw-bold">Modify User Profile</h5>
+                                    <h5 class="modal-title font-title fw-bold">Edit Profile</h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
                                 <form method="POST" action="">
@@ -197,7 +197,7 @@ $users = $conn->query($user_sql);
                                             <input type="text" name="full_name" value="<?php echo $user['full_name']; ?>" class="form-control rounded-3" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label fw-semibold">Work Email Address</label>
+                                            <label class="form-label fw-semibold">Email Address</label>
                                             <input type="email" name="email" value="<?php echo $user['email']; ?>" class="form-control rounded-3" required>
                                         </div>
                                         <div class="mb-3">
@@ -210,17 +210,17 @@ $users = $conn->query($user_sql);
                                         </div>
                                         <div class="row g-3">
                                             <div class="col-md-6">
-                                                <label class="form-label fw-semibold">System Authorization Role</label>
+                                                <label class="form-label fw-semibold">Role Access</label>
                                                 <select name="role" class="form-select rounded-3" required>
-                                                    <option value="Admin" <?php echo ($user['role'] == 'Admin')?'selected':''; ?>>Admin (Full Clearance)</option>
-                                                    <option value="Employee" <?php echo ($user['role'] == 'Employee')?'selected':''; ?>>Employee (Staff View)</option>
+                                                    <option value="Admin" <?php echo ($user['role'] == 'Admin')?'selected':''; ?>>Admin</option>
+                                                    <option value="Employee" <?php echo ($user['role'] == 'Employee')?'selected':''; ?>>Employee</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label fw-semibold">Operational Status</label>
+                                                <label class="form-label fw-semibold">Status</label>
                                                 <select name="status" class="form-select rounded-3" required>
-                                                    <option value="Active" <?php echo ($user['status'] == 'Active')?'selected':''; ?>>Active Authorized State</option>
-                                                    <option value="Inactive" <?php echo ($user['status'] == 'Inactive')?'selected':''; ?>>Inactive / Blocked Access</option>
+                                                    <option value="Active" <?php echo ($user['status'] == 'Active')?'selected':''; ?>>Active</option>
+                                                    <option value="Inactive" <?php echo ($user['status'] == 'Inactive')?'selected':''; ?>>Inactive / Blocked</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -272,22 +272,22 @@ $users = $conn->query($user_sql);
                             <label class="form-label fw-semibold text-dark">Role Access</label>
                             <select name="role" class="form-select rounded-3" required>
                                 <option value="" disabled selected>-- Select Role Access --</option>
-                                <option value="Admin">Admin (Full Administrative Configuration Access)</option>
-                                <option value="Employee">Employee (Standard Operating View Actions)</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Employee">Employee</option>
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold text-dark">System Deployment State</label>
+                            <label class="form-label fw-semibold text-dark">Status</label>
                             <select name="status" class="form-select rounded-3" required>
-                                <option value="Active" selected>Active State Deployment</option>
-                                <option value="Inactive">Suspended Authorization State</option>
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive / Blocked</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer bg-light border-0 py-3 rounded-bottom-4">
                     <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="btn_save_user" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Deploy Account</button>
+                    <button type="submit" name="btn_save_user" class="btn pink-button text-dark fw-bold rounded-pill px-4 shadow-sm">Add Account</button>
                 </div>
             </form>
         </div>

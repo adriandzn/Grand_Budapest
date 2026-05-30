@@ -82,7 +82,7 @@ $logs = $conn->query($logs_sql);
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-    <div class="font-title text-darkbrown fs-2 fw-bold">System Logs</div>
+    <div class="font-title text-darkbrown fs-2 fw-bold">Logs</div>
     
     <div class="d-flex gap-2 w-100 mobile-w-auto justify-content-md-end" style="max-width: 600px;">
         <form method="POST" action="" class="d-flex gap-2 flex-grow-1">
