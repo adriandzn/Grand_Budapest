@@ -260,7 +260,7 @@
         $GBotp = rand(000000,999999);
 
         // String Query and Transfer to MySQL
-        $insertsql = "INSERT INTO tbl_userdetails (full_name, role, username, password, email, otp, status) VALUES ('$GBfullname', 'Guest', '$GBusername', '$GBpassword', $GBotp, 'Pending')";
+        $insertsql = "INSERT INTO tbl_userdetails (full_name, role, username, password, email, otp, status) VALUES ('$GBfullname', 'Customer', '$GBusername', '$GBpassword', '$GBemail', $GBotp, 'Pending')";
 
         $result = $conn -> query($insertsql);
 

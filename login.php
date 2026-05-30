@@ -1,5 +1,82 @@
 <?php
+    require_once "dbaseconnection.php";
     session_start();
+
+    if(isset($_POST['sub'])){
+
+        $GBusername = $_POST['username'];
+        $GBpassword = md5($_POST['pass']);
+
+        // String Query and Transfer to MySQL
+        $loginsql = "SELECT * FROM tbl_userdetails WHERE username = '$GBusername' AND password = '$GBpassword' AND status = 'Active'";
+        
+        $result = $conn -> query($loginsql);
+
+
+        // VALID Log In Credentials
+        if($result -> num_rows == 1) {
+            $fieldnames = $result -> fetch_assoc();
+
+            $GBid = $fieldnames['user_id'];
+            $GBfullname = $fieldnames['full_name'];
+            $GBrole = $fieldnames['role'];
+            $GBusername = $fieldnames['username'];
+            $GBemail = $fieldnames['email'];
+
+
+            // SESSION VARIABLES
+            $_SESSION['GBid'] = $GBid;
+            $_SESSION['GBfullname'] = $GBfullname;
+            $_SESSION['GBrole'] = $GBrole;
+            $_SESSION['GBusername'] = $GBusername;
+            $_SESSION['GBemail'] = $GBemail;
+            
+
+            // LOGS - Logging In
+            $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged In', NOW())";
+            $conn -> query($logsql);
+
+
+            // Identify User ROLE and direct to corresponding page
+            if ($GBrole == "Admin") {
+                ?>
+                    <script>
+                        window.location.href = "admin_dashboard.php";
+                    </script>
+                <?php
+            } else if ($GBrole == "Employee") {
+                ?>
+                    <script>
+                        window.location.href = "employee_dashboard.php";
+                    </script>
+                <?php
+            } else if ($GBrole == "Customer") {
+                ?>
+                    <script>
+                        window.location.href = "index.php";
+                    </script>
+                <?php
+            }
+
+
+        // INVALID Log In Credentials
+        } else {
+            ?>
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Invalid Username/Password/Not Verified",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+            </script>
+            <?php
+        }
+    }
+
 ?>
 
 
@@ -51,7 +128,7 @@
 
                 <!-- LOGIN CARD -->
                 <div class="rounded-5 p-4 p-md-5 bg-brown shadow-lg">
-                    
+
                     <!-- LOGO -->
                     <div class="row">
                         <div class="col text-center">
@@ -144,69 +221,3 @@
 
 </body>
 </html>
-
-
-<?php
-    require_once "dbaseconnection.php";
-
-
-    if(isset($_POST['sub'])){
-
-        $GBusername = $_POST['username'];
-        $GBpassword = md5($_POST['pass']);
-
-        $loginsql = "SELECT * FROM tbl_userdetails WHERE username = '$GBusername' AND password = '$GBpassword' AND status = 'Active'";
-        $result = $conn -> query($loginsql);
-
-
-        // VALID Log In Credentials
-        if($result -> num_rows == 1) {
-            $fieldnames = $result -> fetch_assoc();
-
-            $GBid = $fieldnames['user_id'];
-            $GBfullname = $fieldnames['full_name'];
-            $GBrole = $fieldnames['role'];
-            $GBusername = $fieldnames['username'];
-            $GBemail = $fieldnames['email'];
-
-
-            // SESSION VARIABLES
-            $_SESSION['GBid'] = $GBid;
-            $_SESSION['GBfullname'] = $GBfullname;
-            $_SESSION['GBrole'] = $GBrole;
-            $_SESSION['GBusername'] = $GBusername;
-            $_SESSION['GBemail'] = $GBemail;
-            
-
-            // LOGS - Logging In
-            $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged In', NOW())";
-            $conn -> query($logsql);
-
-
-            // Identify User ROLE and direct to corresponding page
-            if ($GBrole == "Admin") {
-                header("location:admin_dashboard.php");
-            } else if ($GBrole == "Employee") {
-                header("location:employee_dashboard.php");
-            } else if ($GBrole == "Customer") {
-                header("location:index.php");
-            }
-
-
-        // INVALID Log In Credentials
-        } else {
-            ?>
-            <script>
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Invalid Username/Password/Not Verified",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            </script>
-            <?php
-        }
-    }
-
-?>
