@@ -1,5 +1,9 @@
 <?php
 
+    // Acquire user_id and room_id from their corresponding tables
+    $users = $conn->query("SELECT user_id, full_name FROM tbl_userdetails ORDER BY user_id");
+    $rooms = $conn->query("SELECT room_id, room_type FROM tbl_roomdetails ORDER BY room_id");
+
     // Insert Reservation
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'])) {
         $user_id = $_POST['user_id'];
@@ -241,20 +245,44 @@
 
                                             <div class="col-md-6">
                                                 <label class="form-label fw-semibold">User ID</label>
-                                                <input type="number"
-                                                    name="user_id"
-                                                    value="<?php echo $res['user_id']; ?>"
-                                                    class="form-control rounded-3"
-                                                    required>
+
+                                                <select name="user_id" class="form-select rounded-3" required>
+                                                    <?php
+                                                        $editUsers = $conn->query("SELECT user_id, full_name FROM tbl_userdetails ORDER BY user_id");
+
+                                                        while($user = $editUsers->fetch_assoc()) {
+                                                    ?>
+                                                        <option value="<?php echo $user['user_id']; ?>"
+                                                            <?php echo ($user['user_id'] == $res['user_id']) ? 'selected' : ''; ?>>
+                                                            ID #<?php echo $user['user_id']; ?>
+                                                            - <?php echo $user['full_name']; ?>
+                                                        </option>
+                                                    <?php } ?>
+                                                </select>
+
                                             </div>
 
                                             <div class="col-md-6">
                                                 <label class="form-label fw-semibold">Room ID</label>
-                                                <input type="number"
-                                                    name="room_id"
-                                                    value="<?php echo $res['room_id']; ?>"
-                                                    class="form-control rounded-3"
-                                                    required>
+
+                                                <select name="room_id" class="form-select rounded-3" required>
+                                                    <?php
+                                                        $editRooms = $conn->query("
+                                                            SELECT room_id, room_type
+                                                            FROM tbl_roomdetails
+                                                            ORDER BY room_id
+                                                        ");
+
+                                                        while($room = $editRooms->fetch_assoc()) {
+                                                    ?>
+                                                        <option value="<?php echo $room['room_id']; ?>"
+                                                            <?php echo ($room['room_id'] == $res['room_id']) ? 'selected' : ''; ?>>
+                                                            Room #<?php echo $room['room_id']; ?>
+                                                            - <?php echo $room['room_type']; ?>
+                                                        </option>
+                                                    <?php } ?>
+                                                </select>
+
                                             </div>
 
                                         </div>
@@ -356,18 +384,38 @@
 
                         <div class="col-md-6">
                             <label class="form-label fw-semibold text-dark">User ID</label>
-                            <input type="number"
-                                name="user_id"
-                                class="form-control rounded-3"
-                                required>
+
+                            <select name="user_id" class="form-select rounded-3" required>
+                                <option value="" selected disabled>Select User</option>
+                                <?php
+                                    mysqli_data_seek($users, 0);
+                                    while($user = $users->fetch_assoc()) {
+                                ?>
+                                    <option value="<?php echo $user['user_id']; ?>">
+                                        ID #<?php echo $user['user_id']; ?>
+                                        - <?php echo $user['full_name']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label fw-semibold text-dark">Room ID</label>
-                            <input type="number"
-                                name="room_id"
-                                class="form-control rounded-3"
-                                required>
+
+                            <select name="room_id" class="form-select rounded-3" required>
+                                <option value="" selected disabled>Select Room</option>
+                                <?php
+                                    mysqli_data_seek($rooms, 0);
+                                    while($room = $rooms->fetch_assoc()) {
+                                ?>
+                                    <option value="<?php echo $room['room_id']; ?>">
+                                        Room #<?php echo $room['room_id']; ?>
+                                        - <?php echo $room['room_type']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+
                         </div>
 
                     </div>
