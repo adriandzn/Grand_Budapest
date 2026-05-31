@@ -9,9 +9,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Contact Us - Grand Budapest Hotel</title>
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
 
@@ -61,12 +59,11 @@
 
     <!-- MAIN CONTENT -->
     <main class="container px-4 px-lg-5 py-5">
-
+        
         <div class="row g-5 align-items-start">
 
             <!-- LEFT FORM -->
             <div class="col-lg-7">
-
                 <div class="bg-white rounded-4 shadow p-4 p-lg-5 h-100">
 
                     <!-- TOP ICON -->
@@ -100,9 +97,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label class="fw-semibold fs-5 mb-3">
-                                Email <span class="text-danger">*</span>
-                            </label>
+                            <label class="fw-semibold fs-5 mb-3">Email <span class="text-danger">*</span></label>
 
                             <input type="email"
                                 name="email"
@@ -111,9 +106,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label class="fw-semibold fs-5 mb-3">
-                                Message <span class="text-danger">*</span>
-                            </label>
+                            <label class="fw-semibold fs-5 mb-3">Message <span class="text-danger">*</span></label>
 
                             <textarea class="form-control rounded-4 border-darkpink p-4 fs-5"
                                 name="message"
@@ -135,7 +128,6 @@
                     <p class="small text-muted text-center mt-4 mb-0">We typically respond within 24 hours.</p>
 
                 </div>
-
             </div>
 
             <!-- RIGHT SIDE -->

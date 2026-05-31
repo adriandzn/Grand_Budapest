@@ -25,9 +25,7 @@
         <div class="container py-4 ps-5">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-3 font-title font-white fw-bold">
-                        About
-                    </h1>
+                    <h1 class="display-3 font-title font-white fw-bold">About</h1>
                 </div>
             </div>
         </div>
@@ -43,9 +41,7 @@
             </div>
 
                 <div class="col p-5 bg-lightbrown">
-                    <h1 class="text-start font-pink font-title mb-3">
-                        A Timeless Icon
-                    </h1>
+                    <h1 class="text-start font-pink font-title mb-3">A Timeless Icon</h1>
                     <p class = "text-white font-body">
                         At the heart of our story lies a grand establishment nestled in the fictional European country of Zubrowka. Though imagined, our hotel reflects the charm and sophistication of a bygone era—an age defined by refined service, cultural richness, and unforgettable characters.
                     </p>
@@ -62,9 +58,7 @@
         <div class="container mt-5">
             <div class="row g-0 rounded-4 overflow-hidden shadow">
                 <div class="col p-5 bg-lightbrown">
-                    <h1 class="text-start font-pink font-title mb-3">
-                        Our Legacy
-                    </h1>
+                    <h1 class="text-start font-pink font-title mb-3">Our Legacy</h1>
                     <p class = "text-white font-body">
                         Our journey begins in the 1930s, during the golden age of the hotel under the exceptional concierge Monsieur Gustave H. Known for his unmatched dedication to service, he upheld the values that define us to this day: attention to detail, loyalty, and a commitment to excellence.
                     </p>
@@ -84,9 +78,7 @@
 
     <section class="my-5">
     <div class="container">
-        <h1 class="text-center font-title fw-bold mb-5">
-            The Creators
-        </h1>
+        <h1 class="text-center font-title fw-bold mb-5">The Creators</h1>
 
         <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center">
             
@@ -127,7 +119,6 @@
     <?php include 'footer.php'; ?>
     
     <script src="js/bootstrap.bundle.min.js"></script>
-
 
 </body>
 </html>
