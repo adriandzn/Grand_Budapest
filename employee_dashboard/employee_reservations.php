@@ -378,7 +378,7 @@
                             <input type="text"
                                 name="full_name"
                                 class="form-control rounded-3"
-                                placeholder="John Doe"
+                                placeholder="Adrian"
                                 required>
                         </div>
 
@@ -406,7 +406,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold text-dark">Email Address</label>
-                            <input type="email" name="email" class="form-control rounded-3" placeholder="example@domain.com" required>
+                            <input type="email" name="email" class="form-control rounded-3" placeholder="adriandizon@gmail.com" required>
                         </div>
                     </div>
 
