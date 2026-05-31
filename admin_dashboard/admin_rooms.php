@@ -1,134 +1,136 @@
 <?php
-// Delete Rooms
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
-    $room_id = intval($_POST['room_id']);
-    
-    try {
-        $delete_sql = "DELETE FROM tbl_roomdetails WHERE room_id = $room_id";
+
+    // Delete Rooms
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
+        $room_id = intval($_POST['room_id']);
         
-        if ($conn->query($delete_sql)) {
-            if (isset($_SESSION['GBid'])) {
-                $user_id = $_SESSION['GBid'];
-                $log_action = "Permanently Deleted Room ID #$room_id";
-                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        try {
+            $delete_sql = "DELETE FROM tbl_roomdetails WHERE room_id = $room_id";
+            
+            if ($conn->query($delete_sql)) {
+                if (isset($_SESSION['GBid'])) {
+                    $user_id = $_SESSION['GBid'];
+                    $log_action = "Permanently Deleted Room ID #$room_id";
+                    $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+                }
+                echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                        <strong>Success!</strong> Room deleted successfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>';
             }
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> Room deleted successfully.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>';
-        }
-    } catch (mysqli_sql_exception $e) {
-        // Display violation
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Unable to delete room #' . $room_id . '.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
-    }
-}
-
-// Add Rooms
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
-    $room_number = intval($_POST['room_number']);
-    $room_type = $conn->real_escape_string($_POST['room_type']);
-    $availability_status = "Available";
-
-    if ($room_type === "Standard") {
-        $description = "Enjoy comfort and simplicity in our thoughtfully designed Standard Room.";
-        $capacity = 2; $price = 4500.00;
-    } elseif ($room_type === "Deluxe") {
-        $description = "Upgrade your stay with our Deluxe Room, featuring a more spacious layout.";
-        $capacity = 4; $price = 8599.00;
-    } elseif ($room_type === "Suite") {
-        $description = "Experience premium luxury in our Suite Room, designed for maximum family comfort.";
-        $capacity = 8; $price = 14999.00;
-    }
-
-    $check_room = $conn->query("SELECT * FROM tbl_roomdetails WHERE room_number = $room_number");
-    if ($check_room->num_rows > 0) {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Error!</strong> Room Number '.$room_number.' already exists.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
-    } else {
-        $insert_sql = "INSERT INTO tbl_roomdetails (room_number, room_type, description, capacity, price_per_night, availability_status) 
-                       VALUES ($room_number, '$room_type', '$description', $capacity, $price, '$availability_status')";
-        if ($conn->query($insert_sql)) {
-            if (isset($_SESSION['GBid'])) {
-                $user_id = $_SESSION['GBid'];
-                $log_action = "Added a new $room_type Room (#$room_number)";
-                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
-            }
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> Room #'.$room_number.' successfully deployed.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>';
+        } catch (mysqli_sql_exception $e) {
+            // Display violation
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Database Error!</strong> Unable to delete room #' . $room_id . '.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
         }
     }
-}
 
-// Update Rooms
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
-    $room_id = intval($_POST['room_id']);
-    $room_number = intval($_POST['room_number']);
-    $room_type = $conn->real_escape_string($_POST['room_type']);
-    $availability_status = $conn->real_escape_string($_POST['availability_status']);
+    // Add Rooms
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_room'])) {
+        $room_number = intval($_POST['room_number']);
+        $room_type = $conn->real_escape_string($_POST['room_type']);
+        $availability_status = "Available";
 
-    if ($room_type === "Standard") {
-        $description = "Enjoy comfort and simplicity in our thoughtfully designed Standard Room.";
-        $capacity = 2; $price = 4500.00;
-    } elseif ($room_type === "Deluxe") {
-        $description = "Upgrade your stay with our Deluxe Room, featuring a more spacious layout.";
-        $capacity = 4; $price = 8599.00;
-    } elseif ($room_type === "Suite") {
-        $description = "Experience premium luxury in our Suite Room, designed for maximum family comfort.";
-        $capacity = 8; $price = 14999.00;
-    }
+        if ($room_type === "Standard") {
+            $description = "Enjoy comfort and simplicity in our thoughtfully designed Standard Room.";
+            $capacity = 2; $price = 4500.00;
+        } elseif ($room_type === "Deluxe") {
+            $description = "Upgrade your stay with our Deluxe Room, featuring a more spacious layout.";
+            $capacity = 4; $price = 8599.00;
+        } elseif ($room_type === "Suite") {
+            $description = "Experience premium luxury in our Suite Room, designed for maximum family comfort.";
+            $capacity = 8; $price = 14999.00;
+        }
 
-    $check_room = $conn->query("SELECT * FROM tbl_roomdetails WHERE room_number = $room_number AND room_id != $room_id");
-    if ($check_room->num_rows > 0) {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Error!</strong> Cannot update. Room Number '.$room_number.' is already assigned to another room.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
-    } else {
-        $update_sql = "UPDATE tbl_roomdetails SET 
-                        room_number = $room_number, 
-                        room_type = '$room_type', 
-                        description = '$description', 
-                        capacity = $capacity, 
-                        price_per_night = $price, 
-                        availability_status = '$availability_status' 
-                       WHERE room_id = $room_id";
-        
-        if ($conn->query($update_sql)) {
-            if (isset($_SESSION['GBid'])) {
-                $user_id = $_SESSION['GBid'];
-                $log_action = "Updated Room ID #$room_id (Now Room #$room_number, Tier: $room_type, Status: $availability_status)";
-                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        $check_room = $conn->query("SELECT * FROM tbl_roomdetails WHERE room_number = $room_number");
+        if ($check_room->num_rows > 0) {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Error!</strong> Room Number '.$room_number.' already exists.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
+        } else {
+            $insert_sql = "INSERT INTO tbl_roomdetails (room_number, room_type, description, capacity, price_per_night, availability_status) 
+                        VALUES ($room_number, '$room_type', '$description', $capacity, $price, '$availability_status')";
+            if ($conn->query($insert_sql)) {
+                if (isset($_SESSION['GBid'])) {
+                    $user_id = $_SESSION['GBid'];
+                    $log_action = "Added a new $room_type Room (#$room_number)";
+                    $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+                }
+                echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                        <strong>Success!</strong> Room #'.$room_number.' successfully deployed.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>';
             }
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> Room #'.$room_number.' updated successfully.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>';
         }
     }
-}
 
-// Search and Display Rooms
-$search_query = "";
-$rooms_sql = "SELECT * FROM tbl_roomdetails";
-if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
-    $search_query = $conn->real_escape_string($_POST['searchinput']);
-    $rooms_sql .= " WHERE room_id LIKE '%$search_query%' 
-                    OR room_number LIKE '%$search_query%' 
-                    OR room_type LIKE '%$search_query%' 
-                    OR description LIKE '%$search_query%' 
-                    OR availability_status LIKE '%$search_query%'";
-}
-$rooms_sql .= " ORDER BY room_id DESC";
-$rooms = $conn->query($rooms_sql);
+    // Update Rooms
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
+        $room_id = intval($_POST['room_id']);
+        $room_number = intval($_POST['room_number']);
+        $room_type = $conn->real_escape_string($_POST['room_type']);
+        $availability_status = $conn->real_escape_string($_POST['availability_status']);
 
-$room_modals_buffer = [];
+        if ($room_type === "Standard") {
+            $description = "Enjoy comfort and simplicity in our thoughtfully designed Standard Room.";
+            $capacity = 2; $price = 4500.00;
+        } elseif ($room_type === "Deluxe") {
+            $description = "Upgrade your stay with our Deluxe Room, featuring a more spacious layout.";
+            $capacity = 4; $price = 8599.00;
+        } elseif ($room_type === "Suite") {
+            $description = "Experience premium luxury in our Suite Room, designed for maximum family comfort.";
+            $capacity = 8; $price = 14999.00;
+        }
+
+        $check_room = $conn->query("SELECT * FROM tbl_roomdetails WHERE room_number = $room_number AND room_id != $room_id");
+        if ($check_room->num_rows > 0) {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Error!</strong> Cannot update. Room Number '.$room_number.' is already assigned to another room.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
+        } else {
+            $update_sql = "UPDATE tbl_roomdetails SET 
+                            room_number = $room_number, 
+                            room_type = '$room_type', 
+                            description = '$description', 
+                            capacity = $capacity, 
+                            price_per_night = $price, 
+                            availability_status = '$availability_status' 
+                        WHERE room_id = $room_id";
+            
+            if ($conn->query($update_sql)) {
+                if (isset($_SESSION['GBid'])) {
+                    $user_id = $_SESSION['GBid'];
+                    $log_action = "Updated Room ID #$room_id (Now Room #$room_number, Tier: $room_type, Status: $availability_status)";
+                    $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+                }
+                echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                        <strong>Success!</strong> Room #'.$room_number.' updated successfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>';
+            }
+        }
+    }
+
+    // Search and Display Rooms
+    $search_query = "";
+    $rooms_sql = "SELECT * FROM tbl_roomdetails";
+    if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
+        $search_query = $conn->real_escape_string($_POST['searchinput']);
+        $rooms_sql .= " WHERE room_id LIKE '%$search_query%' 
+                        OR room_number LIKE '%$search_query%' 
+                        OR room_type LIKE '%$search_query%' 
+                        OR description LIKE '%$search_query%' 
+                        OR availability_status LIKE '%$search_query%'";
+    }
+    $rooms_sql .= " ORDER BY room_id DESC";
+    $rooms = $conn->query($rooms_sql);
+
+    $room_modals_buffer = [];
+
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">

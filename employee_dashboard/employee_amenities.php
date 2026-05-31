@@ -1,97 +1,99 @@
 <?php
-// Add Amenities
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) {
-    $amenity_name = $_POST['amenity_name'];
-    $description = $_POST['description'];
-    $price_per_use = floatval($_POST['price_per_use']);
 
-    $insert_sql = "INSERT INTO tbl_amenitydetails (amenity_name, description, price_per_use) 
-                   VALUES ('$amenity_name', '$description', $price_per_use)";
-    
-    if ($conn->query($insert_sql)) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Created new amenity: " . $amenity_name;
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+    // Add Amenities
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_amenity'])) {
+        $amenity_name = $_POST['amenity_name'];
+        $description = $_POST['description'];
+        $price_per_use = floatval($_POST['price_per_use']);
+
+        $insert_sql = "INSERT INTO tbl_amenitydetails (amenity_name, description, price_per_use) 
+                    VALUES ('$amenity_name', '$description', $price_per_use)";
+        
+        if ($conn->query($insert_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Created new amenity: " . $amenity_name;
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Amenity ['.$amenity_name.'] added successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
         }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Amenity ['.$amenity_name.'] added successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
     }
-}
 
-// Update Amenities
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])) {
-    $amenity_id = $_POST['amenity_id'];
-    $amenity_name = $_POST['amenity_name'];
-    $description = $_POST['description'];
-    $price_per_use = floatval($_POST['price_per_use']);
+    // Update Amenities
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])) {
+        $amenity_id = $_POST['amenity_id'];
+        $amenity_name = $_POST['amenity_name'];
+        $description = $_POST['description'];
+        $price_per_use = floatval($_POST['price_per_use']);
 
-    $update_sql = "UPDATE tbl_amenitydetails SET 
-                    amenity_name = '$amenity_name', 
-                    description = '$description', 
-                    price_per_use = $price_per_use 
-                   WHERE amenity_id = $amenity_id";
-    
-    if ($conn->query($update_sql)) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Modified Amenity ID #$amenity_id properties ($amenity_name)";
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        $update_sql = "UPDATE tbl_amenitydetails SET 
+                        amenity_name = '$amenity_name', 
+                        description = '$description', 
+                        price_per_use = $price_per_use 
+                    WHERE amenity_id = $amenity_id";
+        
+        if ($conn->query($update_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Modified Amenity ID #$amenity_id properties ($amenity_name)";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Amenity modified successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Error:</strong> ' . $conn->error . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
         }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Amenity modified successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Error:</strong> ' . $conn->error . '
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
     }
-}
 
 
-// Delete Amenities
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])) {
-    $amenity_id = $_POST['amenity_id'];
+    // Delete Amenities
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])) {
+        $amenity_id = $_POST['amenity_id'];
 
-    // Fetch the name of the amenity before deleting it for logging/auditing purposes
-    $fetch_res = $conn->query("SELECT amenity_name FROM tbl_amenitydetails WHERE amenity_id = $amenity_id");
-    $target_name = ($fetch_res && $fetch_res->num_rows > 0) ? $fetch_res->fetch_assoc()['amenity_name'] : "Unknown Amenity";
+        // Fetch the name of the amenity before deleting it for logging/auditing purposes
+        $fetch_res = $conn->query("SELECT amenity_name FROM tbl_amenitydetails WHERE amenity_id = $amenity_id");
+        $target_name = ($fetch_res && $fetch_res->num_rows > 0) ? $fetch_res->fetch_assoc()['amenity_name'] : "Unknown Amenity";
 
-    $delete_sql = "DELETE FROM tbl_amenitydetails WHERE amenity_id = $amenity_id";
-    
-    if ($conn->query($delete_sql)) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Permanently deleted Amenity Facility: " . $target_name . " (ID #$amenity_id)";
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        $delete_sql = "DELETE FROM tbl_amenitydetails WHERE amenity_id = $amenity_id";
+        
+        if ($conn->query($delete_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Permanently deleted Amenity Facility: " . $target_name . " (ID #$amenity_id)";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Amenity ['.$target_name.'] successfully deleted.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Database Error:</strong> Unable to delete amenity. ' . $conn->error . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
         }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Amenity ['.$target_name.'] successfully deleted.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error:</strong> Unable to delete amenity. ' . $conn->error . '
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
     }
-}
 
-// Search and Display Amenities
-$search_query = "";
-$amenity_sql = "SELECT * FROM tbl_amenitydetails";
-if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
-    $search_query = $_POST['searchinput'];
-    $amenity_sql .= " WHERE amenity_id LIKE '%$search_query%' 
-                      OR amenity_name LIKE '%$search_query%' 
-                      OR description LIKE '%$search_query%'";
-}
-$amenity_sql .= " ORDER BY amenity_id DESC";
-$amenities = $conn->query($amenity_sql);
+    // Search and Display Amenities
+    $search_query = "";
+    $amenity_sql = "SELECT * FROM tbl_amenitydetails";
+    if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
+        $search_query = $_POST['searchinput'];
+        $amenity_sql .= " WHERE amenity_id LIKE '%$search_query%' 
+                        OR amenity_name LIKE '%$search_query%' 
+                        OR description LIKE '%$search_query%'";
+    }
+    $amenity_sql .= " ORDER BY amenity_id DESC";
+    $amenities = $conn->query($amenity_sql);
+    
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">

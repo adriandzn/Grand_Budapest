@@ -1,77 +1,78 @@
 <?php
 
-// Manual Log Note
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_log_note'])) {
-    $note_message = "[MANUAL ADMIN NOTE] " . $_POST['note_content'];
-    
-    if (isset($_SESSION['GBid'])) {
-        $user_id = $_SESSION['GBid'];
-        $insert_sql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$note_message', NOW())";
+    // Manual Log Note
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_log_note'])) {
+        $note_message = "[MANUAL ADMIN NOTE] " . $_POST['note_content'];
         
-        if ($conn->query($insert_sql)) {
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> Manual internal operational note logged into chronological data database records.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>';
+        if (isset($_SESSION['GBid'])) {
+            $user_id = $_SESSION['GBid'];
+            $insert_sql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$note_message', NOW())";
+            
+            if ($conn->query($insert_sql)) {
+                echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                        <strong>Success!</strong> Manual internal operational note logged into chronological data database records.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>';
+            }
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Error!</strong> Unauthorized operational block state context - Session reference identity lost.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
         }
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Error!</strong> Unauthorized operational block state context - Session reference identity lost.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
     }
-}
 
-// Update Log Note
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_log'])) {
-    $target_id = $_POST['log_id'];
-    $updated_content = $_POST['note_content'];
+    // Update Log Note
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_log'])) {
+        $target_id = $_POST['log_id'];
+        $updated_content = $_POST['note_content'];
 
-    $update_sql = "UPDATE tbl_logs SET action = '$updated_content' WHERE log_id = $target_id";
+        $update_sql = "UPDATE tbl_logs SET action = '$updated_content' WHERE log_id = $target_id";
+        
+        if ($conn->query($update_sql)) {
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Log modified successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Database Error!</strong> Unable to modify log.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
+        }
+    }
+
+    // Delete Log Note
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_log'])) {
+        $target_id = $_POST['log_id'];
+
+        $delete_sql = "DELETE FROM tbl_logs WHERE log_id = $target_id";
+        
+        if ($conn->query($delete_sql)) {
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Log [#' . $target_id . '] has been deleted successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Database Error!</strong> Unable to delete log.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
+        }
+    }
+
+    // Search and Display Logs
+    $search_query = "";
+    $logs_sql = "SELECT l.*, u.full_name, u.role FROM tbl_logs l INNER JOIN tbl_userdetails u ON l.user_id = u.user_id";
+    if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
+        $search_query = $_POST['searchinput'];
+        $logs_sql .= " WHERE l.log_id LIKE '%$search_query%' 
+                    OR u.full_name LIKE '%$search_query%' 
+                    OR l.action LIKE '%$search_query%'";
+    }
+    $logs_sql .= " ORDER BY l.log_id DESC";
+    $logs = $conn->query($logs_sql);
     
-    if ($conn->query($update_sql)) {
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Log modified successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Unable to modify log.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
-    }
-}
-
-// Delete Log Note
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_log'])) {
-    $target_id = $_POST['log_id'];
-
-    $delete_sql = "DELETE FROM tbl_logs WHERE log_id = $target_id";
-    
-    if ($conn->query($delete_sql)) {
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Log [#' . $target_id . '] has been deleted successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Unable to delete log.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
-    }
-}
-
-// Search and Display Logs
-$search_query = "";
-$logs_sql = "SELECT l.*, u.full_name, u.role FROM tbl_logs l INNER JOIN tbl_userdetails u ON l.user_id = u.user_id";
-if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
-    $search_query = $_POST['searchinput'];
-    $logs_sql .= " WHERE l.log_id LIKE '%$search_query%' 
-                   OR u.full_name LIKE '%$search_query%' 
-                   OR l.action LIKE '%$search_query%'";
-}
-$logs_sql .= " ORDER BY l.log_id DESC";
-$logs = $conn->query($logs_sql);
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">

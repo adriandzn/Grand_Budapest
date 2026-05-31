@@ -1,118 +1,120 @@
 <?php
-// Insert User
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_user'])) {
-    $full_name = $_POST['full_name'];
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password']; 
-    $role = $_POST['role'];
-    $status = $_POST['status'];
 
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    // Insert User
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_user'])) {
+        $full_name = $_POST['full_name'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password']; 
+        $role = $_POST['role'];
+        $status = $_POST['status'];
 
-    $check_user = $conn->query("SELECT * FROM tbl_userdetails WHERE username = '$username' OR email = '$email'");
-    if ($check_user->num_rows > 0) {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Error!</strong> Username or Email already exists in the system.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
-    } else {
-        $insert_sql = "INSERT INTO tbl_userdetails (full_name, email, username, password, role, status) 
-                       VALUES ('$full_name', '$email', '$username', '$hashed_password', '$role', '$status')";
-        
-        if ($conn->query($insert_sql)) {
-            if (isset($_SESSION['GBid'])) {
-                $user_id = $_SESSION['GBid'];
-                $log_action = "Registered new corporate account profile: " . $username . " (" . $role . ")";
-                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
-            }
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> Account user profile ['.$username.'] added successfully.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>';
-        }
-    }
-}
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-// Update User
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_user'])) {
-    $target_id = $_POST['user_id'];
-    $full_name = $_POST['full_name'];
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $role = $_POST['role'];
-    $status = $_POST['status'];
-
-    $password_update_string = "";
-    if (!empty($_POST['password'])) {
-        $new_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $password_update_string = ", password = '$new_hash'";
-    }
-
-    $update_sql = "UPDATE tbl_userdetails SET 
-                    full_name = '$full_name', email = '$email', username = '$username', 
-                    role = '$role', status = '$status' $password_update_string 
-                   WHERE user_id = $target_id";
-    
-    if ($conn->query($update_sql)) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Updated user profile info metrics for Operator Account ID #$target_id";
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
-        }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> User data modified successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    }
-}
-
-// Delete User
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_user'])) {
-    $target_id = $_POST['user_id'];
-
-    if (isset($_SESSION['GBid']) && $_SESSION['GBid'] == $target_id) {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Action Denied:</strong> You cannot delete your own currently active profile session.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
-    } else {
-        $fetch_res = $conn->query("SELECT username FROM tbl_userdetails WHERE user_id = $target_id");
-        $target_username = ($fetch_res && $fetch_res->num_rows > 0) ? $fetch_res->fetch_assoc()['username'] : "Unknown Account";
-
-        $delete_sql = "DELETE FROM tbl_userdetails WHERE user_id = $target_id";
-        
-        if ($conn->query($delete_sql)) {
-            if (isset($_SESSION['GBid'])) {
-                $user_id = $_SESSION['GBid'];
-                $log_action = "Permanently dropped operator account profile: " . $target_username . " (ID #$target_id)";
-                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
-            }
-            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> User ['.$target_username.'] has been deleted successfully.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>';
-        } else {
+        $check_user = $conn->query("SELECT * FROM tbl_userdetails WHERE username = '$username' OR email = '$email'");
+        if ($check_user->num_rows > 0) {
             echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                    <strong>Database Error:</strong> Unable to delete user. ' . $conn->error . '
+                    <strong>Error!</strong> Username or Email already exists in the system.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-                  </div>';
+                </div>';
+        } else {
+            $insert_sql = "INSERT INTO tbl_userdetails (full_name, email, username, password, role, status) 
+                        VALUES ('$full_name', '$email', '$username', '$hashed_password', '$role', '$status')";
+            
+            if ($conn->query($insert_sql)) {
+                if (isset($_SESSION['GBid'])) {
+                    $user_id = $_SESSION['GBid'];
+                    $log_action = "Registered new corporate account profile: " . $username . " (" . $role . ")";
+                    $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+                }
+                echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                        <strong>Success!</strong> Account user profile ['.$username.'] added successfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>';
+            }
         }
     }
-}
 
-// Search and Display Users
-$search_query = "";
-$user_sql = "SELECT * FROM tbl_userdetails";
-if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
-    $search_query = $_POST['searchinput'];
-    $user_sql .= " WHERE user_id LIKE '%$search_query%' 
-                   OR full_name LIKE '%$search_query%' 
-                   OR username LIKE '%$search_query%' 
-                   OR role LIKE '%$search_query%'";
-}
-$user_sql .= " ORDER BY user_id DESC";
-$users = $conn->query($user_sql);
+    // Update User
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_user'])) {
+        $target_id = $_POST['user_id'];
+        $full_name = $_POST['full_name'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $role = $_POST['role'];
+        $status = $_POST['status'];
+
+        $password_update_string = "";
+        if (!empty($_POST['password'])) {
+            $new_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $password_update_string = ", password = '$new_hash'";
+        }
+
+        $update_sql = "UPDATE tbl_userdetails SET 
+                        full_name = '$full_name', email = '$email', username = '$username', 
+                        role = '$role', status = '$status' $password_update_string 
+                    WHERE user_id = $target_id";
+        
+        if ($conn->query($update_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Updated user profile info metrics for Operator Account ID #$target_id";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> User data modified successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
+        }
+    }
+
+    // Delete User
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_user'])) {
+        $target_id = $_POST['user_id'];
+
+        if (isset($_SESSION['GBid']) && $_SESSION['GBid'] == $target_id) {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Action Denied:</strong> You cannot delete your own currently active profile session.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
+        } else {
+            $fetch_res = $conn->query("SELECT username FROM tbl_userdetails WHERE user_id = $target_id");
+            $target_username = ($fetch_res && $fetch_res->num_rows > 0) ? $fetch_res->fetch_assoc()['username'] : "Unknown Account";
+
+            $delete_sql = "DELETE FROM tbl_userdetails WHERE user_id = $target_id";
+            
+            if ($conn->query($delete_sql)) {
+                if (isset($_SESSION['GBid'])) {
+                    $user_id = $_SESSION['GBid'];
+                    $log_action = "Permanently dropped operator account profile: " . $target_username . " (ID #$target_id)";
+                    $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+                }
+                echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                        <strong>Success!</strong> User ['.$target_username.'] has been deleted successfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>';
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                        <strong>Database Error:</strong> Unable to delete user. ' . $conn->error . '
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                    </div>';
+            }
+        }
+    }
+
+    // Search and Display Users
+    $search_query = "";
+    $user_sql = "SELECT * FROM tbl_userdetails";
+    if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
+        $search_query = $_POST['searchinput'];
+        $user_sql .= " WHERE user_id LIKE '%$search_query%' 
+                    OR full_name LIKE '%$search_query%' 
+                    OR username LIKE '%$search_query%' 
+                    OR role LIKE '%$search_query%'";
+    }
+    $user_sql .= " ORDER BY user_id DESC";
+    $users = $conn->query($user_sql);
+
 ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">

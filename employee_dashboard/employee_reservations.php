@@ -1,4 +1,5 @@
 <?php
+
     // Insert Reservation
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'])) {
         $user_id = $_POST['user_id'];
