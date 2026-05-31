@@ -99,7 +99,8 @@
                 <thead class="table-light">
                     <tr>
                         <th>Log ID</th>
-                        <th>User</th>
+                        <th>User ID</th>
+                        <th>User Details</th>
                         <th>Action Performed</th>
                         <th>Date & Time</th>
                         <th class="text-center">Action</th>
@@ -109,6 +110,7 @@
                     <?php while($log = $logs->fetch_assoc()){ ?>
                     <tr>
                         <td>#<?php echo $log['log_id']; ?></td>
+                        <td><?php echo $log['user_id']; ?></td>
                         <td class="fw-bold"><?php echo $log['full_name']; ?><br><small class="text-muted text-uppercase text-xs">[<?php echo $log['role']; ?>]</small></td>
                         <td><code><?php echo $log['action']; ?></code></td>
                         <td class="text-muted"><small><?php echo $log['date_time']; ?></small></td>
