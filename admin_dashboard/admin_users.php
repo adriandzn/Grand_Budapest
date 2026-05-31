@@ -9,7 +9,7 @@
         $role = $_POST['role'];
         $status = $_POST['status'];
 
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        $hashed_password = md5($password);
 
         $check_user = $conn->query("SELECT * FROM tbl_userdetails WHERE username = '$username' OR email = '$email'");
         if ($check_user->num_rows > 0) {
@@ -46,7 +46,7 @@
 
         $password_update_string = "";
         if (!empty($_POST['password'])) {
-            $new_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $new_hash = md5($_POST['password']);
             $password_update_string = ", password = '$new_hash'";
         }
 
