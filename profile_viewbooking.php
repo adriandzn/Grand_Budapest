@@ -184,7 +184,6 @@
     <section class="bg-darkbrown py-3">
         <div class="container">
             <div class="row justify-content-center gap-5 text-center gap-md-5">
-
                 <div class="col-auto mx-5">
                     <a href="profile_overview.php"
                         class="font-white font-title text-decoration-none fw-semibold px-3">
@@ -198,7 +197,6 @@
                         All Bookings
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
@@ -282,9 +280,7 @@
             <div class="col-xl-10">
                 <div class="bg-lightbrown rounded-5 shadow-sm p-4 p-lg-5">
 
-                    <h2 class="font-title text-white fw-bold mb-4">
-                        Personal Information
-                    </h2>
+                    <h2 class="font-title text-white fw-bold mb-4">Personal Information</h2>
 
                     <div class="table-responsive">
                         <table class="table bg-white rounded-4 overflow-hidden align-middle mb-0">
@@ -317,9 +313,7 @@
             <div class="col-xl-10">
                 <div class="bg-lightbrown rounded-5 shadow-sm p-4 p-lg-5">
 
-                    <h2 class="font-title text-white fw-bold mb-4">
-                        Room Reservation Details
-                    </h2>
+                    <h2 class="font-title text-white fw-bold mb-4">Room Reservation Details</h2>
 
                     <div class="table-responsive">
                         <table class="table bg-white rounded-4 overflow-hidden align-middle mb-0">
@@ -353,9 +347,7 @@
                 <div class="bg-white rounded-5 shadow-sm p-4 p-lg-5">
 
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
-                        <h2 class="font-title font-pink fw-bold mb-3 mb-md-0">
-                            Policies
-                        </h2>
+                        <h2 class="font-title font-pink fw-bold mb-3 mb-md-0">Policies</h2>
 
                         <div class="small text-darkbrown text-md-end">
                             <strong>Check-in:</strong> 02:00 PM |
@@ -365,13 +357,9 @@
 
                     <?php for($i = 0; $i < count($policyTitles); $i++): ?>
                         <div class="border-top pt-3 mt-3">
-                            <h6 class="fw-bold font-pink mb-1">
-                                <?php echo $policyTitles[$i]; ?>
-                            </h6>
+                            <h6 class="fw-bold font-pink mb-1"><?php echo $policyTitles[$i]; ?></h6>
 
-                            <p class="small mb-0">
-                                <?php echo $policyDescriptions[$i]; ?>
-                            </p>
+                            <p class="small mb-0"><?php echo $policyDescriptions[$i]; ?></p>
                         </div>
                     <?php endfor; ?>
 
@@ -395,10 +383,7 @@
                                 alt=""
                                 style="height:32px;"
                                 class="mb-3">
-
-                            <h6 class="font-pink fw-bold">
-                                Lobby Hours
-                            </h6>
+                            <h6 class="font-pink fw-bold">Lobby Hours</h6>
 
                             <p class="small mb-0">
                                 Monday to Sunday<br>
@@ -412,13 +397,8 @@
                                 style="height:32px;"
                                 class="mb-3">
 
-                            <h6 class="font-pink fw-bold">
-                                Mobile Number
-                            </h6>
-
-                            <p class="small mb-0">
-                                +63 975 714 1559
-                            </p>
+                            <h6 class="font-pink fw-bold">Mobile Number</h6>
+                            <p class="small mb-0">+63 975 714 1559</p>
                         </div>
 
                         <div class="col-md-4">
@@ -427,13 +407,8 @@
                                 style="height:32px;"
                                 class="mb-3">
 
-                            <h6 class="font-pink fw-bold">
-                                Email
-                            </h6>
-
-                            <p class="small mb-0">
-                                reservations@grandbudapest.lb
-                            </p>
+                            <h6 class="font-pink fw-bold">Email</h6>
+                            <p class="small mb-0">reservations@grandbudapest.lb</p>
                         </div>
                     </div>
 
@@ -458,21 +433,10 @@
                                     style="height:40px;">
 
                                 <div>
-                                    <h6 class="font-pink fw-bold mb-3">
-                                        Location
-                                    </h6>
-
-                                    <p class="mb-1 fw-semibold">
-                                        1 Alpine Summit Drive
-                                    </p>
-
-                                    <p class="mb-1 fw-semibold">
-                                        Lutz, Zubrowka 1099
-                                    </p>
-
-                                    <p class="mb-0 fw-semibold">
-                                        Republic of Zubrowka
-                                    </p>
+                                    <h6 class="font-pink fw-bold mb-3">Location</h6>
+                                    <p class="mb-1 fw-semibold">1 Alpine Summit Drive</p>
+                                    <p class="mb-1 fw-semibold">Lutz, Zubrowka 1099</p>
+                                    <p class="mb-0 fw-semibold">Republic of Zubrowka</p>
                                 </div>
 
                             </div>

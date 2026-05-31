@@ -120,7 +120,6 @@
 
                 <?php while($booking = $result->fetch_assoc()): ?>
                     <div class="col-12">
-
                         <div class="card rounded-4 shadow-sm border-0 overflow-hidden">
                             <div class="row g-0 h-100">
 
@@ -216,7 +215,6 @@
 
                             </div>
                         </div>
-
                     </div>
                 <?php endwhile; ?>
 
@@ -225,13 +223,9 @@
                 <div class="col-12">
                     <div class="card rounded-4 shadow-sm border-0">
                         <div class="card-body text-center py-5">
-                            <h3 class="fw-bold text-darkbrown mb-3">
-                                No Reservations Found
-                            </h3>
 
-                            <p class="text-secondary mb-4">
-                                You currently have no reservations.
-                            </p>
+                            <h3 class="fw-bold text-darkbrown mb-3">No Reservations Found</h3>
+                            <p class="text-secondary mb-4">You currently have no reservations.</p>
 
                             <a href="book_1.php"
                                 class="btn booking-btn rounded-pill px-4 py-3 text-white fw-semibold">

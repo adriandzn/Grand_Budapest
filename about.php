@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
 </head>
+
 <body class = "bg-lightpink">
     
     <!-- NAVBAR -->
     <?php include 'navbar.php'; ?>
 
     <!-- Hero Section -->
-
     <section class="text-white py-5"
         style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
@@ -75,7 +75,6 @@
     </section>
 
     <!-- The Creators -->
-
     <section class="my-5">
     <div class="container">
         <h1 class="text-center font-title fw-bold mb-5">The Creators</h1>

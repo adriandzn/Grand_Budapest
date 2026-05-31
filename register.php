@@ -94,9 +94,7 @@
                     <!-- TITLE -->
                     <div class="row mb-4 mt-5">
                         <div class="col text-center fw-bold font-title">
-                            <div class="h2 fw-bold text-white">
-                                Register
-                            </div>
+                            <div class="h2 fw-bold text-white">Register</div>
                         </div>
                     </div>
 
@@ -244,25 +242,25 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-function validatePassword() {
+        function validatePassword() {
 
-    let password = document.getElementById("password").value;
-    let confirmPassword = document.getElementById("passwordconf").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("passwordconf").value;
 
-    if (password !== confirmPassword) {
+            if (password !== confirmPassword) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Passwords do not match!",
+                    text: "Please make sure both passwords are identical."
+                });
 
-        Swal.fire({
-            icon: "error",
-            title: "Passwords do not match!",
-            text: "Please make sure both passwords are identical."
-        });
+                return false; // Prevent form submission
+            }
 
-        return false; // Prevent form submission
-    }
+            return true; // Allow form submission
+        }
+    </script>
 
-    return true; // Allow form submission
-}
-</script>
 </body>
 </html>
 
@@ -277,31 +275,31 @@ function validatePassword() {
         $GBusername = $_POST['username'];
         $GBpassword = md5($_POST['password']);
         $GBemail = $_POST['email'];
-        $GBotp = rand(100000, 999999); // Fixed to guarantee a 6-digit number
+        $GBotp = rand(100000, 999999);
 
-        // 1. CHECK IF USERNAME ALREADY EXISTS
+        // Check if username already exists
         $checkUserSql = "SELECT * FROM tbl_userdetails WHERE username = '$GBusername'";
         $checkResult = $conn->query($checkUserSql);
 
         if ($checkResult->num_rows > 0) {
-            // Username is taken -> Trigger SweetAlert error
             ?>
             <script>
                 Swal.fire({
                     icon: "error",
                     title: "Username Taken",
                     text: "The username '<?php echo htmlspecialchars($GBusername); ?>' is already registered. Please choose another one.",
-                    confirmButtonColor: "#975265" // Matches your pink theme
+                    showConfirmButton: false,
+                    timer: 3000
                 });
             </script>
             <?php
         } else {
-            // 2. USERNAME IS UNIQUE -> Proceed with registration
+
+            //If username is unique
             $insertsql = "INSERT INTO tbl_userdetails (full_name, role, username, password, email, otp, status) VALUES ('$GBfullname', 'Customer', '$GBusername', '$GBpassword', '$GBemail', $GBotp, 'Pending')";
 
             $result = $conn->query($insertsql);
 
-            // Check if saved
             if ($result == True) {
                 send_verification($GBfullname, $GBemail, $GBotp);
                 ?>

@@ -48,8 +48,6 @@
     }
 
 
-
-
     //Log Out Button
     if (isset($_POST['logout'])) {
 
@@ -104,14 +102,9 @@
         background-blend-mode: multiply;">
 
         <div class="container py-4 ps-5">
-
             <div class="row">
-
                 <div class="col">
-
-                    <h1 class="display-3 font-title font-white fw-bold mb-2">
-                        Profile
-                    </h1>
+                    <h1 class="display-3 font-title font-white fw-bold mb-2">Profile</h1>
 
                     <h1 class="display-5 font-title font-white mb-5 fw-bold">
                         Greetings,
@@ -130,11 +123,8 @@
                             Log Out
                         </button>
                     </form>
-
                 </div>
-
             </div>
-
         </div>
 
     </section>
@@ -168,16 +158,12 @@
 
             <!-- ACCOUNT INFORMATION -->
             <div class="col-lg-6">
-
                 <div class="card rounded-4 shadow-sm border-0">
-
                     <div class="card-body p-5">
 
                         <div class="d-flex align-items-center gap-3 mb-5">
                             <div>
-                                <h3 class="h4 fw-bold mb-0">
-                                    Account Information
-                                </h3>
+                                <h3 class="h4 fw-bold mb-0">Account Information</h3>
                             </div>
                         </div>
 
@@ -186,76 +172,53 @@
                             <!-- LABELS -->
                             <div class="col-5">
                                 <ul class="list-unstyled mb-0">
-
                                     <li class="d-flex align-items-center mb-4">
-                                        <p class="text-secondary mb-0 fs-5">
-                                            Full Name
-                                        </p>
+                                        <p class="text-secondary mb-0 fs-5">Full Name</p>
                                     </li>
 
                                     <li class="d-flex align-items-center mb-4">
-                                        <p class="text-secondary mb-0 fs-5">
-                                            Username
-                                        </p>
+                                        <p class="text-secondary mb-0 fs-5">Username</p>
                                     </li>
 
                                     <li class="d-flex align-items-center mb-4">
-                                        <p class="text-secondary mb-0 fs-5">
-                                            Email
-                                        </p>
+                                        <p class="text-secondary mb-0 fs-5">Email</p>
                                     </li>
                                 </ul>
-
                             </div>
 
                             <!-- VALUES -->
                             <div class="col-7">
-
                                 <ul class="list-unstyled mb-0">
                                     <li class="mb-4">
-                                        <p class="mb-0 fw-semibold fs-5">
-                                            <?php echo $userInfo[0]; ?>
-                                        </p>
+                                        <p class="mb-0 fw-semibold fs-5"><?php echo $userInfo[0]; ?></p>
                                     </li>
 
                                     <li class="mb-4">
-                                        <p class="mb-0 fw-semibold fs-5">
-                                            <?php echo $userInfo[1]; ?>
-                                        </p>
+                                        <p class="mb-0 fw-semibold fs-5"><?php echo $userInfo[1]; ?></p>
                                     </li>
 
                                     <li class="mb-4">
-                                        <p class="mb-0 fw-semibold fs-5">
-                                            <?php echo $userInfo[2]; ?>
-                                        </p>
+                                        <p class="mb-0 fw-semibold fs-5"><?php echo $userInfo[2]; ?></p>
                                     </li>
                                 </ul>
-
                             </div>
 
                         </div>
 
                     </div>
-
                 </div>
-
             </div>
 
             <?php if($latestBooking): ?>
 
                 <!-- UPCOMING STAY -->
                 <div class="col-lg-6">
-
                     <div class="card rounded-4 shadow-sm border-0 bg-lightbrown text-white">
-
                         <div class="card-body p-5">
 
                             <div class="d-flex align-items-center justify-content-between mb-4">
-
                                 <div>
-                                    <h3 class="h4 fw-bold mb-0">
-                                        Upcoming Stay
-                                    </h3>
+                                    <h3 class="h4 fw-bold mb-0">Upcoming Stay</h3>
                                 </div>
 
                                 <?php if($latestBooking): ?>
@@ -263,11 +226,9 @@
                                         <?php echo $latestBooking['reservation_status']; ?>
                                     </span>
                                 <?php endif; ?>
-
                             </div>
 
                             <!-- IMAGE -->
-
                             <div class="rounded-4 overflow-hidden mb-4"
                                 style="min-height:220px;
                                 background:url('<?php echo $roomImage; ?>')
@@ -275,7 +236,6 @@
                             </div>
 
                             <!-- BOOKING INFO -->
-
                             <h4 class="h3 text-pink fw-bold mb-2">
                                 <?php echo $latestBooking['room_type']; ?> Room
                             </h4>
@@ -304,9 +264,7 @@
                             </a>
 
                         </div>
-
                     </div>
-
                 </div>
 
             <?php else: ?>
