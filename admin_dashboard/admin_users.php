@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_user'])) {
             $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
         }
         echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> User system operational data modified.
+                <strong>Success!</strong> User data modified successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     }
@@ -89,12 +89,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_user'])) {
                 $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
             }
             echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> User account registry profile ['.$target_username.'] dropped permanently.
+                    <strong>Success!</strong> User ['.$target_username.'] has been deleted successfully.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>';
         } else {
             echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                    <strong>Database Error:</strong> Unable to complete row delete query. ' . $conn->error . '
+                    <strong>Database Error:</strong> Unable to delete user. ' . $conn->error . '
                     <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
                   </div>';
         }
@@ -165,7 +165,7 @@ $users = $conn->query($user_sql);
                                     Edit Profile
                                 </button>
                                 
-                                <form method="POST" action="" onsubmit="return confirm('CRITICAL WARNING: Are you entirely sure you want to permanently delete the profile container for user account \'<?php echo $user['username']; ?>\'? All record structures linked with this operator profile metadata will be lost.');" class="m-0">
+                                <form method="POST" action="" onsubmit="return confirm('WARNING: Are you sure you want to permanently delete this profile?');" class="m-0">
                                     <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                                     <button type="submit" name="btn_delete_user" class="btn btn-sm btn-dark bg-darkbrown rounded-pill px-3">
                                         Delete

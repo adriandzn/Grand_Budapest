@@ -47,11 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservatio
     if ($conn->query($update_sql)) {
         if (isset($_SESSION['GBid'])) {
             $user_id = $_SESSION['GBid'];
-            $log_action = "Updated details for Reservation #$res_id ($full_name)";
+            $log_action = "Updated Reservation #$res_id ($full_name)";
             $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
         }
         echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Reservation #'.$res_id.' update complete.
+                <strong>Success!</strong> Reservation #'.$res_id.' updated successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     }
@@ -84,12 +84,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservatio
             $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
         }
         echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Reservation ledger record safely deleted.
+                <strong>Success!</strong> Reservation deleted successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     } else {
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Failed to drop booking index row.
+                <strong>Database Error!</strong> Unable to delete reservation.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     }
@@ -168,7 +168,7 @@ $reservations = $conn->query($res_sql);
                                     </form>
                                 <?php endif; ?>
 
-                                <form method="POST" action="" onsubmit="return confirm('Are you completely sure you want to permanently delete Reservation #<?php echo $res['reservation_id']; ?> for <?php echo $res['full_name']; ?>?');" class="m-0">
+                                <form method="POST" action="" onsubmit="return confirm('WARNING: Are you sure you want to permanently delete this reservation?');" class="m-0">
                                     <input type="hidden" name="reservation_id" value="<?php echo $res['reservation_id']; ?>">
                                     <button type="submit" name="btn_delete_reservation" class="btn btn-sm btn-dark bg-darkbrown rounded-pill px-3">
                                         Delete

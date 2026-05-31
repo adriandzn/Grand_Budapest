@@ -13,14 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
                 $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
             }
             echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> Room record successfully deleted.
+                    <strong>Success!</strong> Room deleted successfully.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>';
         }
     } catch (mysqli_sql_exception $e) {
         // Captures the constraint violation and displays your styled notification instead of crashing
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Cannot delete room #' . $room_id . '. This room is linked to active or historical guest reservations.
+                <strong>Database Error!</strong> Unable to delete room #' . $room_id . '.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     }
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_room'])) {
                 $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
             }
             echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                    <strong>Success!</strong> Room #'.$room_number.' changes saved successfully.
+                    <strong>Success!</strong> Room #'.$room_number.' updated successfully.
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>';
         }
@@ -229,7 +229,7 @@ $room_modals_buffer = [];
                                     Edit
                                 </button>
                                 
-                                <form method="POST" action="" onsubmit="return confirm('Are you sure you want to delete Room #<?php echo $room['room_number']; ?>?');" class="m-0">
+                                <form method="POST" action="" onsubmit="return confirm('WARNING: Are you sure you want to permanently delete this room?');" class="m-0">
                                     <input type="hidden" name="room_id" value="<?php echo $room['room_id']; ?>">
                                     <button type="submit" name="btn_delete_room" class="btn btn-sm btn-dark bg-darkbrown rounded-pill px-3">
                                         Delete

@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_amenity'])
             $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
         }
         echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Amenity changes applied successfully.
+                <strong>Success!</strong> Amenity modified successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     } else {
@@ -70,12 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_amenity'])
             $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
         }
         echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Amenity ['.$target_name.'] has been permanently dropped from the database.
+                <strong>Success!</strong> Amenity ['.$target_name.'] successfully deleted.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     } else {
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error:</strong> Unable to wipe entry row. ' . $conn->error . '
+                <strong>Database Error:</strong> Unable to delete amenity. ' . $conn->error . '
                 <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     }
@@ -134,7 +134,7 @@ $amenities = $conn->query($amenity_sql);
                                     Edit
                                 </button>
                                 
-                                <form method="POST" action="" onsubmit="return confirm('Are you completely sure you want to permanently delete the amenity \'<?php echo $amn['amenity_name']; ?>\'? This action cannot be reversed.');" class="m-0">
+                                <form method="POST" action="" onsubmit="return confirm('WARNING: Are you sure you want to permanently delete this amenity?');" class="m-0">
                                     <input type="hidden" name="amenity_id" value="<?php echo $amn['amenity_id']; ?>">
                                     <button type="submit" name="btn_delete_amenity" class="btn btn-sm btn-dark bg-darkbrown rounded-pill px-3">
                                         Delete

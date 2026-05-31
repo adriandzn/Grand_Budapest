@@ -31,12 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_log'])) {
     
     if ($conn->query($update_sql)) {
         echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Log record payload data modified successfully.
+                <strong>Success!</strong> Log modified successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     } else {
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Unable to complete row update query.
+                <strong>Database Error!</strong> Unable to modify log.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     }
@@ -50,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_log'])) {
     
     if ($conn->query($delete_sql)) {
         echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> System event audit log entry [#' . $target_id . '] permanently dropped from system registry.
+                <strong>Success!</strong> Log [#' . $target_id . '] has been deleted successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               </div>';
     } else {
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Unable to complete row drop query.
+                <strong>Database Error!</strong> Unable to delete log.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
               </div>';
     }
@@ -114,7 +114,7 @@ $logs = $conn->query($logs_sql);
                                     Edit
                                 </button>
                                 
-                                <form method="POST" action="" onsubmit="return confirm('CRITICAL WARNING: Are you certain you want to completely erase audit log trace record entry #<?php echo $log['log_id']; ?>? This operational event record baseline data cannot be restored.');" class="m-0">
+                                <form method="POST" action="" onsubmit="return confirm('WARNING: Are you sure you want to permanently delete this log?');" class="m-0">
                                     <input type="hidden" name="log_id" value="<?php echo $log['log_id']; ?>">
                                     <button type="submit" name="btn_delete_log" class="btn btn-sm btn-dark bg-darkbrown rounded-pill px-3">
                                         Delete
