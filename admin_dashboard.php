@@ -2,13 +2,13 @@
 require_once "dbaseconnection.php";
 session_start();
 
-// 1. SECURITY WALL: Confirm identity and role clear access clearance levels
+// Confirm identity and role clear access
 if (!isset($_SESSION['GBrole']) || $_SESSION['GBrole'] !== "Admin") {
     header("location: login.php");
     exit;
 }
 
-// 2. DISCONNECT EXECUTION: Handle explicit logout post actions cleanly
+// Logout Post Actions
 if (isset($_POST['logout'])) {
     if (isset($_SESSION['GBid'])) {
         $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
@@ -19,29 +19,28 @@ if (isset($_POST['logout'])) {
     exit;
 }
 
-// 3. TARGET ROUTING: Trace target panel execution views
+// Panel Views
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
-// 4. STATISTICAL COMPILATION: Cache metric blocks cleanly for the home view
+// Metric blocks for the Home View
 $totalRooms = 0; $totalUsers = 0; $totalReservations = 0; $pendingReservations = 0;
 $recentReservations = null; $recentLogs = null; $activeStaff = null;
 
 if ($page == 'dashboard') {
-    // Core KPIs
     $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
     $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM tbl_userdetails")->fetch_assoc()['total'] ?? 0;
     $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
     $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
 
-    // Table dataset 1: Fixed safe query for recent reservations
+    // Query for Recent Reservations
     $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
 
-    // Table dataset 2: System audit trail logs
+    // System Audit Trail Logs
     $recentLogs = $conn->query("SELECT l.*, u.full_name FROM tbl_logs l 
                                 INNER JOIN tbl_userdetails u ON l.user_id = u.user_id 
                                 ORDER BY l.log_id DESC LIMIT 5");
 
-    // Table dataset 3: Currently active operators registry
+    // Currently active operators
     $activeStaff = $conn->query("SELECT user_id, full_name, username, role FROM tbl_userdetails WHERE status='Active' ORDER BY user_id DESC LIMIT 5");
 }
 ?>
@@ -54,7 +53,7 @@ if ($page == 'dashboard') {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
     <style>
-        /* Premium Header Styling matching hotel branding */
+        /* Header Styling */
         .welcome-card {
             background: linear-gradient(135deg, #2c2421 0%, #423530 100%);
             border-left: 5px solid #fbb4b9;
@@ -183,7 +182,6 @@ if ($page == 'dashboard') {
                     </div>
 
                 <?php else: 
-                    // DYNAMIC SUB-FILE EXTRACTION ROUTER PATTERN
                     $allowed_pages = ['rooms', 'reservations', 'amenities', 'users', 'logs'];
                     if (in_array($page, $allowed_pages)) {
                         include("admin_dashboard/admin_" . $page . ".php");

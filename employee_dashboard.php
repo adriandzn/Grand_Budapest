@@ -2,13 +2,13 @@
 require_once "dbaseconnection.php";
 session_start();
 
-// 1. SECURITY WALL: Confirm identity and role clear access clearance levels for Employee
+// Confirm identity and role clear access
 if (!isset($_SESSION['GBrole']) || $_SESSION['GBrole'] !== "Employee") {
     header("location: login.php");
     exit;
 }
 
-// 2. DISCONNECT EXECUTION: Handle explicit logout post actions cleanly
+// Logout Post Actions
 if (isset($_POST['logout'])) {
     if (isset($_SESSION['GBid'])) {
         $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
@@ -19,24 +19,23 @@ if (isset($_POST['logout'])) {
     exit;
 }
 
-// 3. TARGET ROUTING: Trace target panel execution views
+// Panel Views
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
-// 4. STATISTICAL COMPILATION: Cache metric blocks cleanly for the employee view
+// Metric blocks for the Home View
 $totalRooms = 0; $totalReservations = 0; $pendingReservations = 0; $confirmedReservations = 0;
 $recentReservations = null; $pendingList = null;
 
 if ($page == 'dashboard') {
-    // Core KPIs adjusted for frontline staff operational awareness
     $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
     $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
     $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
     $confirmedReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Confirmed'")->fetch_assoc()['total'] ?? 0;
 
-    // Table dataset 1: General dynamic feed of recent reservations
+    // Query for Recent Reservations
     $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
 
-    // Table dataset 2: Actionable focus feed for missing/pending approvals to fill layout gaps
+    // System Audit Trail Logs
     $pendingList = $conn->query("SELECT * FROM tbl_reservationdetails WHERE reservation_status='Pending' ORDER BY reservation_id DESC LIMIT 5");
 }
 ?>
@@ -49,7 +48,7 @@ if ($page == 'dashboard') {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
      <style>
-        /* Premium Header Styling matching hotel branding */
+        /* Header Styling */
         .welcome-card {
             background: linear-gradient(135deg, #2c2421 0%, #423530 100%);
             border-left: 5px solid #fbb4b9;
@@ -176,7 +175,6 @@ if ($page == 'dashboard') {
                     </div>
 
                 <?php else: 
-                    // DYNAMIC SUB-FILE EXTRACTION ROUTER PATTERN: Restricted array list for employee scopes
                     $allowed_pages = ['rooms', 'reservations', 'amenities'];
                     if (in_array($page, $allowed_pages)) {
                         include("employee_dashboard/employee_" . $page . ".php");
