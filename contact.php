@@ -20,17 +20,14 @@
             width: 100%;
             height: 420px;
         }
-
         @media (max-width: 768px) {
             .map-frame {
                 height: 250px;
             }
         }
-
         .social-icon {
             height: 55px;
         }
-
         @media (max-width: 768px) {
             .social-icon {
                 height: 40px;
@@ -43,11 +40,9 @@
 <body class="bg-lightpink font-body">
 
     <!-- NAVBAR -->
-
     <?php include 'navbar.php'; ?>
 
     <!-- HERO SECTION -->
-
     <section class="text-white py-5"
         style="background-image: url('images/index-hero.png'); 
         background-size: cover; 
@@ -58,53 +53,42 @@
         <div class="container py-4 ps-5">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-3 font-title font-white fw-bold">
-                        Contact Us
-                    </h1>
+                    <h1 class="display-3 font-title font-white fw-bold">Contact Us</h1>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- MAIN CONTENT -->
-
     <main class="container px-4 px-lg-5 py-5">
 
         <div class="row g-5 align-items-start">
 
             <!-- LEFT FORM -->
-
             <div class="col-lg-7">
 
                 <div class="bg-white rounded-4 shadow p-4 p-lg-5 h-100">
 
                     <!-- TOP ICON -->
-
                     <div class="text-center mb-4">
-
                         <img src="images/logo-phone-circle.png"
                             alt="Phone Icon"
                             class="img-fluid mb-3"
                             style="height: 80px;">
 
-                        <h2 class="fw-bold font-title font-darkbrown mb-4">
-                            GRAND BUDAPEST LOBBY
-                        </h2>
+                        <h2 class="fw-bold font-title font-darkbrown mb-4">GRAND BUDAPEST LOBBY</h2>
 
                         <p class="small text-muted lh-base fs-5">
                             Got any inquiries, comments, or recommendations?<br>
                             Feel free to reach out and message us, we would love<br>
                             to hear from you!
                         </p>
-
                     </div>
 
                     <!-- FORM -->
-
                     <form action="" method="post">
 
                         <div class="mb-4">
-
                             <label class="fw-semibold fs-5 mb-3">
                                 Full Name <span class="text-danger">*</span>
                             </label>
@@ -113,11 +97,9 @@
                                 name="fullName"
                                 class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
                                 placeholder="Type here">
-
                         </div>
 
                         <div class="mb-4">
-
                             <label class="fw-semibold fs-5 mb-3">
                                 Email <span class="text-danger">*</span>
                             </label>
@@ -126,24 +108,9 @@
                                 name="email"
                                 class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
                                 placeholder="Type here">
-
                         </div>
 
-                        <!-- <div class="mb-4">
-
-                            <label class="fw-semibold fs-5 mb-3">
-                                Contact Number <span class="text-danger">*</span>
-                            </label>
-
-                            <input type="tel"
-                                name="contact"
-                                class="form-control rounded-pill py-3 px-4 border-darkpink fs-5"
-                                placeholder="Type here">
-
-                        </div> -->
-
                         <div class="mb-4">
-
                             <label class="fw-semibold fs-5 mb-3">
                                 Message <span class="text-danger">*</span>
                             </label>
@@ -152,148 +119,88 @@
                                 name="message"
                                 rows="6"
                                 placeholder="How can we help you?"></textarea>
-
                         </div>
 
                         <!-- BUTTON -->
-
                         <div class="text-center mt-5">
-
                             <button type="submit"
                                 name="submit"
                                 class="btn bg-darkpink pink-button text-dark fw-bold rounded-pill px-5 py-3 shadow-sm fs-5">
-
                                 SEND
-
                             </button>
-
                         </div>
 
                     </form>
 
-                    <p class="small text-muted text-center mt-4 mb-0">
-                        We typically respond within 24 hours.
-                    </p>
+                    <p class="small text-muted text-center mt-4 mb-0">We typically respond within 24 hours.</p>
 
                 </div>
 
             </div>
 
             <!-- RIGHT SIDE -->
-
             <div class="col-lg-5">
 
                 <!-- CONTACT INFO -->
-
                 <div class="bg-lightbrown rounded-4 shadow p-5 text-white mb-5">
 
-                    <h2 class="fw-bold font-title text-center mb-5">
-                        Contact Information
-                    </h2>
+                    <h2 class="fw-bold font-title text-center mb-5">Contact Information</h2>
 
                     <!-- HOURS -->
-
                     <div class="d-flex align-items-start mb-5">
-
                         <img src="images/logo-clock-pink.png"
                             alt="Clock"
                             style="width: 50px;"
                             class="me-4">
-
                         <div>
-
-                            <h5 class="text-pink fw-bold mb-3">
-                                Lobby Hours
-                            </h5>
-
-                            <p class="mb-1 fw-semibold">
-                                Monday to Sunday
-                            </p>
-
-                            <p class="mb-0 fw-semibold">
-                                7:00AM - 11:00PM
-                            </p>
-
+                            <h5 class="text-pink fw-bold mb-3">Lobby Hours</h5>
+                            <p class="mb-1 fw-semibold">Monday to Sunday</p>
+                            <p class="mb-0 fw-semibold">7:00AM - 11:00PM</p>
                         </div>
-
                     </div>
 
                     <!-- PHONE -->
-
                     <div class="d-flex align-items-start mb-5">
-
                         <img src="images/logo-phone-pink.png"
                             alt="Phone"
                             style="width: 50px;"
                             class="me-4">
-
                         <div>
-
-                            <h5 class="text-pink fw-bold mb-3">
-                                Mobile Number
-                            </h5>
-
-                            <p class="mb-0 fw-semibold">
-                                +63 975 714 1559
-                            </p>
-
+                            <h5 class="text-pink fw-bold mb-3">Mobile Number</h5>
+                            <p class="mb-0 fw-semibold">+63 975 714 1559</p>
                         </div>
-
                     </div>
 
                     <!-- EMAIL -->
-
                     <div class="d-flex align-items-start">
-
                         <img src="images/logo-mail-pink.png"
                             alt="Email"
                             style="width: 50px;"
                             class="me-4">
-
                         <div>
-
-                            <h5 class="text-pink fw-bold mb-3">
-                                Email
-                            </h5>
-
-                            <p class="mb-0 fw-semibold text-break">
-                                reservations@grandbudapest.zb
-                            </p>
-
+                            <h5 class="text-pink fw-bold mb-3">Email</h5>
+                            <p class="mb-0 fw-semibold text-break">reservations@grandbudapest.zb</p>
                         </div>
-
                     </div>
 
                 </div>
 
                 <!-- SOCIALS -->
-
                 <div class="bg-lightbrown rounded-4 shadow p-5 text-center text-white">
-
-                    <h2 class="fw-bold font-title mb-3">
-                        Socials
-                    </h2>
-
-                    <p class="fw-semibold mb-5">
-                        Follow us to get more news and updates!
-                    </p>
+                    <h2 class="fw-bold font-title mb-3">Socials</h2>
+                    <p class="fw-semibold mb-5">Follow us to get more news and updates!</p>
 
                     <div class="d-flex justify-content-center gap-5">
-
-                        <img src="images/logo-fb-pink.png"
+                        <a href="https://www.facebook.com/"><img src="images/logo-fb-pink.png"
                             alt="Facebook"
-                            class ="social-icon">
-
-                        <img src="images/logo-ig-pink.png"
+                            class ="social-icon"></a>
+                        <a href="https://www.instagram.com/"><img src="images/logo-ig-pink.png"
                             alt="Instagram"
-                            class ="social-icon">
-
-                        <img src="images/logo-tiktok-pink.png"
+                            class ="social-icon"></a>
+                        <a href="https://www.tiktok.com/"><img src="images/logo-tiktok-pink.png"
                             alt="TikTok"
-                            class ="social-icon">
-
+                            class ="social-icon"></a>
                     </div>
-
                 </div>
 
             </div>
@@ -301,7 +208,6 @@
         </div>
 
         <!-- LOCATION SECTION -->
-
         <section class="mt-5">
 
             <div class="bg-lightbrown rounded-4 p-5 text-white">
@@ -309,50 +215,27 @@
                 <div class="row align-items-center g-5">
 
                     <!-- LEFT -->
-
                     <div class="col-lg-4">
-
-                        <h2 class="display-5 fw-bold font-title mb-5">
-                            Where to Find Us?
-                        </h2>
+                        <div class="h2 fw-bold font-title mb-5">Where to Find Us?</div>
 
                         <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start text-center text-md-start">
-
                             <img src="images/logo-pin-pink.png"
                                 alt="Location"
                                 style="width: 70px;"
                                 class="mb-3 mb-md-0 me-md-4">
 
                             <div>
-
-                                <h5 class="text-pink fw-bold mb-4">
-                                    Location:
-                                </h5>
-
-                                <p class="fw-semibold fs-5 mb-2">
-                                    1 Alpine Summit Drive
-                                </p>
-
-                                <p class="fw-semibold fs-5 mb-2">
-                                    Lutz, Zubrowka 1099
-                                </p>
-
-                                <p class="fw-semibold fs-5 mb-0">
-                                    Republic of Zubrowka
-                                </p>
-
+                                <h5 class="text-pink fw-bold mb-4">Location:</h5>
+                                <p class="fw-semibold fs-5 mb-2">1 Alpine Summit Drive</p>
+                                <p class="fw-semibold fs-5 mb-2">Lutz, Zubrowka 1099</p>
+                                <p class="fw-semibold fs-5 mb-0">Republic of Zubrowka</p>
                             </div>
-
                         </div>
-
                     </div>
 
                     <!-- RIGHT -->
-
                     <div class="col-lg-8">
-
                         <div class="rounded-4 overflow-hidden shadow">
-
                             <iframe
                                 src="https://maps.google.com/maps?q=1%20Alpine%20Summit%20Drive%20Lutz%20Zubrowka%201099&t=&z=13&ie=UTF8&iwloc=&output=embed"
                                 class="map-frame"
@@ -360,9 +243,7 @@
                                 allowfullscreen=""
                                 loading="lazy">
                             </iframe>
-
                         </div>
-
                     </div>
 
                 </div>

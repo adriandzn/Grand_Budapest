@@ -341,9 +341,9 @@
                     <p>Email: reservations@grandbudapest.zb</p>
                 </div>
                 <div class="d-flex justify-content-center align-items-center gap-5 py-3">
-                    <a href="#"><img src="images/logo-fb-white.png" alt="" style="width:50px;"></a>
-                    <a href="#"><img src="images/logo-ig-white.png" alt="" style="width: 50px;"></a>
-                    <a href="#"><img src="images/logo-tiktok-white.png" alt="" style="width: 50px;"></a>
+                    <a href="https://www.facebook.com/"><img src="images/logo-fb-white.png" alt="" style="width:50px;"></a>
+                    <a href="https://www.instagram.com/"><img src="images/logo-ig-white.png" alt="" style="width: 50px;"></a>
+                    <a href="https://www.tiktok.com/"><img src="images/logo-tiktok-white.png" alt="" style="width: 50px;"></a>
                 </div>
                 
                 <div class="py-4">

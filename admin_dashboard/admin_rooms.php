@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_room'])) {
                   </div>';
         }
     } catch (mysqli_sql_exception $e) {
-        // Captures the constraint violation and displays your styled notification instead of crashing
+        // Display violation
         echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
                 <strong>Database Error!</strong> Unable to delete room #' . $room_id . '.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>

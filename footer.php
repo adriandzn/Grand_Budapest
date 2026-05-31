@@ -54,15 +54,15 @@
 
                 <div class="d-flex gap-4 mt-3">
 
-                    <a href="#" class="footer-link">
+                    <a href="https://www.facebook.com/" class="footer-link">
                         <img src="images/logo-fb-white.png" alt="facebook" style="width: 30px;">
                     </a>
 
-                    <a href="#" class="footer-link">
+                    <a href="https://www.instagram.com/" class="footer-link">
                         <img src="images/logo-ig-white.png" alt="instagram" style="width: 30px;">
                     </a>
 
-                    <a href="#" class="footer-link">
+                    <a href="https://www.tiktok.com/" class="footer-link">
                         <img src="images/logo-tiktok-white.png" alt="tiktok" style="width: 30px;">
                     </a>
 
