@@ -378,7 +378,7 @@
                             <input type="text"
                                 name="full_name"
                                 class="form-control rounded-3"
-                                placeholder="Adrian"
+                                placeholder="Adrian Dizon"
                                 required>
                         </div>
 
