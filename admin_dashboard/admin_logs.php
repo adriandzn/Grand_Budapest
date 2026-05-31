@@ -75,6 +75,7 @@
     
 ?>
 
+
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
     <div class="font-title text-darkbrown fs-2 fw-bold">Logs</div>
     
@@ -89,6 +90,8 @@
     </div>
 </div>
 
+
+<!-- Display Table -->
 <div class="bg-white rounded-4 shadow-sm p-4">
     <?php if ($logs->num_rows > 0): ?>
         <div class="table-responsive">
@@ -125,6 +128,7 @@
                         </td>
                     </tr>
 
+                    <!-- Edit Logs -->
                     <div class="modal fade" id="editLogModal_<?php echo $log['log_id']; ?>" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
@@ -161,6 +165,7 @@
     <?php endif; ?>
 </div>
 
+<!-- Add Logs -->
 <div class="modal fade" id="addLogNoteModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">

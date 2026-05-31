@@ -142,6 +142,8 @@
     </div>
 </div>
 
+
+<!-- Display Table -->
 <div class="bg-white rounded-4 shadow-sm p-4">
     <?php if ($reservations->num_rows > 0): ?>
         <div class="table-responsive">
@@ -230,6 +232,7 @@
                         </td>
                     </tr>
 
+                    <!-- Edit Reservation -->
                     <div class="modal fade" id="editResModal_<?php echo $res['reservation_id']; ?>" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content rounded-4 border-0 shadow-lg">
@@ -371,6 +374,8 @@
     <?php endif; ?>
 </div>
 
+
+<!-- Add Reservation -->
 <div class="modal fade" id="addReservationModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content rounded-4 border-0 shadow-lg">

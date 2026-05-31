@@ -130,8 +130,9 @@
     $rooms = $conn->query($rooms_sql);
 
     $room_modals_buffer = [];
-    
+
 ?>
+
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
     <div class="font-title text-darkbrown fs-2 fw-bold">Rooms</div>
@@ -147,6 +148,8 @@
     </div>
 </div>
 
+
+<!-- Display Table -->
 <div class="bg-white rounded-4 shadow-sm p-4">
     <?php if ($rooms->num_rows > 0): ?>
         <div class="table-responsive">
@@ -167,6 +170,8 @@
                     <?php while($room = $rooms->fetch_assoc()) { 
                         ob_start();
                         ?>
+
+                        <!-- Edit Room -->
                         <div class="modal fade" id="editRoomModal_<?php echo $room['room_id']; ?>" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content rounded-4 border-0 shadow-lg">
@@ -255,6 +260,8 @@ foreach ($room_modals_buffer as $modal_html) {
 }
 ?>
 
+
+<!-- Add Room -->
 <div class="modal fade" id="addRoomModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow-lg">
