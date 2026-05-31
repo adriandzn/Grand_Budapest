@@ -1,44 +1,45 @@
 <?php
-require_once "dbaseconnection.php";
-session_start();
+    require_once "dbaseconnection.php";
+    session_start();
 
-// Confirm identity and role clear access
-if (!isset($_SESSION['GBrole']) || $_SESSION['GBrole'] !== "Employee") {
-    header("location: login.php");
-    exit;
-}
-
-// Logout Post Actions
-if (isset($_POST['logout'])) {
-    if (isset($_SESSION['GBid'])) {
-        $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
-        $conn->query($logsql);
+    // Confirm identity and role clear access
+    if (!isset($_SESSION['GBrole']) || $_SESSION['GBrole'] !== "Employee") {
+        header("location: login.php");
+        exit;
     }
-    session_abort();
-    header("location:login.php");
-    exit;
-}
 
-// Panel Views
-$page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+    // Logout Post Actions
+    if (isset($_POST['logout'])) {
+        if (isset($_SESSION['GBid'])) {
+            $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
+            $conn->query($logsql);
+        }
+        session_abort();
+        header("location:login.php");
+        exit;
+    }
 
-// Metric blocks for the Home View
-$totalRooms = 0; $totalReservations = 0; $pendingReservations = 0; $confirmedReservations = 0;
-$recentReservations = null; $pendingList = null;
+    // Panel Views
+    $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
-if ($page == 'dashboard') {
-    $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
-    $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
-    $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
-    $confirmedReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Confirmed'")->fetch_assoc()['total'] ?? 0;
+    // Metric blocks for the Home View
+    $totalRooms = 0; $totalReservations = 0; $pendingReservations = 0; $confirmedReservations = 0;
+    $recentReservations = null; $pendingList = null;
 
-    // Query for Recent Reservations
-    $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
+    if ($page == 'dashboard') {
+        $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
+        $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
+        $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
+        $confirmedReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Confirmed'")->fetch_assoc()['total'] ?? 0;
 
-    // System Audit Trail Logs
-    $pendingList = $conn->query("SELECT * FROM tbl_reservationdetails WHERE reservation_status='Pending' ORDER BY reservation_id DESC LIMIT 5");
-}
+        // Query for Recent Reservations
+        $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
+
+        // System Audit Trail Logs
+        $pendingList = $conn->query("SELECT * FROM tbl_reservationdetails WHERE reservation_status='Pending' ORDER BY reservation_id DESC LIMIT 5");
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +49,6 @@ if ($page == 'dashboard') {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
      <style>
-        /* Header Styling */
         .welcome-card {
             background: linear-gradient(135deg, #2c2421 0%, #423530 100%);
             border-left: 5px solid #fbb4b9;
@@ -60,6 +60,7 @@ if ($page == 'dashboard') {
         }
     </style>
 </head>
+
 <body class="bg-lightpink font-body">
 
     <div class="d-flex min-vh-100">

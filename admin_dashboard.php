@@ -1,49 +1,50 @@
 <?php
-require_once "dbaseconnection.php";
-session_start();
+    require_once "dbaseconnection.php";
+    session_start();
 
-// Confirm identity and role clear access
-if (!isset($_SESSION['GBrole']) || $_SESSION['GBrole'] !== "Admin") {
-    header("location: login.php");
-    exit;
-}
-
-// Logout Post Actions
-if (isset($_POST['logout'])) {
-    if (isset($_SESSION['GBid'])) {
-        $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
-        $conn->query($logsql);
+    // Confirm identity and role clear access
+    if (!isset($_SESSION['GBrole']) || $_SESSION['GBrole'] !== "Admin") {
+        header("location: login.php");
+        exit;
     }
-    session_destroy();
-    header("location:login.php");
-    exit;
-}
 
-// Panel Views
-$page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+    // Logout Post Actions
+    if (isset($_POST['logout'])) {
+        if (isset($_SESSION['GBid'])) {
+            $logsql = "INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('" . $_SESSION['GBid'] . "', 'Logged Out', NOW())";
+            $conn->query($logsql);
+        }
+        session_destroy();
+        header("location:login.php");
+        exit;
+    }
 
-// Metric blocks for the Home View
-$totalRooms = 0; $totalUsers = 0; $totalReservations = 0; $pendingReservations = 0;
-$recentReservations = null; $recentLogs = null; $activeStaff = null;
+    // Panel Views
+    $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
-if ($page == 'dashboard') {
-    $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
-    $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM tbl_userdetails")->fetch_assoc()['total'] ?? 0;
-    $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
-    $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
+    // Metric blocks for the Home View
+    $totalRooms = 0; $totalUsers = 0; $totalReservations = 0; $pendingReservations = 0;
+    $recentReservations = null; $recentLogs = null; $activeStaff = null;
 
-    // Query for Recent Reservations
-    $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
+    if ($page == 'dashboard') {
+        $totalRooms = $conn->query("SELECT COUNT(*) AS total FROM tbl_roomdetails")->fetch_assoc()['total'] ?? 0;
+        $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM tbl_userdetails")->fetch_assoc()['total'] ?? 0;
+        $totalReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails")->fetch_assoc()['total'] ?? 0;
+        $pendingReservations = $conn->query("SELECT COUNT(*) AS total FROM tbl_reservationdetails WHERE reservation_status='Pending'")->fetch_assoc()['total'] ?? 0;
 
-    // System Audit Trail Logs
-    $recentLogs = $conn->query("SELECT l.*, u.full_name FROM tbl_logs l 
-                                INNER JOIN tbl_userdetails u ON l.user_id = u.user_id 
-                                ORDER BY l.log_id DESC LIMIT 5");
+        // Query for Recent Reservations
+        $recentReservations = $conn->query("SELECT * FROM tbl_reservationdetails ORDER BY reservation_id DESC LIMIT 5");
 
-    // Currently active operators
-    $activeStaff = $conn->query("SELECT user_id, full_name, username, role FROM tbl_userdetails WHERE status='Active' ORDER BY user_id DESC LIMIT 5");
-}
+        // System Audit Trail Logs
+        $recentLogs = $conn->query("SELECT l.*, u.full_name FROM tbl_logs l 
+                                    INNER JOIN tbl_userdetails u ON l.user_id = u.user_id 
+                                    ORDER BY l.log_id DESC LIMIT 5");
+
+        // Currently active operators
+        $activeStaff = $conn->query("SELECT user_id, full_name, username, role FROM tbl_userdetails WHERE status='Active' ORDER BY user_id DESC LIMIT 5");
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +54,6 @@ if ($page == 'dashboard') {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/body.css">
     <style>
-        /* Header Styling */
         .welcome-card {
             background: linear-gradient(135deg, #2c2421 0%, #423530 100%);
             border-left: 5px solid #fbb4b9;
@@ -65,6 +65,7 @@ if ($page == 'dashboard') {
         }
     </style>
 </head>
+
 <body class="bg-lightpink font-body">
 
     <div class="d-flex min-vh-100">
