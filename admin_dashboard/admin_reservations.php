@@ -1,122 +1,127 @@
 <?php
+    // Insert Reservation
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'])) {
+        $user_id = $_POST['user_id'];
+        $room_id = $_POST['room_id'];
 
-// Insert Reservation
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_save_reservation'])) {
-    $full_name = $_POST['full_name'];
-    $gender = $_POST['gender'];
-    $birth_date = $_POST['birth_date'];
-    $address = $_POST['address'];
-    $contact = $_POST['contact'];
-    $email = $_POST['email'];
-    $check_in = $_POST['check_in_date'];
-    $check_out = $_POST['check_out_date'];
-    $total_price = $_POST['total_price'];
-    $status = $_POST['reservation_status'];
-    $special_request = $_POST['special_request'];
+        $full_name = $_POST['full_name'];
+        $gender = $_POST['gender'];
+        $birth_date = $_POST['birth_date'];
+        $address = $_POST['address'];
+        $contact = $_POST['contact'];
+        $email = $_POST['email'];
+        $check_in = $_POST['check_in_date'];
+        $check_out = $_POST['check_out_date'];
+        $total_price = $_POST['total_price'];
+        $status = $_POST['reservation_status'];
+        $special_request = $_POST['special_request'];
 
-    $insert_sql = "INSERT INTO tbl_reservationdetails (full_name, gender, birth_date, address, contact, email, check_in_date, check_out_date, total_price, reservation_status, special_request) 
-                   VALUES ('$full_name', '$gender', '$birth_date', '$address', '$contact', '$email', '$check_in', '$check_out', $total_price, '$status', '$special_request')";
-    
-    if ($conn->query($insert_sql)) {
-        $new_id = $conn->insert_id;
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Manually created Reservation #$new_id for $full_name";
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
-        }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Reservation #'.$new_id.' recorded successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    }
-}
-
-// Update Reservation
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservation'])) {
-    $res_id = $_POST['reservation_id'];
-    $full_name = $_POST['full_name'];
-    $gender = $_POST['gender'];
-    $birth_date = $_POST['birth_date'];
-    $address = $_POST['address'];
-    $contact = $_POST['contact'];
-    $email = $_POST['email'];
-    $check_in = $_POST['check_in_date'];
-    $check_out = $_POST['check_out_date'];
-    $total_price = $_POST['total_price'];
-    $status = $_POST['reservation_status'];
-    $special_request = $_POST['special_request'];
-
-    $update_sql = "UPDATE tbl_reservationdetails SET 
-                    full_name = '$full_name', gender = '$gender', birth_date = '$birth_date', address = '$address',
-                    contact = '$contact', email = '$email', check_in_date = '$check_in', check_out_date = '$check_out', 
-                    total_price = $total_price, reservation_status = '$status', special_request = '$special_request' 
-                   WHERE reservation_id = $res_id";
-    
-    if ($conn->query($update_sql)) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Updated details for Reservation #$res_id ($full_name)";
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
-        }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Reservation #'.$res_id.' update complete.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_reservation'])) {
-    $res_id = $_POST['reservation_id'];
-    if ($conn->query("UPDATE tbl_reservationdetails SET reservation_status = 'Confirmed' WHERE reservation_id = $res_id")) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', 'Approved Reservation #$res_id', NOW())");
+        $insert_sql = "INSERT INTO tbl_reservationdetails (user_id, room_id, full_name, gender, birth_date, address, contact, email, check_in_date, check_out_date, total_price, reservation_status, special_request) VALUES ($user_id, $room_id, '$full_name', '$gender', '$birth_date', '$address', '$contact', '$email', '$check_in', '$check_out', $total_price, '$status', '$special_request')";
+        
+        if ($conn->query($insert_sql)) {
+            $new_id = $conn->insert_id;
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Manually created Reservation #$new_id for $full_name";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Reservation #'.$new_id.' recorded successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
         }
     }
-}
 
-// Delete Reservation
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservation'])) {
-    $res_id = $_POST['reservation_id'];
-    
-    $res_data = $conn->query("SELECT full_name FROM tbl_reservationdetails WHERE reservation_id = $res_id")->fetch_assoc();
-    $guest_name = $res_data ? $res_data['full_name'] : 'Unknown Guest';
+    // Update Reservation
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_update_reservation'])) {
+        $res_id = $_POST['reservation_id'];
 
-    $delete_sql = "DELETE FROM tbl_reservationdetails WHERE reservation_id = $res_id";
-    
-    if ($conn->query($delete_sql)) {
-        if (isset($_SESSION['GBid'])) {
-            $user_id = $_SESSION['GBid'];
-            $log_action = "Permanently Deleted Reservation Record #$res_id ($guest_name)";
-            $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+        $user_id = $_POST['user_id'];
+        $room_id = $_POST['room_id'];
+
+        $full_name = $_POST['full_name'];
+        $gender = $_POST['gender'];
+        $birth_date = $_POST['birth_date'];
+        $address = $_POST['address'];
+        $contact = $_POST['contact'];
+        $email = $_POST['email'];
+        $check_in = $_POST['check_in_date'];
+        $check_out = $_POST['check_out_date'];
+        $total_price = $_POST['total_price'];
+        $status = $_POST['reservation_status'];
+        $special_request = $_POST['special_request'];
+
+        $update_sql = "UPDATE tbl_reservationdetails 
+            SET user_id = $user_id, room_id = $room_id, full_name = '$full_name',  gender = '$gender', birth_date = '$birth_date', address = '$address', contact = '$contact', email = '$email', check_in_date = '$check_in', check_out_date = '$check_out', total_price = $total_price, reservation_status = '$status', special_request = '$special_request' 
+            WHERE reservation_id = $res_id";
+        
+        if ($conn->query($update_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Updated details for Reservation #$res_id ($full_name)";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Reservation #'.$res_id.' update complete.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
         }
-        echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
-                <strong>Success!</strong> Reservation ledger record safely deleted.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>';
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
-                <strong>Database Error!</strong> Failed to drop booking index row.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
-              </div>';
     }
-}
 
-// Search and Display Reservations
-$search_query = "";
-$res_sql = "SELECT * FROM tbl_reservationdetails";
-if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
-    $search_query = $_POST['searchinput'];
-    $res_sql .= " WHERE reservation_id LIKE '%$search_query%' 
-                  OR full_name LIKE '%$search_query%' 
-                  OR email LIKE '%$search_query%' 
-                  OR address LIKE '%$search_query%' 
-                  OR special_request LIKE '%$search_query%'
-                  OR reservation_status LIKE '%$search_query%'";
-}
-$res_sql .= " ORDER BY reservation_id DESC";
-$reservations = $conn->query($res_sql);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_reservation'])) {
+        $res_id = $_POST['reservation_id'];
+        if ($conn->query("UPDATE tbl_reservationdetails SET reservation_status = 'Confirmed' WHERE reservation_id = $res_id")) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', 'Approved Reservation #$res_id', NOW())");
+            }
+        }
+    }
+
+    // Delete Reservation
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_delete_reservation'])) {
+        $res_id = $_POST['reservation_id'];
+        
+        $res_data = $conn->query("SELECT full_name FROM tbl_reservationdetails WHERE reservation_id = $res_id")->fetch_assoc();
+        $guest_name = $res_data ? $res_data['full_name'] : 'Unknown Guest';
+
+        $delete_sql = "DELETE FROM tbl_reservationdetails WHERE reservation_id = $res_id";
+        
+        if ($conn->query($delete_sql)) {
+            if (isset($_SESSION['GBid'])) {
+                $user_id = $_SESSION['GBid'];
+                $log_action = "Permanently Deleted Reservation Record #$res_id ($guest_name)";
+                $conn->query("INSERT INTO tbl_logs (user_id, action, date_time) VALUES ('$user_id', '$log_action', NOW())");
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #fbb4b9; color: #2c2421; border-color: #2c2421;">
+                    <strong>Success!</strong> Reservation ledger record safely deleted.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>';
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4 shadow-sm" role="alert" style="background-color: #2c2421; color: #fbb4b9; border-color: #fbb4b9;">
+                    <strong>Database Error!</strong> Failed to drop booking index row.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                </div>';
+        }
+    }
+
+    // Search and Display Reservations
+    $search_query = "";
+    $res_sql = "SELECT * FROM tbl_reservationdetails";
+    if (isset($_POST['btnsearch']) && !empty($_POST['searchinput'])) {
+        $search_query = $_POST['searchinput'];
+        $res_sql .= " WHERE reservation_id LIKE '%$search_query%' 
+                    OR full_name LIKE '%$search_query%' 
+                    OR email LIKE '%$search_query%' 
+                    OR address LIKE '%$search_query%' 
+                    OR special_request LIKE '%$search_query%'
+                    OR reservation_status LIKE '%$search_query%'";
+    }
+    $res_sql .= " ORDER BY reservation_id DESC";
+    $reservations = $conn->query($res_sql);
+
 ?>
+
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
     <div class="font-title text-darkbrown fs-2 fw-bold">Reservations</div>
@@ -230,6 +235,28 @@ $reservations = $conn->query($res_sql);
                                 <form method="POST" action="">
                                     <div class="modal-body p-4">
                                         <input type="hidden" name="reservation_id" value="<?php echo $res['reservation_id']; ?>">
+
+                                        <div class="row g-3 mb-3">
+
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-semibold">User ID</label>
+                                                <input type="number"
+                                                    name="user_id"
+                                                    value="<?php echo $res['user_id']; ?>"
+                                                    class="form-control rounded-3"
+                                                    required>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-semibold">Room ID</label>
+                                                <input type="number"
+                                                    name="room_id"
+                                                    value="<?php echo $res['room_id']; ?>"
+                                                    class="form-control rounded-3"
+                                                    required>
+                                            </div>
+
+                                        </div>
                                         
                                         <div class="row g-3 mb-3">
                                             <div class="col-md-6">
@@ -325,10 +352,36 @@ $reservations = $conn->query($res_sql);
             <form method="POST" action="">
                 <div class="modal-body p-4">
                     <div class="row g-3 mb-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold text-dark">User ID</label>
+                            <input type="number"
+                                name="user_id"
+                                class="form-control rounded-3"
+                                required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold text-dark">Room ID</label>
+                            <input type="number"
+                                name="room_id"
+                                class="form-control rounded-3"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="row g-3 mb-3">
+
                         <div class="col-md-6">
                             <label class="form-label fw-semibold text-dark">Guest Full Name</label>
-                            <input type="text" name="full_name" class="form-control rounded-3" placeholder="John Doe" required>
+                            <input type="text"
+                                name="full_name"
+                                class="form-control rounded-3"
+                                placeholder="John Doe"
+                                required>
                         </div>
+
                         <div class="col-md-3">
                             <label class="form-label fw-semibold text-dark">Gender</label>
                             <select name="gender" class="form-select rounded-3" required>
@@ -338,10 +391,12 @@ $reservations = $conn->query($res_sql);
                                 <option value="Other">Other</option>
                             </select>
                         </div>
+
                         <div class="col-md-3">
                             <label class="form-label fw-semibold text-dark">Birth Date</label>
                             <input type="date" name="birth_date" class="form-control rounded-3" required>
                         </div>
+
                     </div>
 
                     <div class="row g-3 mb-3">
