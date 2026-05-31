@@ -185,7 +185,6 @@
                             </div>
                         </div>
 
-                        
                         <!-- REGISTER -->
                         <div class="row text-center text-white">
                             <div class="col fs-5">

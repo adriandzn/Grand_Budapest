@@ -41,19 +41,13 @@
                     </div>
 
                     <h2 class="text-white text-center font-title mb-3">Booking Request Sent!</h2>
-                    <p class="text-light text-center font-body mb-2">
-                        Thank you for choosing Grand Budapest.
-                    </p>
-                    <p class="text-white text-center mb-4 font-body">
-                        We have received your booking request and will get back to you shortly.
-                    </p>
+                    <p class="text-light text-center font-body mb-2">Thank you for choosing Grand Budapest.</p>
+                    <p class="text-white text-center mb-4 font-body">We have received your booking request and will get back to you shortly.</p>
 
                     <div class="bg-white rounded-4 shadow-sm p-4 mb-4">
                         <div class="row text-center gy-3">
                             <div class="col-12">
-                                <h5 class="font-darkbrown fw-bold mb-0">
-                                    Need help? Contact us at:
-                                </h5>
+                                <h5 class="font-darkbrown fw-bold mb-0">Need help? Contact us at:</h5>
                             </div>
                             <div class="col-12 col-md-5 d-flex align-items-center justify-content-center gap-2">
                                 <img src="images/logo-phone-pink.png" alt="Phone" class="img-fluid" style="height: clamp(1.4rem, 3vw, 1.9rem); width: auto;">
@@ -66,17 +60,11 @@
                         </div>
                     </div>
 
-                    <p class="text-white text-center font-body mb-5">
-                        You can go to your Profile Page to view your reservation status, booking details, and history anytime.
-                    </p>
+                    <p class="text-white text-center font-body mb-5">You can go to your Profile Page to view your reservation status, booking details, and history anytime.</p>
 
                     <div class="d-flex justify-content-center gap-4 flex-wrap">
-                        <a href="profile_overview.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-2 shadow">
-                            Go to Profile
-                        </a>
-                        <a href="index.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-2 shadow">
-                            Back to Home
-                        </a>
+                        <a href="profile_overview.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-2 shadow">Go to Profile</a>
+                        <a href="index.php" class="btn pink-button font-title d-flex flex-column align-items-center px-5 py-2 shadow">Back to Home</a>
                     </div>
                 </div>
             </div>
